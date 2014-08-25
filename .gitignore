@@ -3,3 +3,4 @@ node_modules
 /organizations
 /configuration/secrets.json
 logs.txt
+/npm-debug.log
