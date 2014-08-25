@@ -5,9 +5,9 @@
     "appstore.api": {
         "timestamp": "",
         "unsupportedBrowserUrl": "/content/index.html",
-        "datasourceProxyUrl": "https://dev.appsngen.com/datasource-proxy",
-        "activProxyWebSocketUrl": "wss://dev.appsngen.com/activ-data-proxy",
-        "ieDataProxy": "https://dev.appsngen.com/datasource-proxy/ie-data-proxy"
+        "datasourceProxyUrl": "https://www.appsngen.com/datasource-proxy",
+        "activProxyWebSocketUrl": "wss://www.appsngen.com/activ-data-proxy",
+        "ieDataProxy": "https://www.appsngen.com/datasource-proxy/ie-data-proxy"
     },
     "core.util": {
         "appstore.events": {

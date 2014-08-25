@@ -1,7 +1,7 @@
 {
     "restServicesUrls": {
         "tokenService": {
-            "host" : "dev.appsngen.com",
+            "host" : "www.appsngen.com",
             "path" :"/auth-service/tokens",
             "isEnabled" : true
         },
