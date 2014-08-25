@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <script async src="//www.google-analytics.com/analytics.js" type="text/javascript"></script>
+        <script src="/content/js/stubgadget.js" type="text/javascript"></script>
+        <script>window['__isgadget']=true;</script>
+        <script src="/content/js/appstore.api.application.js" type="text/javascript"></script>
+        <script>
+            function initLibraryConfig() {gadgets.config.init(<%= JSON.stringify(config) %>)};
+        </script>
+        <script>
+            appstore.supportedBrowsers=<%= JSON.stringify(browsers) %>;
+            gadgets.Prefs.setDefaultPrefs_(<%= JSON.stringify(prefs) %>);
+        </script>
+        <script src="/content/js/applications.analytics.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <script>gadgets.util.runOnLoadHandlers();</script>
+    </body>
+</html>

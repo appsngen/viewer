@@ -1,0 +1,14 @@
+{
+    "restServicesUrls": {
+        "tokenService": {
+            "host" : "dev.appsngen.com",
+            "path" :"/auth-service/tokens",
+            "isEnabled" : true
+        },
+        "preferencesService": {
+            "host": "www.appsngen.com",
+            "path": "/api/preferences/global?organizationId=",
+            "isEnabled" : false
+        }
+    }
+}
