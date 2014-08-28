@@ -7,7 +7,7 @@
 
     var getLogger = function (module) {
         var path = module.filename.split('/').slice(-2).join('/'),
-            filename = process.cwd() + '/logs.txt',
+            filename = __dirname + '/../logs.txt',
 
             logger = new (winston.Logger)({
                 transports: [

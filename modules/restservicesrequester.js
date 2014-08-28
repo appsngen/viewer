@@ -9,13 +9,13 @@
         this.https = require('https');
         this.winston = require('winston');
         this.logger  = require('./logger')(module);
-        this.restServiceConfigFilename = process.cwd() + '/configuration/restservice.json';
-        this.secretsPath = process.cwd() + '/configuration/secrets.json';
+        this.restServiceConfigFilename = __dirname + '/../configuration/restservice.json';
+        this.secretsPath = __dirname + '/../configuration/secrets.json';
         this.regExpresion = /[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g;
     };
 
     RestServicesRequester.prototype.getPreferences = function (xmlResult, callback, errorCallback) {
-        var that = this, senddata, parsedData, filePath = process.cwd() + '/organizations/' +
+        var that = this, senddata, parsedData, filePath = __dirname + '/../organizations/' +
         xmlResult.organizationId.split(':')[2].replace(that.regExpresion,'_') +
         '/users/' + xmlResult.userId.replace(that.regExpresion,'_'),
             fileName = filePath + '/globalPreferences.json',

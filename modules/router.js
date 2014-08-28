@@ -60,7 +60,7 @@
     exports.getWidget = function (request, response) {
         var uri = url.parse(request.url).pathname,
             urlParts = url.parse(request.url, true),
-            filename = path.join(process.cwd(), uri),
+            filename = path.join(__dirname + '/../', uri),
             query = urlParts.query;
         request.checkParams('organizationId', 'Invalid organization Id.').notEmpty();
         request.checkParams('widgetId', 'Invalid widget Id.').notEmpty();
@@ -80,7 +80,7 @@
 
     exports.getWidgetResources = function (request, response) {
         var uri = url.parse(request.url).pathname,
-            filename = path.join(process.cwd(), uri),
+            filename = path.join(__dirname + '/../', uri),
             extension = mime.lookup(filename);
         if (extension) {
             var refererUrl = url.parse(request.headers.referer).href,
@@ -92,7 +92,7 @@
 
     exports.getViewerResources = function (request, response) {
         var uri = url.parse(request.url).pathname,
-            filename = path.join(process.cwd(), uri),
+            filename = path.join(__dirname + '/../', uri),
             extension = mime.lookup(filename);
         if (extension) {
             helper.getViewerResource(uri, filename, extension, response);

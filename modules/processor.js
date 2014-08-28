@@ -35,7 +35,7 @@
     };
 
     ProcessController.prototype.ProcessHtml = function(xmlResult){
-        var that = this, htmlPath = process.cwd() + that.config.htmlBuildPath,
+        var that = this, htmlPath = __dirname + '/../' + that.config.htmlBuildPath,
             relocationConfig = {source : '', destination:''},
             config = that.config;
         var changeLocation = function(xmlResult){

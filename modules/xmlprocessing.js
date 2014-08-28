@@ -116,7 +116,7 @@
     };
 
     XmlProcessor.prototype.xmlParse = function (callback, errorCallback, query) {
-        var filename = process.cwd() + this.appFolder + '/application.xml', parsedResult, that = this;
+        var filename = __dirname + '/../' + this.appFolder + '/application.xml', parsedResult, that = this;
         that.fileOperation.readFile(filename, function(data){
             that.parser.parseString(data, function (error, result) {
                 if (error) {

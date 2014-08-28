@@ -21,7 +21,7 @@
         var config, that = this, dom;
 
         that.fileOperation.readFile(filename, function(dataTemplate){
-            that.fileOperation.readFile(process.cwd() + '/configuration/web.json', function(jsonString){
+            that.fileOperation.readFile(__dirname + '/../configuration/web.json', function(jsonString){
                 config = JSON.parse(jsonString);
                 config['shindig.auth'].authToken = xmlResult.token;
                 config['core.util']['appstore.events'].events.publish = xmlResult.events.publish;
@@ -108,7 +108,7 @@
     HtmlBuilder.prototype.buildTemplate = function (xmlResult, widgetPath, callback, errorCallback) {
         var that = this, dom, templateDom, result, pathSaving ='';
         xmlResult.prefsSet= that.applyGlobalPreferences(xmlResult.organizationPreferences, xmlResult.prefsSet);
-        that.createTemplateHtml(xmlResult, process.cwd() + '/content/template.html',function(templateDomResponse) {
+        that.createTemplateHtml(xmlResult, __dirname + '/../content/template.html',function(templateDomResponse) {
             templateDom = templateDomResponse;
             that.fileOperation.readFile(widgetPath + xmlResult.applicationHtml, function (rawHtml) {
                 dom = that.createDom(rawHtml);

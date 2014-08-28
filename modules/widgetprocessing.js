@@ -34,7 +34,7 @@
         patharray.forEach(function (element) {
             filename = filename + element + '\\';
         });
-        filename = process.cwd() + '/' + filename;
+        filename = __dirname + '/../' + filename;
         this.fileOperation.readFile(filename, function(data){
             callback(data);
         }, errorCallback);
@@ -66,7 +66,8 @@
                     that.fileOperation.readFile(path + '/xmlDescriptionConfig.json', function(data){
                         that.xmlResult = JSON.parse(data);
                         reqInfo.query.organizationId = reqInfo.query.clientId;
-                        path = path.replace(process.cwd(), '') + '/';
+                        var dirname = __dirname.replace('/modules', '');
+                        path = path.replace(dirname, '') + '/';
                         nextCallback(that.xmlResult, reqInfo.query, path);
                     }, errorCallback);
                 }, errorCallback);
