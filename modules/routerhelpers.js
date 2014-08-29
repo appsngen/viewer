@@ -78,7 +78,7 @@
         processController.getResource(uri, refererQuery);
     };
 
-    exports.getViewerResource = function (uri, filename, extension, response) {
+    exports.getViewerResource = function (filename, extension, response) {
         var processController = new processControllerModule.ProcessController(), that = this;
         var controllerConfiguration = {
             errorCallback: function (error, code) {

@@ -11,6 +11,10 @@
         this.mkdirp = require('mkdirp');
         this.rmdir = require('rimraf');
     };
+    FileSystem.prototype.readFileSync = function(filename){
+        var result = this.fs.readFileSync(filename);
+        return result;
+    };
 
     FileSystem.prototype.readFile = function (filename, callback, errorCallback) {
         var that = this, message;

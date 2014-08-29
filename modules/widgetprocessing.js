@@ -9,10 +9,8 @@
         this.winston = require('winston');
         this.logger = require('./logger')(module);
     };
-    WidgetProcessor.prototype.getAdditionalResource =function(path, callback, errorCallback){
-        this.fileOperation.readFile(path, function(data) {
-            callback(data);
-        }, errorCallback);
+    WidgetProcessor.prototype.getAdditionalResource =function(filename, callback){
+        callback(global.viwerConfig[filename]);
     };
 
     WidgetProcessor.prototype.getTextHtml = function(path, callback, errorCallback){

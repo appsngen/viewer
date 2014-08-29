@@ -1,0 +1,11 @@
+{
+    "viewerPort" : "8889",
+    "viwerHost" : "localhost",
+    "htmlTemplatePath" : "/../content/template.html",
+    "applicationAnaliticPath" : "/../content/js/applications.analytics.js",
+    "appstoreApiApplicationPath" : "/../content/js/appstore.api.application.js",
+    "appstoreApiContainerPath" : "/../content/js/appstore.api.container.js",
+    "stubgadgetPath" : "/../content/js/stubgadget.js",
+    "restserviceConfigPath" : "/../configuration/restservice.json",
+    "applicationWebPath" : "/../configuration/web.json"
+}

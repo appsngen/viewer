@@ -17,32 +17,28 @@
         this.logger = require('./logger')(module);
     };
 
-    HtmlBuilder.prototype.createTemplateHtml = function (xmlResult, filename, callback, errorCallback) {
-        var config, that = this, dom;
-
-        that.fileOperation.readFile(filename, function(dataTemplate){
-            that.fileOperation.readFile(__dirname + '/../configuration/web.json', function(jsonString){
-                config = JSON.parse(jsonString);
-                config['shindig.auth'].authToken = xmlResult.token;
-                config['core.util']['appstore.events'].events.publish = xmlResult.events.publish;
-                config['core.util']['appstore.events'].events.subscribe = xmlResult.events.subscribe;
-                var result = that._.template(dataTemplate.toString())({
-                    config : config,
-                    browsers : xmlResult.browsers,
-                    prefs : xmlResult.prefsSet
-                });
-                dom = that.createDom(result, errorCallback);
-                if(!dom){
-                    errorCallback();
-                }
-                else{
-                    callback(dom);
-                }
-            },errorCallback);
-        },errorCallback);
+    HtmlBuilder.prototype.createTemplateHtml = function (xmlResult, callback, errorCallback) {
+        var config, that = this, dom, dataTemplate;
+        dataTemplate = global.viwerConfig.htmlTemplate;
+        config = global.viwerConfig.applicationWeb;
+        config['shindig.auth'].authToken = xmlResult.token;
+        config['core.util']['appstore.events'].events.publish = xmlResult.events.publish;
+        config['core.util']['appstore.events'].events.subscribe = xmlResult.events.subscribe;
+        var result = that._.template(dataTemplate.toString())({
+            config: config,
+            browsers: xmlResult.browsers,
+            prefs: xmlResult.prefsSet
+        });
+        dom = that.createDom(result, errorCallback);
+        if (!dom) {
+            errorCallback();
+        }
+        else {
+            callback(dom);
+        }
     };
 
-    HtmlBuilder.prototype.createDom =function(rawHtml){
+    HtmlBuilder.prototype.createDom = function (rawHtml) {
         var that = this;
         var handler = new this.htmlparser.DefaultHandler(function (error) {
             if (error) {
@@ -57,7 +53,7 @@
         return handler.dom;
     };
 
-    HtmlBuilder.prototype.insertData = function(dom, templateDom){
+    HtmlBuilder.prototype.insertData = function (dom, templateDom) {
         var that = this, i, result = {};
         result.isValid = false;
         try {
@@ -78,7 +74,7 @@
             result.isValid = true;
             result.dom = dom;
         }
-        catch(exception){
+        catch (exception) {
             var message = 'Can not parse html. Html is not valid;';
             that.logger.error(message);
             return result;
@@ -89,9 +85,9 @@
 
     HtmlBuilder.prototype.applyGlobalPreferences = function (organizationPreferences, defaultPreferences) {
         var property;
-        for(property in organizationPreferences){
-            if(organizationPreferences.hasOwnProperty(property)){
-                if(defaultPreferences[property] !== undefined){
+        for (property in organizationPreferences) {
+            if (organizationPreferences.hasOwnProperty(property)) {
+                if (defaultPreferences[property] !== undefined) {
                     defaultPreferences[property].value = organizationPreferences[property];
                 }
             }
@@ -100,37 +96,37 @@
         return defaultPreferences;
     };
 
-    HtmlBuilder.prototype.validURL = function(str) {
+    HtmlBuilder.prototype.validURL = function (str) {
         var pattern = new RegExp('https?:\/\/');
         return pattern.test(str);
     };
 
     HtmlBuilder.prototype.buildTemplate = function (xmlResult, widgetPath, callback, errorCallback) {
-        var that = this, dom, templateDom, result, pathSaving ='';
-        xmlResult.prefsSet= that.applyGlobalPreferences(xmlResult.organizationPreferences, xmlResult.prefsSet);
-        that.createTemplateHtml(xmlResult, __dirname + '/../content/template.html',function(templateDomResponse) {
+        var that = this, dom, templateDom, result, pathSaving = '';
+        xmlResult.prefsSet = that.applyGlobalPreferences(xmlResult.organizationPreferences, xmlResult.prefsSet);
+        that.createTemplateHtml(xmlResult, function (templateDomResponse) {
             templateDom = templateDomResponse;
             that.fileOperation.readFile(widgetPath + xmlResult.applicationHtml, function (rawHtml) {
                 dom = that.createDom(rawHtml);
 
                 that.select(dom, 'link').forEach(function (element) {
-                    if(!that.validURL(element.attribs.href.toString())){
+                    if (!that.validURL(element.attribs.href.toString())) {
                         that.lessFiles.push(widgetPath + element.attribs.href);
                     }
                 });
 
-                that.lessBuilder.compileLess(that.lessFiles,xmlResult.organizationPreferences, function(){
+                that.lessBuilder.compileLess(that.lessFiles, xmlResult.organizationPreferences, function () {
                     result = that.insertData(dom, templateDom);
-                    if(result.isValid){
+                    if (result.isValid) {
                         var newHtml = that.htmlConstructor(dom);
 
                         pathSaving = widgetPath + xmlResult.applicationHtml;
 
-                        that.fileOperation.writeFile(pathSaving, newHtml, function(){
+                        that.fileOperation.writeFile(pathSaving, newHtml, function () {
                             callback(xmlResult);
                         }, errorCallback);
                     }
-                    else{
+                    else {
                         errorCallback();
                     }
                 }, errorCallback);

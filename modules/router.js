@@ -92,10 +92,10 @@
 
     exports.getViewerResources = function (request, response) {
         var uri = url.parse(request.url).pathname,
-            filename = path.join(__dirname + '/../', uri),
+            filename = path.basename(uri),
             extension = mime.lookup(filename);
         if (extension) {
-            helper.getViewerResource(uri, filename, extension, response);
+            helper.getViewerResource(filename, extension, response);
         }
     };
 

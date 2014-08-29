@@ -31,7 +31,7 @@
 
     ProcessController.prototype.getViwerResource = function(filename){
         var config = this.config;
-        this.widgetProcessor.getAdditionalResource(filename, config.globalSuccessCallback, config.errorCallback);
+        this.widgetProcessor.getAdditionalResource(filename, config.globalSuccessCallback);
     };
 
     ProcessController.prototype.ProcessHtml = function(xmlResult){
