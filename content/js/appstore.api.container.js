@@ -588,9 +588,6 @@
         return protocol + '://' + host + portStr;
     };
     var receiveSynMessage = function (event) {
-        if (getOrigin(event.origin) !== getOrigin('http://localhost:8889')) {
-            return;
-        }
 
         if (!event.data || event.data.indexOf('appstore:') !== 0) {
             return;
