@@ -13,7 +13,7 @@
                 var parsedData = JSON.parse(data);
                 global.viwerConfig = {};
                 global.viwerConfig.viewerPort = parsedData.viewerPort;
-                global.viwerConfig.viwerHost = parsedData.viwerHost;
+                global.viwerConfig.viewerHost = parsedData.viewerHost;
                 global.viwerConfig.htmlTemplate = filesystem.readFileSync(__dirname + parsedData.htmlTemplatePath);
                 tempData = filesystem.readFileSync(__dirname + parsedData.applicationAnaliticPath);
                 global.viwerConfig['applications.analytics.js'] = tempData;
@@ -27,7 +27,7 @@
                 global.viwerConfig.restserviceConfig = tempData;
                 tempData = JSON.parse(filesystem.readFileSync(__dirname + parsedData.applicationWebPath));
                 global.viwerConfig.applicationWeb = tempData;
-                portscanner.checkPortStatus(parsedData.viewerPort, parsedData.viwerHost, function (error, status) {
+                portscanner.checkPortStatus(parsedData.viewerPort, parsedData.viewerHost, function (error, status) {
                     callback(parsedData.viewerPort, status);
                 });
             } catch (ex) {

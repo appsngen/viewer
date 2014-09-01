@@ -1,6 +1,6 @@
 {
     "viewerPort" : "8889",
-    "viwerHost" : "localhost",
+    "viewerHost" : "localhost",
     "htmlTemplatePath" : "/../content/template.html",
     "applicationAnaliticPath" : "/../content/js/applications.analytics.js",
     "appstoreApiApplicationPath" : "/../content/js/appstore.api.application.js",
