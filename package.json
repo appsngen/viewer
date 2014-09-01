@@ -1,7 +1,7 @@
 { 
   "name": "appsngen-viewer",
     "description": "Module for rendering widget content",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "private": false,
     "dependencies": {
         "grunt": "~0.4.5",
