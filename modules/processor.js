@@ -108,9 +108,9 @@
         }, that.config.errorCallback);
     };
 
-    ProcessController.prototype.getResource = function(uri, refererQuery){
+    ProcessController.prototype.getResource = function(uri, cookie){
         var that = this;
-        that.widgetProcessor.getResource(uri, refererQuery, function(data){
+        that.widgetProcessor.getResource(uri, cookie, function(data){
             that.config.globalSuccessCallback(data);
         }, that.config.errorCallback);
     };

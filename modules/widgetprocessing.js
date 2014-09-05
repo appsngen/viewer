@@ -23,12 +23,12 @@
         }, errorCallback);
     };
 
-    WidgetProcessor.prototype.getResource = function(uri, refererQuery, callback, errorCallback){
+    WidgetProcessor.prototype.getResource = function(uri, cookie, callback, errorCallback){
         var patharray = uri.split('/'), regExpresion = /[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g, filename ='';
         patharray.splice(0, 1);
-        patharray[1] = refererQuery.clientId.split(':')[2].replace(regExpresion,'_');
+        patharray[1] = cookie.clientId.split(':')[2].replace(regExpresion,'_');
         patharray.splice(2, 0, 'users');
-        patharray.splice(3, 0, refererQuery.userId.replace(regExpresion,'_'));
+        patharray.splice(3, 0, cookie.userId.replace(regExpresion,'_'));
         patharray.forEach(function (element) {
             filename = filename + element + '\\';
         });

@@ -75,6 +75,8 @@
             response.status(400).send('There have been validation errors: ' + util.inspect(errors));
             return;
         }
+        helper.saveCookie(request, response);
+
         helper.getWidget(query, filename, response);
     };
 
@@ -82,12 +84,9 @@
         var uri = url.parse(request.url).pathname,
             filename = path.join(__dirname + '/../', uri),
             extension = mime.lookup(filename);
-        if (extension) {
-            var refererUrl = url.parse(request.headers.referer).href,
-                refererUrlParts = url.parse(refererUrl, true),
-                refererQuery = refererUrlParts.query;
-            helper.getResource(uri, refererQuery, extension, response);
-        }
+        var cookie = helper.getCookie(request, response);
+        helper.getResource(uri, cookie, extension, response);
+
     };
 
     exports.getViewerResources = function (request, response) {

@@ -1,7 +1,7 @@
 { 
   "name": "appsngen-viewer",
     "description": "Module for rendering widget content",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "private": false,
     "dependencies": {
         "grunt": "~0.4.5",
@@ -27,7 +27,8 @@
         "express-validator" : "2.3.0",
         "body-parser": "1.6.5",
         "mime" : "1.2.11",
-        "portscanner" : "1.0.0"
+        "portscanner" : "1.0.0",
+        "cookies" : "0.5.0"
     },
     "repository": {
         "type": "git",
