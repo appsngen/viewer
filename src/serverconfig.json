@@ -127,8 +127,8 @@
         }
     },
     "user": {
-        "name": "dev1@epamsystems.com",
-        "password": "dev1"
+        "name": "",
+        "password": ""
     },
     "securitySettings": {
         "checkSignature": false,
