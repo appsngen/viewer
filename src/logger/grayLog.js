@@ -3,9 +3,14 @@
  */
 (function () {
     'use strict';
+    var fs = require('fs');
+    var loggerConfiguration = JSON.parse(fs.readFileSync(__dirname + '/../serverconfig.json')).grayLog;
     var storage = require('./../globalstorage').getStorage();
     var publisher = require('./../rabbitmq/graylogpublisher');
-    var msgpack = require('msgpack');
+    var msgpack;
+    if(loggerConfiguration.messageFormat && loggerConfiguration.messageFormat === 'Radio'){
+        msgpack = require('msgpack');
+    }
     var levels = {
         alert: 1,
         critical: 2,
