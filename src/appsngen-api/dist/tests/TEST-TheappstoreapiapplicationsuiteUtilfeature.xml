@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="The appstore.api.application suite Util feature" errors="0" tests="17" failures="0" time="0.042" timestamp="Mon Jan 26 2015 17:49:47 GMT+0300 (Belarus Standard Time)">
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should register and run onload handlers" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should format string value" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should proxy console" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should proxy local storage" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should post message to a target" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should register post message listener" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should register post message listener in IE" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should check whether the value is object" time="0">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should stringify params" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should create request uri" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should encode base64 data" time="0.002">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should decode base64 data" time="0.002">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should provide token data" time="0.006">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should log error for invalid token" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should log error for invalid token body (base64)" time="0.002">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should log error for invalid token body (json)" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Util feature" name="should generate a guid" time="0.001">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

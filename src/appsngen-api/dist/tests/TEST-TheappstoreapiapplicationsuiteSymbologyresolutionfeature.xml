@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="The appstore.api.application suite Symbology resolution feature" errors="0" tests="10" failures="0" time="0.017" timestamp="Mon Jan 26 2015 17:49:47 GMT+0300 (Belarus Standard Time)">
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Symbology resolution feature" name="should make convertion from one symbology to another" time="0.002">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Symbology resolution feature" name="should validate undefined request before conversion" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Symbology resolution feature" name="should validate source type before conversion" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Symbology resolution feature" name="should validate target type before conversion" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Symbology resolution feature" name="should validate symbols before conversion" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Symbology resolution feature" name="should validate preferred country before conversion" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Symbology resolution feature" name="should validate preferred exchange before conversion" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Symbology resolution feature" name="should validate callback function before conversion" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Symbology resolution feature" name="should handle success received response" time="0.004">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Symbology resolution feature" name="should allow to initialize a list of symbols to convert" time="0.001">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

@@ -1,0 +1,16 @@
+.index-data-table tr td{
+  background: @table-bg;
+  border-bottom: 1px solid @table-border-color;
+  text-align: right;
+  vertical-align: top;
+  font-size: ceil(@font-size-base * 0.9);
+  padding: 6px 10px 6px 0px;
+}
+.index-data-table tr td:first-child{
+  text-align: left;
+  padding-left:5%;
+  font-size: ceil(@font-size-base * 1.05);
+}
+.index-data-table tr.active td{
+  background: @table-bg-active;
+}

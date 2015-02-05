@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="The appstore.api.container suite Ready feature" errors="0" tests="1" failures="0" time="0.002" timestamp="Mon Jan 26 2015 17:49:48 GMT+0300 (Belarus Standard Time)">
+    
+      <testcase assertions="0" classname="The appstore.api.container suite Ready feature" name="should set api version" time="0.001">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

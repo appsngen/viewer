@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="The appstore.api.application suite Socket feature" errors="0" tests="7" failures="0" time="0.008" timestamp="Mon Jan 26 2015 17:49:47 GMT+0300 (Belarus Standard Time)">
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Socket feature" name="should create a web socket connection with params" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Socket feature" name="should create a web socket connection without params" time="0">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Socket feature" name="should create a web socket connection without path" time="0">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Socket feature" name="should send message to a socket" time="0">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Socket feature" name="should close socket connection" time="0">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Socket feature" name="should notify about new data" time="0">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Socket feature" name="should notify about error" time="0.001">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

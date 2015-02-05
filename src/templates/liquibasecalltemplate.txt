@@ -1,0 +1,1 @@
+--classpath=<%%=connectorPath%%> --changeLogFile=<%%=changeLogFilePath%%> --username=<%%=userName%%> --password=<%%=password%%> --url="jdbc:mysql://<%%=databaseHost%%>:<%%=databasePort%%>/viewer?allowMultiQueries=true&createDatabaseIfNotExist=true" update -Ddb.name=viewer -Ddb.user=<%%=dbUser%%> -Ddb.password=<%%=dbPassword%%>

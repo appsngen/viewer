@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{htmlTitle}}</title>
+	<link rel="stylesheet" href="{{yuiGridsUrl}}">
+    <link rel="stylesheet" href="{{projectAssets}}/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="{{projectAssets}}/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="{{projectAssets}}/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div id="appsNgenApiDoc">
+    <div id="bd" class="yui3-g">
+        <div class="yui3-u-3-4">
+            <h1>API Reference</h1>
+
+			<div data-bind="if: selectedClass">
+				<h2 data-bind="text: selectedClass().name"></h2>
+				<ul data-bind="foreach: selectedClass().items">
+					<li>
+						<h3 data-bind="text: name"></h3>
+						<h4 style="display:inline;" data-bind="text: params"></h4>
+						<h6 data-bind="text: description"></h6>
+					</li>
+				</ul>
+			</div>
+        </div>
+		<div class="yui3-u-1-4">
+            <ul data-bind="foreach: classes">
+				<li data-bind="click: $parent.selectClass">
+					<a href="#" data-bind="text: name"></a>
+					<ul data-bind="foreach: items">
+						<li>
+							<a href="#" data-bind="text: name"></a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+        </div>
+    </div>
+</div>
+
+<script src="{{projectAssets}}/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script src="{{projectAssets}}/js/knockout-2.2.1.js" type="text/javascript"></script>
+<script src="{{projectAssets}}/js/appsNgenDoc.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+html {
+    font-size: 14px; /* ie8 hack*/
+    font-size: 100%;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: #fff;
+    font-size: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.table {
+    display: table;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.cell {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px; /* ie8 hack*/
+    padding: 1rem;
+}
+
+.main-text {
+    font-size: 36px; /* ie8 hack*/
+    font-size: 3rem;
+    margin: 30px 0 10px 0; /* ie8 hack*/
+    margin: 3rem 0 1rem 0;
+    font-weight: bold;
+}
+
+.browser {
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    width: 10%;
+    max-width: 75px;
+    margin: 0 10px; /* ie8 hack*/
+    margin: 0 1rem;
+    min-width: 64px; /* ie8 hack*/
+    min-width: 5rem;
+}
+
+.browser-name {
+    display: inline-block;
+    color: #395886;
+    font-size: 19px; /* ie8 hack*/
+    font-size: 1.5rem;
+}
+
+.browser img {
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 75%;
+    }
+
+    .browser {
+        min-width: 4rem;
+    }
+
+    .browser-name {
+        font-size: 1.2rem;
+    }
+}

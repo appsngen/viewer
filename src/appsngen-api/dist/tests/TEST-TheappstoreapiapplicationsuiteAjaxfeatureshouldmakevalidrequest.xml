@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="The appstore.api.application suite Ajax feature should make valid request" errors="0" tests="3" failures="0" time="0.007" timestamp="Mon Jan 26 2015 17:49:47 GMT+0300 (Belarus Standard Time)">
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Ajax feature should make valid request" name="to a specfied mashup without any parameters" time="0.004">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Ajax feature should make valid request" name="to a specfied mashup with path and params" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Ajax feature should make valid request" name="to a specfied mashup with a specfied method, body and headers" time="0">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

@@ -1,6 +1,10 @@
 .idea
-node_modules
-/organizations
-/configuration/secrets.json
-logs.txt
+/node_modules
+/coverage
+/.out
 /npm-debug.log
+/src/liquibase/comand.cmd
+/src/liquibase/comand.sh
+/logs
+/widgets
+newrelic_agent.log

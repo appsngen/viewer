@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="The appstore.api.container suite Metadata feature" errors="0" tests="3" failures="0" time="0.006" timestamp="Mon Jan 26 2015 17:49:48 GMT+0300 (Belarus Standard Time)">
+    
+      <testcase assertions="0" classname="The appstore.api.container suite Metadata feature" name="should report metadata to callback" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.container suite Metadata feature" name="should return frame metadata on get" time="0.004">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.container suite Metadata feature" name="should return all metadata on get" time="0.001">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

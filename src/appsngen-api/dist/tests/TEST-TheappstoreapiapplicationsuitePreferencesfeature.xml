@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="The appstore.api.application suite Preferences feature" errors="0" tests="2" failures="0" time="0.004" timestamp="Mon Jan 26 2015 17:49:47 GMT+0300 (Belarus Standard Time)">
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Preferences feature" name="should allow an acces to preferencies" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Preferences feature" name="should allow to validate preferencies" time="0.001">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

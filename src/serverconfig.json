@@ -1,0 +1,145 @@
+{
+    "viewerInstanceConfiguration": {
+        "portHttp": "8889",
+        "host": "localhost",
+        "portHttps": "8890",
+        "version": "v1.0.0",
+        "baseUrl": "http://localhost:8889"
+    },
+    "databaseConfiguration": {
+        "host": "",
+        "port": "",
+        "login": "",
+        "password": ""
+    },
+    "staticFiles": {
+        "htmlTemplatePath": "templates/widgethtmltemlate.html",
+        "applicationAnaliticPath": "/../content/js/applications.analytics.js",
+        "appsngenWidgetApiPath": "/../content/js/appsngen.widget.api.js",
+        "appsngenContainerApiPath": "/../content/js/appsngen.container.api.js",
+        "liquibaseTemplatePath": "templates/liquibasecalltemplate.txt",
+        "appsngenCertificate": "../configuration/appsngen_token_public.crt",
+        "mysqlConnectorJavaPath": "/mysql-connector-java-5.0.8-bin.jar",
+        "changeLogFilePath": "/../../databasedump/Main_Viewer.xml",
+        "imagesViewsPath": "../content/views/src/images/",
+        "viewsPath": "../content/views/"
+    },
+    "httpsConfiguration": {
+        "crt": "",
+        "pem": ""
+    },
+    "rabbitMqConfiguration": {
+        "protocol": "",
+        "port": "",
+        "host": "",
+        "password": "",
+        "login": "",
+        "vhost": "",
+        "rpc": {
+            "exchange": "",
+            "name": ""
+        },
+        "publisherSubscriber": {
+            "exchange": "",
+            "name": ""
+        },
+        "grayLogPublisher": {
+            "exchange": "",
+            "routingKey": ""
+        }
+    },
+    "restServicesUrls": {
+        "protocol": "https",
+        "tokenService": {
+            "host": "www.appsngen.com",
+            "path": "/auth-service/tokens/using-master-token?user=",
+            "additionalPath": "/auth-service/tokens",
+            "port": ""
+        },
+        "preferencesService": {
+            "host": "www.appsngen.com",
+            "path": "/rest-services/preferences/global?view=general&organizationId=",
+            "port": ""
+        },
+        "gadgetManagementService": {
+            "host": "www.appsngen.com",
+            "path": "/rest-services/gadget-management/apps",
+            "port": ""
+        },
+        "widgetsDownloadService": {
+            "host": "www.appsngen.com",
+            "path": "/rest-services/widgets/",
+            "port": ""
+        },
+        "widgetPreferencesService": {
+            "host": "www.appsngen.com",
+            "path": "/rest-services/preferences?organizationId=",
+            "port": ""
+        },
+        "uploadService": {
+            "host": "www.appsngen.com",
+            "path": "/rest-services/widgets?organizationId=",
+            "port": ""
+        },
+        "deleteService": {
+            "host": "www.appsngen.com",
+            "path": "/rest-services/widgets/",
+            "port": ""
+        }
+    },
+    "logger": {
+        "levels": {
+            "file": "silly",
+            "console": "silly",
+            "grayLog": "silly"
+        },
+        "priority": {
+            "silly": 0,
+            "debug": 1,
+            "verbose": 2,
+            "info": 3,
+            "warn": 4,
+            "error": 5
+        }
+    },
+    "grayLog": {
+        "gelfVersion": "",
+        "messageFormat": ""
+    },
+    "widgetConfig": {
+        "authToken": "",
+        "appstore.api": {
+            "timestamp": "",
+            "unsupportedBrowserUrl": "/content/index.html",
+            "datasourceProxyUrl": "https://www.appsngen.com/datasource-proxy",
+            "activProxyWebSocketUrl": "wss://www.appsngen.com/activ-data-proxy",
+            "ieDataProxy": "https://www.appsngen.com/datasource-proxy/ie-data-proxy"
+        },
+        "core.util": {
+            "appstore.events": {
+                "events": {
+                    "publish": [],
+                    "subscribe": []
+                }
+            },
+            "core": {},
+            "appstore.api": {}
+        }
+    },
+    "user": {
+        "name": "dev1@epamsystems.com",
+        "password": "dev1"
+    },
+    "securitySettings": {
+        "checkSignature": false,
+        "checkExpiration": false,
+        "checkParent": false,
+        "checkSubject": false
+    },
+    "dataProvider": "filesystem",
+    "services": ["preferences", "widgets", "gadget-management"],
+    "expirationTokenTime": 30000,
+    "serviceUser": "service@appstore.com",
+    "appsngenCookieKey": "wAem5fGxuSMBBSnDJRHADRase9FmXsyF1MHlPLQ4IbZFrqXJ75nbCjoMizTQ",
+    "masterToken": ""
+}

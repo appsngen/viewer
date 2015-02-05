@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="The appstore.api.application suite Events feature" errors="0" tests="14" failures="0" time="0.019" timestamp="Mon Jan 26 2015 17:49:47 GMT+0300 (Belarus Standard Time)">
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Events feature" name="should subscribe current level handler and call it when receives event from top" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Events feature" name="should subscribe current level handler and call it when receives event from child" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Events feature" name="should not call current level subscriber when receives event from top with wrong channel" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Events feature" name="should unsubscribe current level subscriber and not call it when receives event from top" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Events feature" name="should subscribe underlying window and send event to it when receives event from top" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Events feature" name="should subscribe underlying window and send event to it when receives event from current lvl" time="0">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Events feature" name="should subscribe underlying window and send event to it when receives event from child2" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Events feature" name="should unsubscribe underlying window and not send event to it when receives event from top" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Events feature" name="should unsubscribe underlying window and not send event to it when receives event from curr." time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Events feature" name="should unsubscribe underlying window and not send event to it when receives event from chld2" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Events feature" name="should send publish event for a specified channel to parent" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Events feature" name="should send subscribe event for a specified channel to parent" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Events feature" name="should send unsubscribe event for a specified channel to parent" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Events feature" name="should support debug mode" time="0.003">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

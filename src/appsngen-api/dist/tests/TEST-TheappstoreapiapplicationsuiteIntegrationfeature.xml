@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="The appstore.api.application suite Integration feature" errors="0" tests="4" failures="0" time="0.005" timestamp="Mon Jan 26 2015 17:49:47 GMT+0300 (Belarus Standard Time)">
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Integration feature" name="should allow to create an iframe application passing container id" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Integration feature" name="should allow to create an iframe application passing DOM element as a container" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Integration feature" name="should allow to create an iframe application with specified attributes" time="0">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Integration feature" name="should validate undefined iframe id or application URL" time="0.001">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="The appstore.api.application suite Data source proxy feature" errors="0" tests="1" failures="0" time="0.002" timestamp="Mon Jan 26 2015 17:49:47 GMT+0300 (Belarus Standard Time)">
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Data source proxy feature" name="should create valid data source proxy uri" time="0">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

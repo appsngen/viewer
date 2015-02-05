@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="The appstore.api.application suite Ajax feature should handle" errors="0" tests="8" failures="0" time="0.019" timestamp="Mon Jan 26 2015 17:49:47 GMT+0300 (Belarus Standard Time)">
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Ajax feature should handle" name="success received responses" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Ajax feature should handle" name="error received responses" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Ajax feature should handle" name="error received invalid_token responses" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Ajax feature should handle" name="error received invalid responses" time="0">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Ajax feature should handle" name="error received unknown responses" time="0">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Ajax feature should handle" name="received responses with chain hanlers" time="0">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Ajax feature should handle" name="received responses with a custom success/error predicate" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Ajax feature should handle" name="received responses with a custom response parser" time="0.001">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

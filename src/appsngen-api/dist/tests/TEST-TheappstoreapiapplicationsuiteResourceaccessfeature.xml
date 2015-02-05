@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="The appstore.api.application suite Resource access feature" errors="0" tests="1" failures="0" time="0.002" timestamp="Mon Jan 26 2015 17:49:47 GMT+0300 (Belarus Standard Time)">
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Resource access feature" name="should provide base url to load resources dynamically" time="0">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

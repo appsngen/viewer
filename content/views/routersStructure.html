@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .confluenceTable {
+            border-collapse: collapse
+        }
+
+        .confluenceTh, .confluenceTd {
+            border: 1px solid #ddd;
+            padding: 7px 10px;
+            vertical-align: top;
+            text-align: left
+        }
+
+        .confluenceTable ol, .confluenceTable ul {
+            margin-left: 0;
+            padding-left: 22px
+        }
+
+        .confluenceTable, .table-wrap {
+            margin: 10px 0 0 0;
+            overflow-x: auto
+        }
+
+        .confluenceTable:first-child, .table-wrap:first-child {
+            margin-top: 0
+        }
+
+        table.confluenceTable th.confluenceTh, table.confluenceTable th.confluenceTh > p, table.confluenceTable table.confluenceTable td.confluenceTd.highlight > p, table.confluenceTable table.confluenceTable th.confluenceTh.highlight-grey > p, table.confluenceTable table.confluenceTable td.confluenceTd.highlight-grey > p {
+            background-color: #f0f0f0
+        }
+
+        table.confluenceTable table.confluenceTable th.confluenceTh.info > p, table.confluenceTable table.confluenceTable td.confluenceTd.highlight.info > p, table.confluenceTable table.confluenceTable th.confluenceTh.highlight-blue > p, table.confluenceTable table.confluenceTable td.confluenceTd.highlight-blue > p {
+            background-color: #e0f0ff
+        }
+
+        table.confluenceTable table.confluenceTable th.confluenceTh.success > p, table.confluenceTable table.confluenceTable td.confluenceTd.highlight.success > p, table.confluenceTable table.confluenceTable th.confluenceTh.highlight-green > p, table.confluenceTable table.confluenceTable td.confluenceTd.highlight-green > p {
+            background-color: #ddfade
+        }
+
+        table.confluenceTable table.confluenceTable th.confluenceTh.warning > p, table.confluenceTable table.confluenceTable td.confluenceTd.highlight.warning > p, table.confluenceTable table.confluenceTable th.confluenceTh.highlight-red > p, table.confluenceTable table.confluenceTable td.confluenceTd.highlight-red > p {
+            background-color: #ffe7e7
+        }
+
+        table.confluenceTable table.confluenceTable th.confluenceTh.note > p, table.confluenceTable table.confluenceTable td.confluenceTd.highlight.note > p, table.confluenceTable table.confluenceTable th.confluenceTh.highlight-yellow > p, table.confluenceTable table.confluenceTable td.confluenceTd.highlight-yellow > p {
+            background-color: #ffd
+        }
+
+        table.confluenceTable th.confluenceTh, table.confluenceTable th.confluenceTh > p {
+            font-weight: bold
+        }
+
+        table.confluenceTable table.confluenceTable th.confluenceTh.nohighlight > p {
+            font-weight: normal;
+            background-color: transparent
+        }
+
+        table.confluenceTable td.confluenceTd img {
+            max-width: none
+        }
+    </style>
+</head>
+<body>
+<div class="table-wrap">
+    <table class="confluenceTable tablesorter">
+        <thead>
+        <tr class="sortableHeader">
+            <th style="text-align: center;" class="confluenceTh sortableHeader tablesorter-headerSortDown"
+                data-column="0">
+                <div class="tablesorter-header-inner">Router template</div>
+            </th>
+            <th colspan="1" style="text-align: center;" class="confluenceTh sortableHeader" data-column="1">
+                <div class="tablesorter-header-inner">Protocol verb</div>
+            </th>
+            <th style="text-align: center;" class="confluenceTh sortableHeader" data-column="2">
+                <div class="tablesorter-header-inner">Router example</div>
+            </th>
+            <th colspan="1" class="confluenceTh sortableHeader" data-column="3">
+                <div class="tablesorter-header-inner">Parameters</div>
+            </th>
+            <th style="text-align: center;" class="confluenceTh sortableHeader" data-column="4">
+                <div class="tablesorter-header-inner">Description</div>
+            </th>
+            <th style="text-align: center;" class="confluenceTh sortableHeader" data-column="5">
+                <div class="tablesorter-header-inner">Security</div>
+            </th>
+        </tr>
+        </thead>
+        <tbody class="">
+        <tr>
+            <td class="confluenceTd">/</td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">GET</td>
+            <td class="confluenceTd"><a href="https://local.appsngen.com/viewer/" class="external-link" rel="nofollow">https://local.appsngen.com/viewer/</a>
+            </td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">No</td>
+            <td class="confluenceTd">Return a table of posible routers</td>
+            <td style="text-align: center;" class="confluenceTd">No</td>
+        </tr>
+        <tr>
+            <td colspan="1" class="confluenceTd">/content/js/*</td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">GET</td>
+            <td colspan="1" class="confluenceTd"><span style="color: rgb(34,34,34);"><a
+                    href="https://local.appsngen.com/viewer/content/js/appsngen.container.api.js" class="external-link"
+                    rel="nofollow">https://local.appsngen.com/viewer/content/js/appsngen.container.api.js</a></span>
+            </td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">No</td>
+            <td colspan="1" class="confluenceTd">Return viewer resource files</td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">No</td>
+        </tr>
+        <tr>
+            <td class="confluenceTd">/heartbeat</td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">GET</td>
+            <td class="confluenceTd"><a href="https://local.appsngen.com/viewer/" class="external-link" rel="nofollow">https://local.appsngen.com/viewer/</a>hearbeat
+            </td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">No</td>
+            <td class="confluenceTd">Return server unix time</td>
+            <td style="text-align: center;" class="confluenceTd">No</td>
+        </tr>
+        <tr>
+            <td colspan="1" class="confluenceTd"><p>/organizations/:organizationId/widgets</p>
+
+                <p>/:widgetId/*</p></td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">GET</td>
+            <td colspan="1" class="confluenceTd"><p><a
+                    href="https://local.appsngen.com/viewer/organizations/urn:org:top_investing/widgets/urn:app:top_investing:index_chartzx1/js/application.concat.js"
+                    class="external-link" rel="nofollow">https://local.appsngen.com/viewer/organizations/urn:org:top_investing/widgets/</a>
+            </p>
+
+                <p>
+                    <a href="https://local.appsngen.com/viewer/organizations/urn:org:top_investing/widgets/urn:app:top_investing:index_chartzx1/js/application.concat.js"
+                       class="external-link" rel="nofollow">urn:app:top_investing:index_chartzx1/js/application.concat.js</a>
+                </p></td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">No</td>
+            <td colspan="1" class="confluenceTd">Get widget resources</td>
+            <td colspan="1" class="confluenceTd"><p style="text-align: center;">Yes</p>
+
+                <p style="text-align: center;">Use cookie (see <a
+                        href="https://kb.epam.com/display/EPMPEXCH/Cookie+generation">Cookie
+                    generation</a>)</p></td>
+        </tr>
+        <tr>
+            <td colspan="1" class="confluenceTd"><p>/organizations/:organizationId/widgets</p>
+
+                <p>/:widgetId/index.html</p></td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">GET</td>
+            <td colspan="1" class="confluenceTd"><p><a
+                    href="https://local.appsngen.com/viewer/organizations/urn:org:top_investing/widgets/urn:app:top_investing:index_chartzx1/index.html?parent=https%3A%2F%2Flocal.appsngen.com&amp;token=eyJhbGciOiJTSEExd2l0aFJTQSIsImN0eSI6Impzb24iLCJ4NXQiOiJhTVljVmN1b0xKNzZ2TnFhcGtBcUg0NW42YkE9IiwidHlwIjoiSk9TRSJ9.eyJpc3MiOiJhcHBzbmdlbiIsImF1ZCI6eyJ1c2VyIjoiZGVtb0BhcHBzbmdlbi5jb20iLCJvcmdhbml6YXRpb24iOiJ1cm46b3JnOnRvcF9pbnZlc3RpbmciLCJkb21haW5zIjpbImh0dHBzOi8vbG9jYWwuYXBwc25nZW4uY29tIl0sInVzZXJSb2xlcyI6WyJST0xFX1NBTEVTIiwiUk9MRV9ERVZFTE9QRVIiXX0sInN1YiI6IndpZGdldDp1cm46YXBwOnRvcF9pbnZlc3Rpbmc6aW5kZXhfY2hhcnR6eDEiLCJqdGkiOiI0NTFmNzJkZi1hNDAzLTRjYmItOGM5Zi04YjJjY2Y1YjgxZjYiLCJleHAiOjE0MjI1MTg4NjA2NTksImlhdCI6MTQxOTkyNjg2MDY1OSwidHlwIjoiYXQifQ%3D%3D.VPKJMh%2FuWjiBUYP%2B5N5XqEzrQmRzwEKH2BFBv3W9gp15u9OM6Zcgm9Iw1dIA5V9gMs8ySbM%2BKPVa4za1YJTaaHhAkX06GKrp34cqo45hy2xpsX38XkLtdFONpsCg6WNqPgYj4E7LieOr83irWMGFOo92P3M8k5i8%2B0zbCqAGHLk%3D&amp;frameId=Index-Chartzx1"
+                    class="external-link" rel="nofollow">https://local.appsngen.com/viewer/organizations/urn:org:top_investing/widgets/</a>
+            </p>
+
+                <p>
+                    <a href="https://local.appsngen.com/viewer/organizations/urn:org:top_investing/widgets/urn:app:top_investing:index_chartzx1/index.html?parent=https%3A%2F%2Flocal.appsngen.com&amp;token=eyJhbGciOiJTSEExd2l0aFJTQSIsImN0eSI6Impzb24iLCJ4NXQiOiJhTVljVmN1b0xKNzZ2TnFhcGtBcUg0NW42YkE9IiwidHlwIjoiSk9TRSJ9.eyJpc3MiOiJhcHBzbmdlbiIsImF1ZCI6eyJ1c2VyIjoiZGVtb0BhcHBzbmdlbi5jb20iLCJvcmdhbml6YXRpb24iOiJ1cm46b3JnOnRvcF9pbnZlc3RpbmciLCJkb21haW5zIjpbImh0dHBzOi8vbG9jYWwuYXBwc25nZW4uY29tIl0sInVzZXJSb2xlcyI6WyJST0xFX1NBTEVTIiwiUk9MRV9ERVZFTE9QRVIiXX0sInN1YiI6IndpZGdldDp1cm46YXBwOnRvcF9pbnZlc3Rpbmc6aW5kZXhfY2hhcnR6eDEiLCJqdGkiOiI0NTFmNzJkZi1hNDAzLTRjYmItOGM5Zi04YjJjY2Y1YjgxZjYiLCJleHAiOjE0MjI1MTg4NjA2NTksImlhdCI6MTQxOTkyNjg2MDY1OSwidHlwIjoiYXQifQ%3D%3D.VPKJMh%2FuWjiBUYP%2B5N5XqEzrQmRzwEKH2BFBv3W9gp15u9OM6Zcgm9Iw1dIA5V9gMs8ySbM%2BKPVa4za1YJTaaHhAkX06GKrp34cqo45hy2xpsX38XkLtdFONpsCg6WNqPgYj4E7LieOr83irWMGFOo92P3M8k5i8%2B0zbCqAGHLk%3D&amp;frameId=Index-Chartzx1"
+                       class="external-link" rel="nofollow">urn:app:top_investing:index_chartzx1/index.html?parent=https%3A%2F%2Flocal.appsngen.com&amp;</a>
+                </p>
+
+                <p>
+                    <a href="https://local.appsngen.com/viewer/organizations/urn:org:top_investing/widgets/urn:app:top_investing:index_chartzx1/index.html?parent=https%3A%2F%2Flocal.appsngen.com&amp;token=eyJhbGciOiJTSEExd2l0aFJTQSIsImN0eSI6Impzb24iLCJ4NXQiOiJhTVljVmN1b0xKNzZ2TnFhcGtBcUg0NW42YkE9IiwidHlwIjoiSk9TRSJ9.eyJpc3MiOiJhcHBzbmdlbiIsImF1ZCI6eyJ1c2VyIjoiZGVtb0BhcHBzbmdlbi5jb20iLCJvcmdhbml6YXRpb24iOiJ1cm46b3JnOnRvcF9pbnZlc3RpbmciLCJkb21haW5zIjpbImh0dHBzOi8vbG9jYWwuYXBwc25nZW4uY29tIl0sInVzZXJSb2xlcyI6WyJST0xFX1NBTEVTIiwiUk9MRV9ERVZFTE9QRVIiXX0sInN1YiI6IndpZGdldDp1cm46YXBwOnRvcF9pbnZlc3Rpbmc6aW5kZXhfY2hhcnR6eDEiLCJqdGkiOiI0NTFmNzJkZi1hNDAzLTRjYmItOGM5Zi04YjJjY2Y1YjgxZjYiLCJleHAiOjE0MjI1MTg4NjA2NTksImlhdCI6MTQxOTkyNjg2MDY1OSwidHlwIjoiYXQifQ%3D%3D.VPKJMh%2FuWjiBUYP%2B5N5XqEzrQmRzwEKH2BFBv3W9gp15u9OM6Zcgm9Iw1dIA5V9gMs8ySbM%2BKPVa4za1YJTaaHhAkX06GKrp34cqo45hy2xpsX38XkLtdFONpsCg6WNqPgYj4E7LieOr83irWMGFOo92P3M8k5i8%2B0zbCqAGHLk%3D&amp;frameId=Index-Chartzx1"
+                       class="external-link" rel="nofollow">token=eyJhbGciOiJTSEExd2l0aFJTQSIsImN0eSI</a><a
+                        href="https://local.appsngen.com/viewer/organizations/urn:org:top_investing/widgets/urn:app:top_investing:index_chartzx1/index.html?parent=https%3A%2F%2Flocal.appsngen.com&amp;token=eyJhbGciOiJTSEExd2l0aFJTQSIsImN0eSI6Impzb24iLCJ4NXQiOiJhTVljVmN1b0xKNzZ2TnFhcGtBcUg0NW42YkE9IiwidHlwIjoiSk9TRSJ9.eyJpc3MiOiJhcHBzbmdlbiIsImF1ZCI6eyJ1c2VyIjoiZGVtb0BhcHBzbmdlbi5jb20iLCJvcmdhbml6YXRpb24iOiJ1cm46b3JnOnRvcF9pbnZlc3RpbmciLCJkb21haW5zIjpbImh0dHBzOi8vbG9jYWwuYXBwc25nZW4uY29tIl0sInVzZXJSb2xlcyI6WyJST0xFX1NBTEVTIiwiUk9MRV9ERVZFTE9QRVIiXX0sInN1YiI6IndpZGdldDp1cm46YXBwOnRvcF9pbnZlc3Rpbmc6aW5kZXhfY2hhcnR6eDEiLCJqdGkiOiI0NTFmNzJkZi1hNDAzLTRjYmItOGM5Zi04YjJjY2Y1YjgxZjYiLCJleHAiOjE0MjI1MTg4NjA2NTksImlhdCI6MTQxOTkyNjg2MDY1OSwidHlwIjoiYXQifQ%3D%3D.VPKJMh%2FuWjiBUYP%2B5N5XqEzrQmRzwEKH2BFBv3W9gp15u9OM6Zcgm9Iw1dIA5V9gMs8ySbM%2BKPVa4za1YJTaaHhAkX06GKrp34cqo45hy2xpsX38XkLtdFONpsCg6WNqPgYj4E7LieOr83irWMGFOo92P3M8k5i8%2B0zbCqAGHLk%3D&amp;frameId=Index-Chartzx1"
+                        style="line-height: 1.4285715;" class="external-link" rel="nofollow">k%3D&amp;frameId=Index-Chartzx1</a>
+                </p></td>
+            <td colspan="1" class="confluenceTd"><p style="text-align: center;">frameId,</p>
+
+                <p style="text-align: center;">token,</p>
+
+                <p style="text-align: center;">parent</p></td>
+            <td colspan="1" class="confluenceTd">Get widget rendered html page with token and global preferences.</td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd"><p>Yes</p>
+
+                <p>Standart token with widget id, user and organization.</p></td>
+        </tr>
+        <tr>
+            <td colspan="1" class="confluenceTd">/widgets</td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">POST</td>
+            <td colspan="1" class="confluenceTd"><a
+                    href="https://local.appsngen.com/viewer/content/js/appsngen.container.api.js"
+                    style="text-decoration: underline;" class="external-link" rel="nofollow">https://local.appsngen.com/viewer</a><a
+                    href="http://localhost:8889/widgets?organizationId=urn%3Aorg%3Atop_investing&amp;userId=demo@appsngen.com"
+                    class="external-link" rel="nofollow">/widgets</a></td>
+            <td colspan="1" class="confluenceTd"><p style="text-align: center;">userId, organizationId</p>
+
+                <p style="text-align: center;">(from token)</p></td>
+            <td colspan="1" class="confluenceTd"><p>Upload new widget archive (*.zip).</p>
+
+                <p>Archive recieved in binary format.</p></td>
+            <td colspan="1" class="confluenceTd"><p style="text-align: center;">Yes</p>
+
+                <p style="text-align: center;">Identity token</p></td>
+        </tr>
+        <tr>
+            <td colspan="1" class="confluenceTd">/widgets</td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">PUT</td>
+            <td colspan="1" class="confluenceTd"><a
+                    href="https://local.appsngen.com/viewer/content/js/appsngen.container.api.js"
+                    style="text-decoration: underline;" class="external-link" rel="nofollow">https://local.appsngen.com/viewer</a><a
+                    href="http://localhost:8889/widgets?organizationId=urn%3Aorg%3Atop_investing&amp;userId=demo@appsngen.com"
+                    class="external-link" rel="nofollow">/widgets</a></td>
+            <td colspan="1" class="confluenceTd"><p style="text-align: center;">userId, organizationId</p>
+
+                <p style="text-align: center;">(from token)</p></td>
+            <td colspan="1" class="confluenceTd"><p>Update widget archive (*.zip).</p>
+
+                <p>Archive recieved in binary format.</p></td>
+            <td colspan="1" class="confluenceTd"><p style="text-align: center;">Yes</p>
+
+                <p style="text-align: center;">Identity token</p></td>
+        </tr>
+        <tr>
+            <td colspan="1" class="confluenceTd"><span>/widgets/:widgetId</span></td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">DELETE</td>
+            <td colspan="1" class="confluenceTd"><a
+                    href="https://local.appsngen.com/viewer/content/js/appsngen.container.api.js"
+                    style="text-decoration: underline;" class="external-link" rel="nofollow">https://local.appsngen.com/viewer</a><a
+                    href="http://localhost:8889/widgets?organizationId=urn%3Aorg%3Atop_investing&amp;userId=demo@appsngen.com"
+                    class="external-link" rel="nofollow">/widgets/urn%3Aapp%3Atop_investin%3Aindex_chart</a>
+            </td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">widget Id</td>
+            <td colspan="1" class="confluenceTd">Delete widget by widget id</td>
+            <td colspan="1" class="confluenceTd"><p style="text-align: center;">Yes</p>
+
+                <p style="text-align: center;"><span>Identity token with check for accessory</span></p>
+
+                <p style="text-align: center;"><span> widget to organization.</span></p></td>
+        </tr>
+        <tr>
+            <td colspan="1" class="confluenceTd">/widgets/:widgetId</td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">GET</td>
+            <td colspan="1" class="confluenceTd"><a
+                    href="https://local.appsngen.com/viewer/content/js/appsngen.container.api.js"
+                    style="text-decoration: underline;" class="external-link" rel="nofollow">https://local.appsngen.com/viewer</a><a
+                    href="http://localhost:8889/widgets?organizationId=urn%3Aorg%3Atop_investing&amp;userId=demo@appsngen.com"
+                    class="external-link" rel="nofollow">/widgets/urn%3Aapp%3Atop_investin%3Aindex_chart</a>
+            </td>
+            <td colspan="1" style="text-align: center;" class="confluenceTd">widget Id</td>
+            <td colspan="1" class="confluenceTd">Download archive of widget by widget id</td>
+            <td colspan="1" class="confluenceTd"><p style="text-align: center;">Yes</p>
+
+                <p style="text-align: center;">Identity token with check for accessory</p>
+
+                <p style="text-align: center;">widget to organization.</p></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

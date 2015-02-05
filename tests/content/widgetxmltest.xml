@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+    <ModulePrefs id="index_chart" title="Index Chart" visibility="public" thumbnail="content/images/IC.png"
+                 description="This a very visual component and it is designed to show major index price history chart grouped by country.  Admin users gets to define exact indices to be used and may choose indices from multiple asset classes." minWidth="300" minHeight="470">
+    </ModulePrefs>
+    <Metadata>
+        <Information>
+            <![CDATA[
+                This a very visual component and it is designed to show major index price history chart grouped by country.  Admin users gets to define exact indices to be used and may choose indices from multiple asset classes.
+            ]]>
+        </Information>
+        <Screenshots>
+            <Img>content/images/screenshots/1.jpg</Img>
+            <Img>content/images/screenshots/2.jpg</Img>
+            <Img>content/images/screenshots/3.jpg</Img>
+        </Screenshots>
+        <SupportedDimensions>SMALL | MEDIUM | LARGE</SupportedDimensions>
+        <SupportedBrowsers>IE 8 | FireFox</SupportedBrowsers>
+        <Categories>Time Series|Indexes</Categories>
+        <DataSources>
+            <Source>tr.symbolinfo</Source>
+            <Source>epam_systems.mashupengine</Source>
+        </DataSources>
+        <Streams>
+            <Source>activ1</Source>
+            <Source>activ2</Source>
+        </Streams>
+        <Events>
+            <Event>
+                <Name>INDEX_SELECTED</Name>
+                <Publish/>
+            </Event>
+            <Event>
+                <Name>INTERVAL_CHANGED</Name>
+                <Publish/>
+            </Event>
+        </Events>
+    </Metadata>
+
+    <UserPref name="GLOBAL_PREFERRED_SYMBOLOGY" display_name="Preferred Symbology" datatype="hidden" default_value="RIC" />
+    <UserPref name="GLOBAL_PREFERRED_COUNTRY" display_name="Preferred Country" datatype="hidden" default_value="US" />
+    <UserPref name="GLOBAL_TIME_FORMAT_MASK" display_name="Time Format" datatype="hidden" default_value="HH:MM" />
+    <UserPref name="GLOBAL_DATE_FORMAT_MASK" display_name="Date Format" datatype="hidden" default_value="dd/mm/yyyy" />
+    <UserPref name="GLOBAL_TIME_ZONE" display_name="Time Zone" datatype="hidden" default_value="0" />
+    <UserPref name="GLOBAL_CONVERT_TIME_FORMAT" display_name="Convert Time" datatype="hidden" default_value="LOCAL" />
+    <UserPref name="GLOBAL_DISPLAY_TIME_ZONE" display_name="Display Time Zone" datatype="hidden" default_value="HH:MM" />
+    <UserPref name="GLOBAL_NUMBER_FORMAT_GENERAL_DECIMAL_PLACES" display_name="General Decimal Places" datatype="hidden" default_value="2" />
+    <UserPref name="GLOBAL_NUMBER_FORMAT_LARGE_NUMBER_DECIMAL_PLACES" display_name="Large Number Decimal Places" datatype="hidden" default_value="0" />
+    <UserPref name="GLOBAL_NUMBER_FORMAT_SMALL_NUMBER_DECIMAL_PLACES" display_name="Small Number Decimal Places" datatype="hidden" default_value="4" />
+    <UserPref name="GLOBAL_NUMBER_FORMAT_PERCENTAGE_DECIMAL_PLACES" display_name="Percentage Decimal Places" datatype="hidden" default_value="2" />
+    <UserPref name="GLOBAL_NUMBER_FORMAT_RATIO_DECIMAL_PLACES" display_name="Ratio Decimal Places" datatype="hidden" default_value="3" />
+    <UserPref name="GLOBAL_NUMBER_FORMAT_CURRENCY_DECIMAL_PLACES" display_name="Currency Decimal Places" datatype="hidden" default_value="2" />
+    <UserPref name="GLOBAL_NUMBER_FORMAT_DECIMAL_SEPARATOR" display_name="Decimal Separator" datatype="hidden" default_value="." />
+    <UserPref name="GLOBAL_NUMBER_FORMAT_GROUP_SEPARATOR" display_name="Group Separator" datatype="hidden" default_value="'" />
+    <UserPref name="GLOBAL_NUMBER_FORMAT_NEGATIVE" display_name="Negative Format" datatype="hidden" default_value="REGULAR" />
+    <UserPref name="lineColor"
+              display_name="Line color"
+              datatype="color"
+              default_value="#00B05B"
+              group_name=""
+              description="Defines color of the chart line.">
+    </UserPref>
+    <UserPref name="defaultInterval" display_name="Interval" datatype="enum" default_value="1D" description="Defines time period the chart is built for by default.">
+        <EnumValue value="1D" display_value="1 day" />
+        <EnumValue value="5D" display_value="5 days" />
+        <EnumValue value="1M" display_value="1 month" />
+        <EnumValue value="3M" display_value="3 months" />
+        <EnumValue value="1Y" display_value="1 year" />
+        <EnumValue value="5Y" display_value="5 years" />
+        <EnumValue value="10Y" display_value="10 years" />
+    </UserPref>
+    <UserPref name="stockIndex" display_name="Default index" datatype="enum" default_value="DJI" description="Defines stock index the chart is built for by default."  pref_type="input_parameter">
+        <EnumValue value="DJI" display_value="Dow Jones Industrial Average Index" />
+        <EnumValue value="INX" display_value="S&amp;P 500" />
+        <EnumValue value="IXIC" display_value="NASDAQ Composite" />
+        <EnumValue value="FTSE" display_value="FTSE 100 Index" />
+        <EnumValue value="FTMC" display_value="FTSE Mid 250 Index" />
+
+        <EnumValue value="IRTS" display_value="RTS Index" />
+        <EnumValue value="FCHI" display_value="CAC 40" />
+        <EnumValue value="GDAXI" display_value="DAX Index" />
+        <EnumValue value="MXX" display_value="IPC Index" />
+    </UserPref>
+    <UserPref name="isShownUSA"
+              display_name="United States of America"
+              datatype="bool"
+              default_value="true"
+              description="Enable or disable the visibility of the country.">
+    </UserPref>
+    <UserPref name="isShownUK"
+              display_name="United Kingdom"
+              datatype="bool"
+              default_value="true"
+              description="Enable or disable the visibility of the country.">
+    </UserPref>
+    <UserPref name="isShownRussia"
+              display_name="Russia"
+              datatype="bool"
+              default_value="true"
+              description="Enable or disable the visibility of the country.">
+    </UserPref>
+    <UserPref name="isShownFrance"
+              display_name="France"
+              datatype="bool"
+              default_value="true"
+              description="Enable or disable the visibility of the country.">
+    </UserPref>
+    <UserPref name="isShownGermany"
+              display_name="Germany"
+              datatype="bool"
+              default_value="true"
+              description="Enable or disable the visibility of the country.">
+    </UserPref>
+    <UserPref name="isShownMexico"
+              display_name="Mexico"
+              datatype="bool"
+              default_value="true"
+              description="Enable or disable the visibility of the country.">
+    </UserPref>
+    <Content type="html" href="application.html">
+    </Content>
+</Module>

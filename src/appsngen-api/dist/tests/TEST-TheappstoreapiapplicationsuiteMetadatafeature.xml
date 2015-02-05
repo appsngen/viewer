@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="The appstore.api.application suite Metadata feature" errors="0" tests="2" failures="0" time="0.003" timestamp="Mon Jan 26 2015 17:49:47 GMT+0300 (Belarus Standard Time)">
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Metadata feature" name="should post metadata to parent window" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Metadata feature" name="should post empty metadata to parent window if config is empty" time="0.001">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

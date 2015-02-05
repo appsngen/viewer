@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+	<preConditions>
+		<dbms type="mysql" />
+    </preConditions>
+	<changeSet id="0" runOnChange="true" author="Ruslan Dulina">	
+		<sqlFile path="Data/Initialization_Viewer.sql" relativeToChangelogFile="true" endDelimiter="#"/>
+			<createTable tableName="widgets">
+				<column name="Id" type="INT" autoIncrement="true">
+					<constraints nullable="false" primaryKey="true" primaryKeyName="PK_Id"/>
+				</column>
+				<column name="WidgetId" type="VARCHAR(120)">
+					<constraints nullable="false" unique="true" uniqueConstraintName="UQ_Name"/>
+				</column>
+				<column name="CompiledData" type="mediumblob">
+					<constraints nullable="false"/>
+				</column>
+				<column name="OriginData" type="mediumblob">
+					<constraints nullable="false"/>
+				</column>
+			</createTable>
+	</changeSet>
+</databaseChangeLog>

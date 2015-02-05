@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="The appstore.api.application suite Ready feature" errors="0" tests="3" failures="0" time="0.003" timestamp="Mon Jan 26 2015 17:49:47 GMT+0300 (Belarus Standard Time)">
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Ready feature" name="should set api version" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Ready feature" name="should call ready handlers on widget ready amd able to cancel" time="0.001">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Ready feature" name="should call ready handlers after widget ready" time="0.001">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

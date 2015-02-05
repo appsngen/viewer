@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="The appstore.api.application suite Config feature" errors="0" tests="1" failures="0" time="0.004" timestamp="Mon Jan 26 2015 17:49:47 GMT+0300 (Belarus Standard Time)">
+    
+      <testcase assertions="0" classname="The appstore.api.application suite Config feature" name="should store config and read it" time="0.002">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

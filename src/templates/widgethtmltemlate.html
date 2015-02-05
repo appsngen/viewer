@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <script>window['__isgadget']=true;</script>
+        <script src="<%%= baseUrl %%>/content/js/appsngen.widget.api.js" type="text/javascript"></script>
+        <script>
+            appstore.config.init(<%%= JSON.stringify(config) %%>, <%%= preferences %%>, <%%= JSON.stringify(supportedBrowsers) %%>);
+        </script>
+        <script src="<%%= baseUrl %%>/content/js/applications.analytics.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <script>
+            appstore.util.runOnLoadHandlers();
+        </script>
+    </body>
+</html>

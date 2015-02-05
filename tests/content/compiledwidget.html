@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" class="wf-droidsans-n4-active wf-droidserif-n4-active wf-active wf-opensans-n4-active wf-ptserif-n4-active wf-monaco-n4-inactive">
+<head>
+<script>window['__isgadget']=true;</script>
+<script src="https://local.appsngen.com/viewer/content/js/appsngen.widget.api.js" type="text/javascript"></script>
+<script>
+            appstore.config.init({"authToken":"<%%= token %%>","appstore.api":{"timestamp":"","unsupportedBrowserUrl":"/content/index.html","datasourceProxyUrl":"https://local.appsngen.com/datasource-proxy","activProxyWebSocketUrl":"wss://local.appsngen.com/activ-data-proxy","ieDataProxy":"https://local.appsngen.com/datasource-proxy/ie-data-proxy"},"core.util":{"appstore.events":{"events":{"publish":["SINGLE_INSTRUMENT"],"subscribe":["INTERVAL_CHANGED"]}},"core":{},"appstore.api":{}}}, <%%= JSON.stringify(preferences) %%>, ["Safari, Chrome"]);
+        </script>
+    <link rel="stylesheet" type="text/css" href="content/styles.concat.css"/>
+    <link rel="stylesheet" type="text/css" href="content/price-chart.less"/>
+    <link media="screen and (max-width: 536px)" rel="stylesheet" type="text/css" href="content/style-536.less" />
+    <link media="screen and (max-width: 656px)" rel="stylesheet" type="text/css" href="content/style-656.less" />
+    <link media="screen and (max-width: 700px)" rel="stylesheet" type="text/css" href="content/style-700.less" />
+    <link media="screen and (max-width: 740px)" rel="stylesheet" type="text/css" href="content/style-740.less" />
+    <link media="screen and (max-width: 840px)" rel="stylesheet" type="text/css" href="content/style-840.less" />
+    <link media="screen and (min-width: 841px)" rel="stylesheet" type="text/css" href="content/style-841.less" />
+    <script src="js/application.base.concat.js"></script>
+
+    <title>Index Overview</title>
+
+<script src="https://local.appsngen.com/viewer/content/js/applications.analytics.js" type="text/javascript"></script></head>
+<body>
+<div class="section">
+    <div class="tab-panel">
+        <div class="btn-toolbar">
+            <div class="btn-group">
+                <a href="#" title="Stocks" class="btn btn-default btn-group-color-1">Stocks</a>
+                <!--<a href="" title="Bootstrap 3 Themes Generator" class="btn btn-default btn-group-color-1">Commodities</a>-->
+                <!--<a href="" title="Bootstrap 3 Themes Generator" class="btn btn-default btn-group-color-1">Industries</a>-->
+                <!--<a href="" title="Bootstrap 3 Themes Generator" class="btn btn-default btn-group-color-1">Bonds</a>-->
+            </div>
+        </div>
+    </div>
+    <div class="main-data-container">
+        <div class="data-container">
+            <table id="tableIndexContainer" cellpadding="0" cellspacing="0" class="index-data-table"></table>
+        </div>
+    </div>
+    <div class="chart-container">
+        <div class="gadget" id="priceChartApplication">
+            <div id="header">
+                <h1></h1>
+            </div>
+            <div class="btn-toolbar">
+                <div id="interval-switch" class="btn-group">
+                    <a data-interval-code="1D" href="#" title="1D" class="btn btn-default">1D</a>
+                    <a data-interval-code="5D" href="#" title="5D" class="btn btn-default">5D</a>
+                    <a data-interval-code="1M" href="#" title="1M" class="btn btn-default">1M</a>
+                    <a data-interval-code="3M" href="#" title="3M" class="btn btn-default border-radius3">3M</a>
+                    <a data-interval-code="1Y" href="#" title="1Y" class="btn btn-default border-radius2 dis-680">1Y</a>
+                    <a data-interval-code="5Y" href="#" title="5Y" class="btn btn-default border-radius1 dis-768">5Y</a>
+                    <a data-interval-code="10Y" href="#" title="10Y" class="btn btn-default dis-960">10Y</a>
+                </div>
+                <a href="javascript:void(0);" class="tab-up"></a>
+            </div>
+            <div id="quotes">
+                <div id="values" class="data-chart">
+                </div>
+            </div>
+            <div id="error-container" class="error-container"></div>
+            <figure id="main-chart" class="main-chart">
+                <div id="main-chart-marquee" class="chart-marquee">
+                </div> <!-- .chart-marquee -->
+                <div id="main-chart-plot" class="main-plot">
+                </div>
+                <div id="main-chart-error" class="chart-error">
+                    <p><span>No data available for the selected date range</span></p>
+                </div>
+            </figure>
+            <div id="waiting">
+                <img class="loading" src="content/images/waiting.gif" alt="" />
+                <div class="overlay"></div>
+            </div>
+        </div> <!-- .gadget -->
+    </div>
+</div>
+<script id="index-tmpl" type="text/template">
+    <tr>
+        <th>Indexes</th>
+        <th>Last</th>
+        <th class="change-td">Change</th>
+    </tr>
+    <% _.each(array, function (data) { %>
+    <% if (data.length === 1) { %>
+    <tr class="title-container">
+        <td id="<%= data[0].Id %>" colspan="3">
+            <div class="country">
+                <% if (data[0].Col  === 'United States of America') { %>
+                <div class="flag usa">
+                </div>
+                <% } %>
+                <% if (data[0].Col  === 'United Kingdom') { %>
+                <div class="flag gb">
+                </div>
+                <% } %>
+                <% if (data[0].Col  === 'Russia') { %>
+                <div class="flag russia">
+                </div>
+                <% } %>
+                <% if (data[0].Col  === 'Germany') { %>
+                <div class="flag germany">
+                </div>
+                <% } %>
+                <% if (data[0].Col  === 'Mexico') { %>
+                <div class="flag mex">
+                </div>
+                <% } %>
+                <% if (data[0].Col  === 'France') { %>
+                <div class="flag france">
+                </div>
+                <% } %>
+                <%- data[0].Col %>
+            </div>
+        </td>
+    </tr>
+    <% } else { %>
+    <tr>
+        <td id="<%= data[0].Id %>">
+            <span><%- data[0].Col %></span>
+        </td>
+        <td id="<%= data[1].Id %>">
+                                <span>
+                                    <%-data[1].Col%>
+                                </span>
+        </td>
+        <td id="<%= data[2].Id %>" class="change-td">
+
+            <% if (data[2].Col >= 0) { %>
+            <div class="bar bar-value-increase" style="<%- 'width:' + Math.round((data[2].Col / data[2].max) * 40)+'%' %>"></div>
+                            <span class="value increase">
+                                <%- data[2].Col %>%
+                                <div class="properties2"><%- data[3].Col %></div>
+                            </span>
+            <% } else { %>
+            <div class="bar bar-value-decrease" style="<%- 'width:' + Math.round((Math.abs(data[2].Col) / data[2].max) * 40)+'%' %>"></div>
+                            <span class="value decrease">
+                                <%- data[2].Col %>%
+                                <div class="properties2"><%- data[3].Col %></div>
+                            </span>
+            <% } %>
+
+            <a class="cursor" href="javascript:void(0);"></a>
+        </td>
+    </tr>
+    <% } %>
+    <% }); %>
+</script>
+<script id="application-error-tmpl" type="text/template">
+    <div class="alert alert-danger">
+        <button type="button" class="close"></button>
+        <!--<h4>Oh snap!</h4>-->
+        <% _.each(errors, function (error) { %>
+        <p><%- error %></p>
+        <% }); %>
+    </div>
+</script>
+<script id="header-tmpl" type="text/template">
+    <%if (name) { %>
+    <h1>
+        <a id="cursorId" class="h1-cursor"></a>
+        <%- name %>
+    </h1>
+    <% } else { %>
+    <h1>
+        <a id="cursorId" class="h1-cursor"></a>
+        N/A
+    </h1>
+    <% } %>
+</script>
+<script id="quotes-tmpl" type="text/template">
+    <% if (typeof last !== 'undefined') { %>
+    <div class="amount"><%- last %> <%-currency%></div>
+    <% } else { %>
+    <em>N/A</em>
+    <% } %>
+    <% if (typeof netChange !== 'undefined') { %>
+    <div class="<%- netChange >= 0 ? 'increase' : 'decrease' %>"><%-netChange%> (<%-percentChange%>%)</div>
+    <% } %>
+</script>
+<script id="main-chart-absolute-marquee-tmpl" type="text/template">
+    <time><%- timestamp %></time>
+    <% _.each(prices, function (price) { %>
+    <br/>
+    <dl class="marquee-header">
+        <dt>Price:</dt>
+        <dd><%- isNaN(parseFloat(price.close)) ? 'N/A' : price.close %></dd>
+        <% if ($(window).width() < 700) { %>
+        <br/>
+        <% } %>
+        <dt>Volume:</dt>
+        <dd><%- isNaN(parseFloat(price.volume)) ? 'N/A' : price.volume %></dd>
+    </dl> <!-- .marquee-header -->
+    <% }); %>
+    <% _.each(indicators, function (indicator) {
+    switch (indicator.indicatorType) {
+    case 'SMA': %>
+    <dl class="marquee-header">
+        <dt style="color: <%- indicator.color%>">SMA (<%- indicator.period%>):</dt>
+        <dd style="color: <%- indicator.color%>"><%- isNaN(parseFloat(indicator.value)) ? 'N/A' : indicator.value.toFixed(2) %></dd>
+    </dl> <!-- .marquee-header -->
+
+    <% break;
+    case 'BOLL': %>
+    <dl class="marquee-header">
+        <dt style="color: <%- indicator.upperColor%>">BOLL (<%- indicator.period%>, <%- indicator.deviation%>):</dt>
+        <dd style="color: <%- indicator.upperColor%>"><%- isNaN(parseFloat(indicator.upperValue)) ? 'N/A' : indicator.upperValue.toFixed(2) %></dd>
+        <dd style="color: <%- indicator.middleColor%>"><%- isNaN(parseFloat(indicator.middleValue)) ? 'N/A' : indicator.middleValue.toFixed(2) %></dd>
+        <dd style="color: <%- indicator.lowerColor%>"><%- isNaN(parseFloat(indicator.lowerValue)) ? 'N/A' : indicator.lowerValue.toFixed(2) %></dd>
+    </dl> <!-- .marquee-header -->
+
+    <% break;
+    default:
+    throw new Error('Unexpected indicator type: "' + indicator.indicatorType + '".');
+    }
+    }); %>
+</script>
+<script id="main-chart-ohlc-marquee-tmpl" type="text/template">
+    <time><%- timestamp %></time>
+    <% _.each(prices, function (price) { %>
+    <dl class="marquee-header">
+        <dt>Open:</dt>
+        <dd><%- isNaN(parseFloat(price.open)) ? 'N/A' : price.open %></dd>
+        <dt>High:</dt>
+        <dd><%- isNaN(parseFloat(price.high)) ? 'N/A' : price.high %></dd>
+        <dt>Low:</dt>
+        <dd><%- isNaN(parseFloat(price.low)) ? 'N/A' : price.low %></dd>
+        <dt>Close:</dt>
+        <dd><%- isNaN(parseFloat(price.close)) ? 'N/A' : price.close %></dd>
+        <dt>Volume:</dt>
+        <dd><%- isNaN(parseFloat(price.volume)) ? 'N/A' : price.volume %></dd>
+    </dl> <!-- .marquee-header -->
+    <% }); %>
+    <% _.each(indicators, function (indicator) {
+    switch (indicator.indicatorType) {
+    case 'SMA': %>
+    <dl class="marquee-header">
+        <dt style="color: <%- indicator.color%>">SMA (<%- indicator.period%>):</dt>
+        <dd style="color: <%- indicator.color%>"><%- isNaN(parseFloat(indicator.value)) ? 'N/A' : indicator.value.toFixed(2) %></dd>
+    </dl> <!-- .marquee-header -->
+
+    <% break;
+    case 'BOLL': %>
+    <dl class="marquee-header">
+        <dt style="color: <%- indicator.upperColor%>">BOLL (<%- indicator.period%>, <%- indicator.deviation%>):</dt>
+        <dd style="color: <%- indicator.upperColor%>"><%- isNaN(parseFloat(indicator.upperValue)) ? 'N/A' : indicator.upperValue.toFixed(2) %></dd>
+        <dd style="color: <%- indicator.middleColor%>"><%- isNaN(parseFloat(indicator.middleValue)) ? 'N/A' : indicator.middleValue.toFixed(2) %></dd>
+        <dd style="color: <%- indicator.lowerColor%>"><%- isNaN(parseFloat(indicator.lowerValue)) ? 'N/A' : indicator.lowerValue.toFixed(2) %></dd>
+    </dl> <!-- .marquee-header -->
+
+    <% break;
+    default:
+    throw new Error('Unexpected indicator type: "' + indicator.indicatorType + '".');
+    }
+    }); %>
+</script>
+<script id="main-chart-relative-marquee-tmpl" type="text/template">
+    <time><%- timestamp %></time>
+    <dl class="marquee-header">
+        <% _.each(prices, function (price, i) { %>
+        <% if (i === 0) { %> <!-- primary quote -->
+        <dt>Volume:</dt>
+        <dd><%- isNaN(parseFloat(price.volume)) ? 'N/A' : price.volume %></dd>
+        <% } %>
+        <% }); %>
+        <dt>Prices:</dt>
+        <dd></dd>
+    </dl> <!-- .marquee-header -->
+    <ul class="instrument-markers">
+        <% _.each(prices, function (price, i) { %>
+        <li class="clearfix">
+            <% if (price.quote.name) { %>
+            <span class="<%- i !== 0 ? 'add' : 'main' %>" style="color: <%- price.color %>" title="<%-price.quote.name%> (<%-price.quote.symbol%>)"><%-price.quote.name%> (<%-price.quote.symbol%>)</span>
+            <% } else { %>
+            <span class="<%- i !== 0 ? 'add' : 'main' %>" style="color: <%- price.color %>" title="<%-price.quote.symbol%>"><%-price.quote.symbol%></span>
+            <% } %>
+            <i>
+                <% if (i !== 0) { %> <!-- secondary quote -->
+                <a href="#" data-ric="<%- price.quote.ric %>"></a>
+                <% } %>
+            </i>
+
+            <% if (isNaN(parseFloat(price.change))) { %>
+            <em class="value">N/A</em>
+            <% } else if (price.change > 0) { %>
+            <em class="positive value">+<%- price.change.toFixed(2) %>%</em>
+            <% } else if (price.change < 0) { %>
+            <em class="negative value"><%- price.change.toFixed(2) %>%</em>
+            <% } else { %>
+            <em class="zero value"><%- price.change.toFixed(2) %>%</em>
+            <% } %>
+        </li>
+        <% }); %>
+    </ul> <!-- .instrument-markers -->
+</script>
+
+<script>
+            appstore.util.runOnLoadHandlers();
+        </script></body>
+</html>

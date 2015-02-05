@@ -1,0 +1,3157 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for dist\appsngen.container.api.js</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="../prettify.css">
+
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Helvetica Neue, Helvetica,Arial;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 10em;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Consolas, Menlo, Monaco, monospace;
+            margin: 0;
+            padding: 0;
+            line-height: 14px;
+            font-size: 14px;
+            -moz-tab-size: 2;
+            -o-tab-size:  2;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { text-decoration: none; color: #000; }
+        div.coverage-summary a:visited { text-decoration: none; color: #333; }
+        div.coverage-summary a:hover { text-decoration: underline; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: url("https://yui-s.yahooapis.com/3.6.0/build/datatable-sort/assets/skins/sam/sort-arrow-sprite.png") no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">dist\appsngen.container.api.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">89.05% <small>(366 / 411)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">72% <small>(144 / 200)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">82.81% <small>(53 / 64)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">89.05% <small>(366 / 411)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">dist\</a> &#187; appsngen.container.api.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">46</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">78</span>
+<span class="cline-any cline-yes">78</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">104</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function (window) {
+    'use strict';
+    var noop = <span class="fstat-no" title="function not covered" >function () {</span>
+        },
+        localStorageObject = {},
+        appstore = window.appstore || {},
+        loadHandlers = [];
+&nbsp;
+    appstore.util = {
+        noop: noop,
+        onLoadHandlers: loadHandlers, /* public for testing */
+        registerOnLoadHandler: function (handler) {
+            loadHandlers.push(handler);
+        },
+        runOnLoadHandlers: function () {
+            var i;
+&nbsp;
+            for (i = 0; i &lt; loadHandlers.length; i++) {
+                loadHandlers[i]();
+            }
+        },
+        getURLParameter: <span class="fstat-no" title="function not covered" >function (name) {</span>
+            // TODO: add parameter cache
+<span class="cstat-no" title="statement not covered" >            var parameter = (new RegExp(name + '=' + '(.+?)(&amp;|$)').exec(location.search) || [null, null])[1];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (parameter) {</span>
+<span class="cstat-no" title="statement not covered" >                parameter = decodeURIComponent(parameter);</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return parameter;</span>
+        },
+        format: function (format) {
+            var i;
+&nbsp;
+            for (i = 1; i &lt; arguments.length; i++) {
+                format = format.replace(new RegExp('\\{' + (i - 1) + '\\}', 'gm'), arguments[i]);
+            }
+            return format;
+        },
+        console: window.console || <span class="branch-1 cbranch-no" title="branch not covered" >{</span>
+            log: noop,
+            error: noop,
+            warn: noop,
+            info: noop
+        },
+        localStorage: window.localStorage || <span class="branch-1 cbranch-no" title="branch not covered" >{</span>
+            getItem: <span class="fstat-no" title="function not covered" >function (key) {</span>
+<span class="cstat-no" title="statement not covered" >                return localStorageObject[key];</span>
+            },
+            setItem: <span class="fstat-no" title="function not covered" >function (key, value) {</span>
+<span class="cstat-no" title="statement not covered" >                localStorageObject[key] = value;</span>
+            },
+            removeItem: <span class="fstat-no" title="function not covered" >function (key) {</span>
+<span class="cstat-no" title="statement not covered" >                delete localStorageObject[key];</span>
+            },
+            clear: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                localStorageObject = {};</span>
+            },
+            length: 0
+        },
+        postMessage: function (message, targetUrl, target) {
+            target.postMessage(message, targetUrl);
+        },
+        receiveMessage: function (callback) {
+            if (window.addEventListener) {
+                window.addEventListener('message', callback, false);
+            } else {
+                window.attachEvent('onmessage', callback);
+            }
+        },
+        isObject: function (obj) {
+            return !!(obj &amp;&amp; obj.constructor === Object);
+        },
+        stringifyParams: function (request) {
+            var params = [], url, param;
+&nbsp;
+            for (param in request) {
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (request.hasOwnProperty(param)) {
+                    if (request[param] instanceof Array) {
+                        params.push(param + '=' + encodeURIComponent(request[param].join('|')));
+                    } else {
+                        params.push(param + '=' + encodeURIComponent([request[param]].join('')));
+                    }
+                }
+            }
+            url = params.join('&amp;');
+&nbsp;
+            return url;
+        },
+        createRequestUri: function (request) {
+            var uri = request.dataSourceId;
+            var params;
+&nbsp;
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (request.path) {
+                request.path = request.path.charAt(0) === '/' ? <span class="branch-0 cbranch-no" title="branch not covered" >request.path </span>: '/' + request.path;
+                uri += request.path;
+            }
+&nbsp;
+            if (this.isObject(request.params)) {
+                params = this.stringifyParams(request.params);
+&nbsp;
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (params !== '') {
+                    uri += '?' + params;
+                }
+            }
+&nbsp;
+            return uri;
+        },
+        // jshint bitwise:false
+        base64: (function () {
+&nbsp;
+            var PADCHAR = '=';
+&nbsp;
+            var ALPHA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+&nbsp;
+            var getbyte64 = function (s, i) {
+                var idx = ALPHA.indexOf(s.charAt(i));
+                if (idx === -1) {
+                    throw 'Cannot decode base64';
+                }
+                return idx;
+            };
+&nbsp;
+            var decode = function (s) {
+                /**
+                 * Fix for normalize base64 string if necessary.
+                 */
+                while (s.length % 4 !== 0) {
+                    s += '=';
+                }
+                // convert to string
+                s = '' + s;
+                var pads, i, b10;
+                var imax = s.length;
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (imax === 0) {
+<span class="cstat-no" title="statement not covered" >                    return s;</span>
+                }
+&nbsp;
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (imax % 4 !== 0) {
+<span class="cstat-no" title="statement not covered" >                    throw 'Cannot decode base64';</span>
+                }
+&nbsp;
+                pads = 0;
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (s.charAt(imax - 1) === PADCHAR) {
+                    pads = 1;
+                    if (s.charAt(imax - 2) === PADCHAR) {
+                        pads = 2;
+                    }
+                    // either way, we want to ignore this last block
+                    imax -= 4;
+                }
+&nbsp;
+                var x = [];
+                for (i = 0; i &lt; imax; i += 4) {
+                    b10 = (getbyte64(s, i) &lt;&lt; 18) | (getbyte64(s, i + 1) &lt;&lt; 12) |
+                        (getbyte64(s, i + 2) &lt;&lt; 6) | getbyte64(s, i + 3);
+                    x.push(String.fromCharCode(b10 &gt;&gt; 16, (b10 &gt;&gt; 8) &amp; 0xff, b10 &amp; 0xff));
+                }
+&nbsp;
+                switch (pads) {
+                    case 1:
+                        b10 = (getbyte64(s, i) &lt;&lt; 18) | (getbyte64(s, i + 1) &lt;&lt; 12) | (getbyte64(s, i + 2) &lt;&lt; 6);
+                        x.push(String.fromCharCode(b10 &gt;&gt; 16, (b10 &gt;&gt; 8) &amp; 0xff));
+                        break;
+                    case 2:
+                        b10 = (getbyte64(s, i) &lt;&lt; 18) | (getbyte64(s, i + 1) &lt;&lt; 12);
+                        x.push(String.fromCharCode(b10 &gt;&gt; 16));
+                        break;
+                }
+                return x.join('');
+            };
+&nbsp;
+            var getbyte = function (s, i) {
+                var x = s.charCodeAt(i);
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (x &gt; 255) {
+<span class="cstat-no" title="statement not covered" >                    throw 'INVALID_CHARACTER_ERR: DOM Exception 5';</span>
+                }
+                return x;
+            };
+&nbsp;
+            var encode = function (s) {
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (arguments.length !== 1) {
+<span class="cstat-no" title="statement not covered" >                    throw 'SyntaxError: Not enough arguments';</span>
+                }
+&nbsp;
+                var i, b10;
+                var x = [];
+&nbsp;
+                // convert to string
+                s = '' + s;
+&nbsp;
+                var imax = s.length - s.length % 3;
+&nbsp;
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (s.length === 0) {
+<span class="cstat-no" title="statement not covered" >                    return s;</span>
+                }
+                for (i = 0; i &lt; imax; i += 3) {
+                    b10 = (getbyte(s, i) &lt;&lt; 16) | (getbyte(s, i + 1) &lt;&lt; 8) | getbyte(s, i + 2);
+                    x.push(ALPHA.charAt(b10 &gt;&gt; 18));
+                    x.push(ALPHA.charAt((b10 &gt;&gt; 12) &amp; 0x3F));
+                    x.push(ALPHA.charAt((b10 &gt;&gt; 6) &amp; 0x3f));
+                    x.push(ALPHA.charAt(b10 &amp; 0x3f));
+                }
+                switch (s.length - imax) {
+<span class="branch-0 cbranch-no" title="branch not covered" >                    case 1:</span>
+<span class="cstat-no" title="statement not covered" >                        b10 = getbyte(s, i) &lt;&lt; 16;</span>
+<span class="cstat-no" title="statement not covered" >                        x.push(ALPHA.charAt(b10 &gt;&gt; 18) + ALPHA.charAt((b10 &gt;&gt; 12) &amp; 0x3F) +</span>
+                            PADCHAR + PADCHAR);
+<span class="cstat-no" title="statement not covered" >                        break;</span>
+                    case 2:
+                        b10 = (getbyte(s, i) &lt;&lt; 16) | (getbyte(s, i + 1) &lt;&lt; 8);
+                        x.push(ALPHA.charAt(b10 &gt;&gt; 18) + ALPHA.charAt((b10 &gt;&gt; 12) &amp; 0x3F) +
+                            ALPHA.charAt((b10 &gt;&gt; 6) &amp; 0x3f) + PADCHAR);
+                        break;
+                }
+                return x.join('');
+            };
+&nbsp;
+            return {
+                encode: encode,
+                decode: decode
+            };
+        }()),
+        // jshint bitwise:true
+        getTokenData: function () {
+            var token = appstore.util.getURLParameter('token');
+            var tokenBody, tokenBodyObj;
+&nbsp;
+            if(!token) {
+                appstore.util.console.error('Token is empty. Token is required parameter.');
+                return null;
+            }
+&nbsp;
+            tokenBody = token.split('.')[1];
+            try {
+                tokenBodyObj = JSON.parse(appstore.util.base64.decode(tokenBody));
+            } catch (error) {
+                appstore.util.console.error('Unable to parse token body', error.toString());
+                return null;
+            }
+&nbsp;
+            return tokenBodyObj;
+        },
+        guid: (function () {
+            var s4 = function () {
+                return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1);
+            };
+&nbsp;
+            return function () {
+                return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+                    s4() + '-' + s4() + s4() + s4();
+            };
+        }())
+    };
+&nbsp;
+    window.appstore = appstore;
+}(window));
+&nbsp;
+/*
+ * depends on: appstore.util
+ * */
+(function (appstore) {
+    'use strict';
+&nbsp;
+    /**
+     * @fileoverview subscribe/publish mechanism.
+     */
+    appstore.events = (function () {
+        /**
+         * Contains set of channels with app ids subscribed to them.
+         * It is necessary to forward messages between apps.
+         * Thus the container is a kind of a router.
+         * */
+        var underlyingWidgetSubscriptions = {};
+&nbsp;
+        /** The container subscriptions. */
+        var currentLevelSubscriptions = {};
+&nbsp;
+        /** Contains last data for every channel. */
+        // TODO: add TTL to fix possible bugs with ancient events
+        var context = [];
+        var contextStorageKey = 'appstore-events-context';
+&nbsp;
+        var storeContext = function (newContext) {
+            var serializedContext;
+            // serialize data
+            serializedContext = JSON.stringify(newContext);
+            // try to store data
+            try {
+                appstore.util.localStorage.setItem(contextStorageKey, serializedContext);
+            } catch (e) {
+                // something wrong
+                // probably storage size quota has been exceeded
+                // if we have not enough space - clear all stored events
+<span class="cstat-no" title="statement not covered" >                localStorage.removeItem(contextStorageKey);</span>
+            }
+        };
+&nbsp;
+        var getCurrentFrameId = function() {
+            return appstore.util.getURLParameter('frameId') || <span class="branch-1 cbranch-no" title="branch not covered" >window.name </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >'.';</span>
+        };
+&nbsp;
+        var getStoredContext = function () {
+            var storedContext;
+            var serializedContext = appstore.util.localStorage.getItem(contextStorageKey);
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!serializedContext) {
+<span class="cstat-no" title="statement not covered" >                storedContext = [];</span>
+            } else {
+                storedContext = JSON.parse(serializedContext);
+                // workaround for IE8
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (!(storedContext instanceof Array)) {
+<span class="cstat-no" title="statement not covered" >                    storedContext = [];</span>
+                }
+            }
+&nbsp;
+            return storedContext;
+        };
+&nbsp;
+        var storeEventToContext = function (event) {
+            var i;
+&nbsp;
+            // add event at the beginning of context
+            context.unshift({
+                channel: event.channel,
+                data: event.data
+            });
+            // remove any other appearance of such event
+            for (i = 1; i &lt; context.length; i++) {
+                if (context[i].channel === event.channel) {
+                    context.splice(i, 1);
+                    break;
+                }
+            }
+&nbsp;
+            storeContext(context);
+        };
+&nbsp;
+        var getContext = <span class="fstat-no" title="function not covered" >function () {</span>
+            // return context copy
+<span class="cstat-no" title="statement not covered" >            return getStoredContext();</span>
+        };
+&nbsp;
+        var setContext = <span class="fstat-no" title="function not covered" >function (newContext) {</span>
+            // store context copy
+<span class="cstat-no" title="statement not covered" >            storeContext(newContext);</span>
+<span class="cstat-no" title="statement not covered" >            context = getStoredContext();</span>
+        };
+&nbsp;
+        var resetContext = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            context = [];</span>
+<span class="cstat-no" title="statement not covered" >            appstore.util.localStorage.removeItem(contextStorageKey);</span>
+        };
+&nbsp;
+        /** Parses message and passes only event messages from the apps. */
+        var parseMessage = function (data) {
+            var message;
+&nbsp;
+            try {
+                message = JSON.parse(data);
+            } catch (ignore) {
+            }
+&nbsp;
+            if (message &amp;&amp; message.type &amp;&amp; message.sender &amp;&amp; message.data) {
+                return message;
+            }
+&nbsp;
+            return { type: 'unsupported', data: {}};
+        };
+&nbsp;
+        /** Forwards message to the top in case of this container is an iframe. */
+        var forwardMessageToTopIfNecessary = function (message) {
+            var logMessage, logFormat;
+            var newMessage;
+            var parentUrl = appstore.util.getURLParameter('parent');
+            var currentFrameId = getCurrentFrameId();
+&nbsp;
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (window !== window.parent &amp;&amp; parentUrl) {
+                // Clone message
+                newMessage = JSON.parse(JSON.stringify(message));
+&nbsp;
+                // Replace the sender property to this container.
+                newMessage.sender = currentFrameId;
+&nbsp;
+                if (appstore.events.debug) {
+                    logFormat = 'Sender: "{0}" sends message to the top receiver in channel: "{1}" with message body:';
+                    logMessage = appstore.util.format(logFormat, currentFrameId, newMessage.data.channel);
+                    appstore.util.console.log(logMessage, newMessage);
+                }
+&nbsp;
+                appstore.util.postMessage(JSON.stringify(newMessage), parentUrl, window.parent);
+            }
+        };
+&nbsp;
+        /** Saves subscribed currentFrameId and forwards subscribe message to the top. */
+        var resolveSubscribeMessageFromUnderlyingWidget = function (message) {
+            var logMessage, logFormat;
+            // Save the subscribed apps ids.
+            var channelSubscriptions = underlyingWidgetSubscriptions[message.data.channel];
+            var currentFrameId = getCurrentFrameId();
+&nbsp;
+            if (!channelSubscriptions) {
+                channelSubscriptions = {};
+            }
+&nbsp;
+            if (appstore.events.debug) {
+                logFormat = 'Receiver: "{0}" subscribes underlying sender: "{1}" for channel: "{2}"';
+                logMessage = appstore.util.format(logFormat, currentFrameId, message.sender, message.data.channel);
+                appstore.util.console.log(logMessage);
+            }
+&nbsp;
+            channelSubscriptions[message.sender] = true;
+            underlyingWidgetSubscriptions[message.data.channel] = channelSubscriptions;
+&nbsp;
+            // subscribe to events from top
+            forwardMessageToTopIfNecessary(message);
+        };
+&nbsp;
+        /** Removes the subscriber currentFrameId and forwards unsubscribe message to the top. */
+        var resolveUnsubscribeMessageFromUnderlyingWidget = function (message) {
+            var logMessage, logFormat;
+            var currentFrameId = getCurrentFrameId();
+&nbsp;
+            if (appstore.events.debug) {
+                logFormat = 'Receiver: "{0}" unsubscribes underlying sender: "{1}" from channel: "{2}"';
+                logMessage = appstore.util.format(logFormat, currentFrameId, message.sender, message.data.channel);
+                appstore.util.console.log(logMessage);
+            }
+&nbsp;
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (underlyingWidgetSubscriptions[message.data.channel]) {
+                delete underlyingWidgetSubscriptions[message.data.channel][message.sender];
+            }
+&nbsp;
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (noSubsribersForChannel(message.channel)) {
+                forwardMessageToTopIfNecessary(message);
+            }
+        };
+&nbsp;
+        var logDebugDataIfNecessary = function (subscriber, message) {
+            var logMessage, logFormat;
+            var currentFrameId = getCurrentFrameId();
+&nbsp;
+            if (appstore.events.debug) {
+                logFormat = 'Sender: "{0}" sends message to the underlying receiver: "{1}" in channel: "{2}"' +
+                    ' with message body:';
+                logMessage = appstore.util.format(logFormat, currentFrameId, subscriber, message.data.channel);
+                appstore.util.console.log(logMessage, message);
+            }
+        };
+&nbsp;
+        /** Sends publish event from the message to the all subscribed apps. */
+        var sendMessageToUnderlyingWidgets = function (message) {
+            var targetSubscribers, subscriber;
+            var targetIframe, jsonMessage, newMessage;
+            var currentFrameId = getCurrentFrameId();
+&nbsp;
+            // Get appIds that subscribed to the channel
+            targetSubscribers = underlyingWidgetSubscriptions[message.data.channel] || {};
+&nbsp;
+            // Send the message to every widget that subscribed to the channel except the sender itself.
+            for (subscriber in targetSubscribers) {
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (targetSubscribers.hasOwnProperty(subscriber) &amp;&amp; subscriber !== message.sender) {
+                    targetIframe = document.getElementById(subscriber);
+&nbsp;
+                    <span class="missing-if-branch" title="else path not taken" >E</span>if (targetIframe) {
+                        // Clone message
+                        newMessage = JSON.parse(JSON.stringify(message));
+&nbsp;
+                        // Replace the sender property to this container.
+                        newMessage.sender = currentFrameId;
+&nbsp;
+                        logDebugDataIfNecessary(subscriber, newMessage);
+&nbsp;
+                        jsonMessage = JSON.stringify(newMessage);
+                        appstore.util.postMessage(jsonMessage, targetIframe.src, targetIframe.contentWindow);
+                    }
+                }
+            }
+        };
+&nbsp;
+        /** forward publish message to the apps subscribers and fire event
+         * if the container is subscribed to the channel form message. */
+        var resolvePublishMessageFromAnySource = function (message, fromTop) {
+            var logMessage, logFormat;
+            var currentLevelHandler;
+            var currentFrameId = getCurrentFrameId();
+&nbsp;
+            // distribute message to underlying widgets in any case: from top, from bottom, from current level
+            sendMessageToUnderlyingWidgets(message);
+&nbsp;
+            // Forward message to top only in case the message didn't received from the top itself.
+            if (!fromTop) {
+                forwardMessageToTopIfNecessary(message);
+            }
+&nbsp;
+            // Save received data in event context
+            storeEventToContext(message.data);
+&nbsp;
+            // Check the current level subscriptions and fire event
+            // if the current level subscribed to the channel from the message and sender is not the current level.
+            currentLevelHandler = currentLevelSubscriptions[message.data.channel];
+&nbsp;
+            if (currentLevelHandler &amp;&amp; message.sender !== currentFrameId) {
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (appstore.events.debug) {
+<span class="cstat-no" title="statement not covered" >                    logFormat = 'Receiver: "{0}" calls message handler in channel: "{1}" from sender: "{2}" with data:';</span>
+<span class="cstat-no" title="statement not covered" >                    logMessage = appstore.util.format(logFormat, currentFrameId, message.data.channel, message.sender);</span>
+<span class="cstat-no" title="statement not covered" >                    appstore.util.console.log(logMessage, message.data.data);</span>
+                }
+&nbsp;
+                currentLevelHandler(message.data.channel, message.data.data, message.sender);
+            }
+        };
+&nbsp;
+        var noSubsribersForChannel = function (channel) {
+            var sender, subscriptions = [];
+&nbsp;
+            if (underlyingWidgetSubscriptions[channel]) {
+                for (sender in underlyingWidgetSubscriptions[channel]) {
+                    <span class="missing-if-branch" title="else path not taken" >E</span>if (underlyingWidgetSubscriptions[channel].hasOwnProperty(sender)) {
+                        subscriptions.push(sender);
+                    }
+                }
+            }
+&nbsp;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (currentLevelSubscriptions[channel]) {
+<span class="cstat-no" title="statement not covered" >                subscriptions.push(getCurrentFrameId());</span>
+            }
+&nbsp;
+            return subscriptions.length === 0;
+        };
+&nbsp;
+        context = getStoredContext();
+&nbsp;
+        // Handle messages from the apps
+        appstore.util.receiveMessage(function (event) {
+            var logMessage, logFormat;
+            var message = parseMessage(event.data);
+            var isFromTop = event.source === window.parent;
+            var currentFrameId = getCurrentFrameId();
+&nbsp;
+            if (message.type !== 'unsupported') {
+                if (appstore.events.debug) {
+                    logFormat = 'Receiver: "{0}" got from sender: "{1}" message in channel: "{2}" with message body:';
+                    logMessage = appstore.util.format(logFormat, currentFrameId, message.sender, message.data.channel);
+                    appstore.util.console.log(logMessage, message);
+                }
+&nbsp;
+                if (message.type === 'subscribe') {
+                    // process subscribe only from bottom level, no sense to parse subscribe from top:
+                    // publish message is always sent from bottom to top (publish doesn't depend on top subscribers)
+                    <span class="missing-if-branch" title="else path not taken" >E</span>if (!isFromTop) {
+                        resolveSubscribeMessageFromUnderlyingWidget(message);
+                    }
+                } else if (message.type === 'publish') {
+                    // publish message is free to pass from any level to any
+                    resolvePublishMessageFromAnySource(message, isFromTop);
+                } else <span class="missing-if-branch" title="else path not taken" >E</span>if (message.type === 'unsubscribe') {
+                    // process unsubscribe only from bottom level, no sense to parse unsubscribe from top:
+                    // publish message is always sent from bottom to top (publish doesn't depend on top subscribers)
+                    <span class="missing-if-branch" title="else path not taken" >E</span>if (!isFromTop) {
+                        resolveUnsubscribeMessageFromUnderlyingWidget(message);
+                    }
+                }
+            } else if (appstore.events.debug) {
+                logFormat = 'Receiver: "{0}" skipped unsupported event:';
+                logMessage = appstore.util.format(logFormat, currentFrameId);
+                appstore.util.console.log(logMessage, event);
+            }
+        });
+&nbsp;
+        return /** @scope appstore.events */ {
+            /**
+             * Subscribes the current level to the channel.
+             * @param {String} channel Channel.
+             * @param {Function} handler Event handler.
+             * @return {Object} Chain.
+             * */
+            subscribe: function (channel, handler) {
+                var logMessage, logFormat;
+                var currentFrameId = getCurrentFrameId();
+                // Create event message like just received from an app but with current currentFrameId sender
+                // and send to top
+                var message = {
+                    type: 'subscribe',
+                    sender: currentFrameId,
+                    data: {
+                        channel: channel
+                    }
+                };
+&nbsp;
+                // Save subscription on the current level side
+                currentLevelSubscriptions[channel] = handler;
+&nbsp;
+                if (appstore.events.debug) {
+                    logFormat = 'Sender: "{0}" subsribes for the channel: "{1}"';
+                    logMessage = appstore.util.format(logFormat, currentFrameId, channel);
+                    appstore.util.console.log(logMessage);
+                }
+&nbsp;
+                forwardMessageToTopIfNecessary(message);
+&nbsp;
+                return this;
+            },
+&nbsp;
+            /**
+             * Unsubscribes the current level from the channel.
+             * @param {String} channel Channel.
+             * @return {Object} Chain.
+             * */
+            unsubscribe: function (channel) {
+                var logMessage, logFormat;
+                var currentFrameId = getCurrentFrameId();
+                // Create event message like just received from an app but with current currentFrameId sender
+                // and send to top
+                var message = {
+                    type: 'unsubscribe',
+                    sender: currentFrameId,
+                    data: {
+                        channel: channel
+                    }
+                };
+&nbsp;
+                // Just delete subscription if it exists.
+                delete currentLevelSubscriptions[channel];
+&nbsp;
+                if (appstore.events.debug) {
+                    logFormat = 'Sender: "{0}" unsubsribes from the channel: "{1}"';
+                    logMessage = appstore.util.format(logFormat, currentFrameId, channel);
+                    appstore.util.console.log(logMessage);
+                }
+&nbsp;
+                if (noSubsribersForChannel(channel)) {
+                    forwardMessageToTopIfNecessary(message);
+                }
+&nbsp;
+                return this;
+            },
+&nbsp;
+            /**
+             * Publishes the data to the channel.
+             * @param {String} channel Channel.
+             * @param {Object} data Data.
+             * @return {Object} Chain.
+             * */
+            publish: function (channel, data) {
+                var logMessage, logFormat;
+                var currentFrameId = getCurrentFrameId();
+                // Create event message like just received from an app but with current currentFrameId sender.
+                var message = {
+                    type: 'publish',
+                    sender: currentFrameId,
+                    data: {
+                        channel: channel
+                    }
+                };
+&nbsp;
+                if (appstore.events.debug) {
+                    logFormat = 'Sender: "{0}" publishes event in channel: "{1}" with data:';
+                    logMessage = appstore.util.format(logFormat, currentFrameId, channel);
+                    appstore.util.console.log(logMessage, data);
+                }
+&nbsp;
+                // Clone the data before 'sending'.
+                message.data.data = JSON.parse(JSON.stringify(data));
+&nbsp;
+                // and handle like an async message from a widget.
+                setTimeout(function () {
+                    resolvePublishMessageFromAnySource(message, false /* not from top */);
+                }, 0);
+&nbsp;
+                return this;
+            },
+&nbsp;
+            /** Contains last data for every channel. */
+            getContext: getContext,
+            setContext: setContext,
+            resetContext: resetContext,
+            /**
+             * Specify whether to log events to the console.
+             * */
+            debug: false
+        };
+    }());
+}(appstore));
+/* end of events/events.js */
+/*
+ * depends on: appstore.util, appstore.events
+ * */
+(function (appstore) {
+    'use strict';
+&nbsp;
+    appstore.events.metadata = (function () {
+        var metadata = {} , onReady = appstore.util.noop;
+&nbsp;
+        // Listen the '_metadata' channel.
+        appstore.util.receiveMessage(function (event) {
+            var message;
+&nbsp;
+            try {
+                message = JSON.parse(event.data);
+            } catch (ignore) {
+            }
+&nbsp;
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (message &amp;&amp; message.type === 'metadataReadyCall' &amp;&amp; message.frameId &amp;&amp; message.metadata) {
+                metadata[message.frameId] = message.metadata;
+                onReady(message.frameId, message.metadata);
+            }
+        });
+&nbsp;
+        return /** @scope appstore.events.metadata */ {
+            /**
+             * Register callback to be called when metadata is received.
+             * @param {function(appId, metadata)} callback Callback.
+             * */
+            ready: function (callback) {
+                var frameId, onReadyForFrameId;
+                onReady = callback;
+                onReadyForFrameId = <span class="fstat-no" title="function not covered" >function (frameId) {</span>
+<span class="cstat-no" title="statement not covered" >                    return <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                        onReady(frameId, metadata[frameId]);</span>
+                    };
+                };
+&nbsp;
+                // Notify about already received metadata.
+                for (frameId in metadata) {
+<span class="cstat-no" title="statement not covered" >                    if (metadata.hasOwnProperty(frameId)) {</span>
+<span class="cstat-no" title="statement not covered" >                        setTimeout(onReadyForFrameId(frameId), 0);</span>
+                    }
+                }
+            },
+            /**
+             * Gets events metadata for the app.
+             * @param {String} frameId Id of the app to get events metadata.
+             * If the frameId is missed metadata for all the created apps will be returned.
+             * @return {Object|undefined} events metadata.
+             * */
+            get: function (frameId) {
+                var result = frameId ? metadata[frameId] : metadata;
+&nbsp;
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (!result) {
+<span class="cstat-no" title="statement not covered" >                    return undefined;</span>
+                }
+&nbsp;
+                return JSON.parse(JSON.stringify(result));
+            }
+        };
+    }());
+}(appstore));
+&nbsp;
+/*
+ * depends on: appstore.util
+ * */
+(function (appstore) {
+    'use strict';
+&nbsp;
+    var dynamicHeightEnabled = true;
+&nbsp;
+    appstore.dynamicHeight = {
+        enable: function () {
+            dynamicHeightEnabled = true;
+        },
+        disable: function () {
+            dynamicHeightEnabled = false;
+        }
+    };
+&nbsp;
+    appstore.util.receiveMessage(function (event) {
+        var message;
+        var replyMessage;
+        var iframe;
+&nbsp;
+        try {
+            message = JSON.parse(event.data);
+        } catch (ignore) {
+        }
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (message &amp;&amp; message.type === 'adjustHeightCall' &amp;&amp; message.frameId &amp;&amp; message.data) {
+            if (dynamicHeightEnabled) {
+                iframe = document.getElementById(message.frameId);
+&nbsp;
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (iframe) {
+                    iframe.style.height = message.data.height + 'px';
+                    replyMessage = JSON.stringify({
+                        type: 'adjustHeightReply',
+                        data: message.data
+                    });
+&nbsp;
+                    appstore.util.postMessage(replyMessage, iframe.src, iframe.contentWindow);
+                }
+            }
+        }
+    });
+}(appstore));
+(function (appstore) {
+    'use strict';
+    /**
+     * @fileoverview Integration API for easy creating applications in third party client sites.
+     */
+&nbsp;
+    /**
+     * Creates an iframe application.
+     * @param {string} id This parameter will be assigned the iframe id and iframe name,
+     * so avoid using of whitespaces in this parameter.
+     * @param {HTMLElement} container Application container.
+     * @param {object} attrs key-value collection of attrs for the iframe application.
+     * @param {string } signedUrl the application URL.
+     */
+    appstore.addApplication = function (id, container, attrs, signedUrl) {
+        var iframeText = '&lt;iframe', attr,
+            containerElementId = container;
+&nbsp;
+        var isDomElement = function (element) {
+            return (element &amp;&amp; typeof element === 'object' &amp;&amp; element.nodeType &amp;&amp; element.nodeType === 1);
+        };
+&nbsp;
+        if (typeof container === 'string' || container instanceof String) {
+            container = document.getElementById(container);
+        } else <span class="missing-if-branch" title="else path not taken" >E</span>if (isDomElement(container)) {
+            containerElementId = container.id;
+        }
+&nbsp;
+        if (!id || !signedUrl) {
+            throw new Error('Parameters id and signedUrl are mandatory.');
+        }
+&nbsp;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!isDomElement(container)) {
+<span class="cstat-no" title="statement not covered" >            throw new Error('DOM element with ID "' + containerElementId +</span>
+                '" is required to render the widget "' + id + '".');
+        }
+&nbsp;
+        attrs = attrs || {};
+        attrs.id = id.replace(/\s/g, '-');
+        attrs.name = attrs.id;
+        attrs.src = signedUrl + '&amp;frameId=' + encodeURIComponent(attrs.id);
+&nbsp;
+        /**
+         * The RPC code requires that the 'name' attribute be properly set on the
+         * iframe.  However, setting the 'name' property on the iframe object
+         * returned from 'createElement('iframe')' doesn't work on IE --
+         * 'window.name' returns null for the code within th e iframe.  The
+         * workaround is to set the 'innerHTML' of a span to the iframe's HTML code,
+         * with 'name' and other attributes properly set.
+         */
+        attrs.name = attrs.id;
+        for (attr in attrs) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (attrs.hasOwnProperty(attr)) {
+                iframeText += ' ' + attr + '="' + attrs[attr] + '"';
+            }
+        }
+&nbsp;
+        iframeText += '&gt;&lt;/iframe&gt;';
+        container.innerHTML = iframeText;
+&nbsp;
+        return container.children[0];
+    };
+}(appstore));
+&nbsp;
+/* start of security/security.container.js */
+(function(appstore) {
+    'use strict';
+&nbsp;
+    var debug = false;
+    var getOrigin = function (url) {
+        var host, slashPos, protocol, portStr, portPos, port;
+&nbsp;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!url) {
+<span class="cstat-no" title="statement not covered" >            return '';</span>
+        }
+        url = url.toLowerCase();
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (url.indexOf('//') === 0) {
+<span class="cstat-no" title="statement not covered" >            url = window.location.protocol + url;</span>
+        }
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (url.indexOf('://') === -1) {
+            // Assumed to be schemaless. Default to current protocol.
+            url = window.location.protocol + '//' + url;
+        }
+&nbsp;
+        // At this point we guarantee that '://' is in the URL and defines
+        // current protocol. Skip past this to search for host:port.
+        host = url.substring(url.indexOf('://') + 3);
+&nbsp;
+        // Find the first slash char, delimiting the host:port.
+        slashPos = host.indexOf('/');
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (slashPos !== -1) {
+<span class="cstat-no" title="statement not covered" >            host = host.substring(0, slashPos);</span>
+        }
+&nbsp;
+        protocol = url.substring(0, url.indexOf('://'));
+&nbsp;
+        // Use port only if it's not default for the protocol.
+        portStr = '';
+        portPos = host.indexOf(':');
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (portPos !== -1) {
+<span class="cstat-no" title="statement not covered" >            port = host.substring(portPos + 1);</span>
+<span class="cstat-no" title="statement not covered" >            host = host.substring(0, portPos);</span>
+<span class="cstat-no" title="statement not covered" >            if ((protocol === 'http' &amp;&amp; port !== '80') ||</span>
+                (protocol === 'https' &amp;&amp; port !== '443')) {
+<span class="cstat-no" title="statement not covered" >                portStr = ':' + port;</span>
+            }
+        }
+&nbsp;
+        // Return &lt;protocol&gt;://&lt;host&gt;[&lt;port&gt;]
+        return protocol + '://' + host + portStr;
+    };
+    var receiveSynMessage = function (event) {
+        // TODO: investigate whether we really need this check
+        if (getOrigin(event.origin) !== getOrigin('&lt;%%=viewerUrl%%&gt;')) {
+            return;
+        }
+&nbsp;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!event.data || typeof event.data !== 'string' || event.data.indexOf('appstore:') !== 0) {
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+&nbsp;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (debug) {
+<span class="cstat-no" title="statement not covered" >            appstore.console.log('syn received from', event.origin, 'at', (new Date()).getTime());</span>
+        }
+&nbsp;
+        var message = {
+            secret: event.data,
+            URL: document.URL,
+            eventsContext: appstore.events.getContext()
+        };
+        // IE doesn't work well with complex objects being sent,
+        // so build a string instead of sending plain js objects
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (debug) {
+<span class="cstat-no" title="statement not covered" >            appstore.console.log('send ack to', event.origin, 'at', (new Date()).getTime());</span>
+        }
+&nbsp;
+        event.source.postMessage(JSON.stringify(message), event.origin);
+    };
+&nbsp;
+    appstore.util.receiveMessage(receiveSynMessage);
+}(appstore));
+/* end of security/security.common.js */
+(function (appstore) {
+    'use strict';
+    appstore.apiVersion = 'container';
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (appstore &amp;&amp; appstore.ready) {
+<span class="cstat-no" title="statement not covered" >        appstore.ready();</span>
+    }
+}(appstore));
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jan 26 2015 17:49:49 GMT+0300 (Belarus Standard Time)</div>
+</div>
+
+<script src="../prettify.js"></script>
+
+<script src="https://yui-s.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
+<script>
+
+    YUI().use('datatable', function (Y) {
+
+        var formatters = {
+          pct: function (o) {
+              o.className += o.record.get('classes')[o.column.key];
+              try {
+                  return o.value.toFixed(2) + '%';
+              } catch (ex) { return o.value + '%'; }
+          },
+          html: function (o) {
+              o.className += o.record.get('classes')[o.column.key];
+              return o.record.get(o.column.key + '_html');
+          }
+        },
+          defaultFormatter = function (o) {
+              o.className += o.record.get('classes')[o.column.key];
+              return o.value;
+          };
+
+        function getColumns(theadNode) {
+            var colNodes = theadNode.all('tr th'),
+                cols = [],
+                col;
+            colNodes.each(function (colNode) {
+                col = {
+                    key: colNode.getAttribute('data-col'),
+                    label: colNode.get('innerHTML') || ' ',
+                    sortable: !colNode.getAttribute('data-nosort'),
+                    className: colNode.getAttribute('class'),
+                    type: colNode.getAttribute('data-type'),
+                    allowHTML: colNode.getAttribute('data-html') === 'true' || colNode.getAttribute('data-fmt') === 'html'
+                };
+                col.formatter = formatters[colNode.getAttribute('data-fmt')] || defaultFormatter;
+                cols.push(col);
+            });
+            return cols;
+        }
+
+        function getRowData(trNode, cols) {
+            var tdNodes = trNode.all('td'),
+                    i,
+                    row = { classes: {} },
+                    node,
+                    name;
+            for (i = 0; i < cols.length; i += 1) {
+                name = cols[i].key;
+                node = tdNodes.item(i);
+                row[name] = node.getAttribute('data-value') || node.get('innerHTML');
+                row[name + '_html'] = node.get('innerHTML');
+                row.classes[name] = node.getAttribute('class');
+                //Y.log('Name: ' + name + '; Value: ' + row[name]);
+                if (cols[i].type === 'number') { row[name] = row[name] * 1; }
+            }
+            //Y.log(row);
+            return row;
+        }
+
+        function getData(tbodyNode, cols) {
+            var data = [];
+            tbodyNode.all('tr').each(function (trNode) {
+                data.push(getRowData(trNode, cols));
+            });
+            return data;
+        }
+
+        function replaceTable(node) {
+            if (!node) { return; }
+            var cols = getColumns(node.one('thead')),
+                data = getData(node.one('tbody'), cols),
+                table,
+                parent = node.get('parentNode');
+
+            table = new Y.DataTable({
+                columns: cols,
+                data: data,
+                sortBy: 'file'
+            });
+            parent.set('innerHTML', '');
+            table.render(parent);
+        }
+
+        Y.on('domready', function () {
+            replaceTable(Y.one('div.coverage-summary table'));
+            if (typeof prettyPrint === 'function') {
+                prettyPrint();
+            }
+        });
+    });
+</script>
+</body>
+</html>
