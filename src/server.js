@@ -3,7 +3,7 @@
  */
 (function () {
     'use strict';
-    require('newrelic');
+    //require('newrelic');
     /**
      * node js warning: possible EventEmitter memory leak detected. 11 listeners added
      * more then 11 modules used logger module.
