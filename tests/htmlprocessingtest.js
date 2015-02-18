@@ -13,13 +13,14 @@
         interpolate : /<%%=([\s\S]+?)%%>/g,
         escape      : /<%%-([\s\S]+?)%%>/g
     };
-    var htmlProcessor = mockrequire.noCallThru().load('./../src/processor/modules/htmlprocessing', {
-        './../../logger/logger': stubs.loggerStub,
+    var htmlProcessor = mockrequire.noCallThru().load('./../src/processor/modules/builders/htmlbuilder', {
+        './../../../logger/logger': stubs.loggerStub,
         'htmlparser': require('htmlparser'),
         'htmlparser-to-html': require('htmlparser-to-html'),
         'underscore': _,
         'soupselect': require('soupselect'),
-        './../../cache/cache' : stubs.cache
+        './../../../cache/cache' : stubs.cache,
+        './../../../globalstorage': stubs.globalStorage
     });
     describe('HtmlBuilder', function () {
         describe('#validURL()', function () {
@@ -41,9 +42,46 @@
                     supportedBrowsers : ['Safari, Chrome']
                 };
 
-                var expectedResult = htmlProcessor.createDom(stubs.renderedtemplate);
+                var expectedResult = stubs.renderedtemplate.toString();
                 var result = htmlProcessor.createTemplateHtml(xml);
                 should(result).eql(expectedResult);
+            });
+        });
+
+        describe('#createRequestedHtml()', function(){
+            var xml, preferences, token, resultHtml;
+            preferences = [
+                {
+                    key: 'GLOBAL_APPLICATION_FRAME_FONT_SIZE',
+                    value: '11px',
+                    meta: {
+                        availableValues: [{value: '11px'}, {value: '12px'}, {value: '13px'}]
+                    }
+                },
+                {
+                    key: 'GLOBAL_APPLICATION_FRAME_BORDER_COLOR',
+                    value: '#EDB200',
+                    meta: {
+                        availableValues: [{value: '#EDB200'}, {value: '#EDB201'}, {value: '#EDB202'}]
+                    }
+                }
+            ];
+            xml = {
+                preferences: {
+                    'GLOBAL_APPLICATION_FRAME_FONT_SIZE': {
+                        value: '13px',
+                        possibleValues: ['11px', '12px', '13px']
+                    },
+                    'GLOBAL_APPLICATION_FRAME_BORDER_COLOR': {
+                        value: '#EDB201',
+                        possibleValues: ['#EDB200', '#EDB201', '#EDB202']
+                    }
+                }
+            };
+            it('should return rendered widget html page', function(){
+                token = 'WIDGET_TOKEN';
+                resultHtml = htmlProcessor.createRequestedHtml(xml, stubs.resultHtml, preferences, token);
+                resultHtml.should.equal(stubs.requestedHtml);
             });
         });
 
@@ -53,6 +91,7 @@
 
             it('should create dom from widget html file', function(){
                 dom = htmlProcessor.createDom(stubs.widgetHtml);
+
             });
 
             it('should create dom from widget template html file', function(){
@@ -60,7 +99,7 @@
             });
 
             it('should return rendered widget html from widget dom and template dom', function () {
-                result = htmlProcessor.insertData(stubs.widgetHtml.toString(), domTemplate);
+                result = htmlProcessor.insertData(stubs.widgetHtml.toString(), stubs.widgetRenderedHtml.toString());
                 result.newHtml.should.equal(stubs.resultHtml);
             });
 

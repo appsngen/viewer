@@ -7,16 +7,22 @@
     var widgetsRepository = require('./repositories/widgetsfilesystemrepository');
     var logger = require('./../logger/logger')(module);
     var storagePath = '/../widgets/';
+
+    var getFilenameByWidgetId = function(widgetId){
+        return widgetId.replace(/:/g, '_');
+    };
+
     exports.getWidget = function (params, callback, errorCallback){
-        var element = {};
-        widgetsRepository.exist(storagePath + params.widgetId.replace(/:/g, '_'), function(isExist){
+        var widgetInfo = {}, filename;
+        filename = getFilenameByWidgetId(params.widgetId);
+        widgetsRepository.exist(storagePath + filename, function(isExist){
             if(isExist){
-                widgetsRepository.readFile(storagePath + params.widgetId.replace(/:/g, '_'), function(data){
+                widgetsRepository.readFile(storagePath + filename, function(data){
                     data = JSON.parse(data);
-                    element.widgetId = data.widgetId;
-                    element.compiledData = JSON.parse(new Buffer(data.compiledData, 'binary'));
-                    element.originData = JSON.parse(new Buffer(data.originData,'binary'));
-                    callback(element);
+                    widgetInfo.widgetId = data.widgetId;
+                    widgetInfo.compiledData = JSON.parse(new Buffer(data.compiledData, 'binary'));
+                    widgetInfo.originData = JSON.parse(new Buffer(data.originData,'binary'));
+                    callback(widgetInfo);
                 }, errorCallback);
             }
             else{
@@ -26,15 +32,16 @@
     };
 
     exports.checkWidgetExistence = function (params, callback, errorCallback){
-        var element = {};
-        widgetsRepository.exist(storagePath + params.widgetId.replace(/:/g, '_'), function(isExist){
+        var widgetInfo = {}, filename;
+        filename = getFilenameByWidgetId(params.widgetId);
+        widgetsRepository.exist(storagePath + filename, function(isExist){
             if(isExist){
-                widgetsRepository.readFile(storagePath + params.widgetId.replace(/:/g, '_'), function(data){
+                widgetsRepository.readFile(storagePath + filename, function(data){
                     data = JSON.parse(data);
-                    element.widgetId = data.widgetId;
-                    element.compiledData = JSON.parse(new Buffer(data.compiledData, 'binary'));
-                    element.originData = JSON.parse(new Buffer(data.originData,'binary'));
-                    callback(isExist, element);
+                    widgetInfo.widgetId = data.widgetId;
+                    widgetInfo.compiledData = JSON.parse(new Buffer(data.compiledData, 'binary'));
+                    widgetInfo.originData = JSON.parse(new Buffer(data.originData,'binary'));
+                    callback(isExist, widgetInfo);
                 }, errorCallback);
             }
             else{
@@ -43,13 +50,13 @@
         });
     };
 
-    exports.saveWidget = function (zip, originZip, xml, callback, errorCallback) {
+    exports.saveWidget = function (compiledZip, originZip, xml, callback, errorCallback) {
         var data = {
             widgetId: xml.widgetId,
-            compiledData: zip,
+            compiledData: compiledZip,
             originData: originZip
-        };
-        var filename = xml.widgetId.replace(/:/g, '_');
+        }, filename;
+        filename = getFilenameByWidgetId(xml.widgetId);
         widgetsRepository.createPath(storagePath, function(){
             data = JSON.stringify(data);
             widgetsRepository.exist(storagePath + filename, function(isExist){
@@ -66,9 +73,11 @@
     };
 
     exports.deleteWidget = function (params, callback, errorCallback) {
-        widgetsRepository.exist(storagePath + params.widgetId.replace(/:/g, '_'), function(isExist){
+        var filename;
+        filename = getFilenameByWidgetId(params.widgetId);
+        widgetsRepository.exist(storagePath + filename, function(isExist){
             if(isExist){
-                widgetsRepository.removeFile(storagePath + params.widgetId.replace(/:/g, '_'), callback, errorCallback);
+                widgetsRepository.removeFile(storagePath + filename, callback, errorCallback);
             }
             else{
                 callback();
@@ -84,10 +93,10 @@
                 for (i = 0; i < widgetList.length; i++) {
                     widgetList[i] = JSON.parse(widgetList[i]);
                     logger.info((i + 1) + ') ' + widgetList[i].widgetId);
-                    logger.info('Downloaded of widget ' + widgetList[i].widgetId + ' is started.');
+                    logger.info('Loading of widget ' + widgetList[i].widgetId + ' is started.');
                     widgetList[i].compiledData = JSON.parse(new Buffer(widgetList[i].compiledData, 'binary'));
                     widgetList[i].originData = JSON.parse(new Buffer(widgetList[i].originData,'binary'));
-                    logger.info('Widget ' + widgetList[i].widgetId + ' is downloaded.');
+                    logger.info('Widget ' + widgetList[i].widgetId + ' is loaded.');
                 }
                 callback(widgetList);
             }, errorCallback);

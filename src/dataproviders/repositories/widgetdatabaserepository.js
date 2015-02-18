@@ -9,31 +9,32 @@
     'use strict';
     var storage = require('./../../globalstorage').getStorage();
     var logger = require('./../../logger/logger')(module);
-    var mysql      = require('mysql');
-    var pool  = mysql.createPool({
-        host     : storage.databaseConfiguration.host,
-        user     : storage.databaseConfiguration.login,
-        password : storage.databaseConfiguration.password,
-        port     : storage.databaseConfiguration.port
+    var mysql = require('mysql');
+    var pool = mysql.createPool({
+        host: storage.databaseConfiguration.host,
+        user: storage.databaseConfiguration.login,
+        password: storage.databaseConfiguration.password,
+        port: storage.databaseConfiguration.port
     });
+    var databaseName = storage.databaseConfiguration.name;
     var Guid = require('guid');
 
-    exports.execute = function(params, query, callback, errorCallback){
-        pool.getConnection(function(error, connection) {
+    exports.execute = function (params, query, callback, errorCallback) {
+        pool.getConnection(function (error, connection) {
             if (error) {
                 var guid = Guid.create();
                 logger.error(error, {id: guid.value});
                 errorCallback(error, guid.value);
             }
-            else{
-                connection.query(query, params, function(error, result) {
-                    if(error){
+            else {
+                connection.query(query, params, function (error, result) {
+                    if (error) {
                         var guid = Guid.create();
                         logger.error(error, {id: guid.value});
                         connection.release();
                         errorCallback(error, guid.value);
                     }
-                    else{
+                    else {
                         connection.release();
                         callback(result);
                     }
@@ -44,8 +45,8 @@
 
     exports.readInstance = function (params, callback, errorCallback) {
         var query = 'SELECT * ' +
-            'FROM `viewer`.`widgets` ' +
-            'WHERE `viewer`.`widgets`.`WidgetId` = ? ';
+            'FROM `' + databaseName + '`.`widgets` ' +
+            'WHERE `' + databaseName + '`.`widgets`.`WidgetId` = ? ';
         var paramsArray = [
             params.widgetId
         ];
@@ -53,7 +54,8 @@
     };
 
     exports.createInstance = function (params, callback, errorCallback) {
-        var query = 'INSERT INTO `viewer`.`widgets` (`WidgetId`, `CompiledData`, `OriginData`) VALUES (?, ?, ?)';
+        var query = 'INSERT INTO `' + databaseName +
+            '`.`widgets` (`WidgetId`, `CompiledData`, `OriginData`) VALUES (?, ?, ?)';
         var paramsArray = [
             params.widgetId,
             params.compiledData,
@@ -63,8 +65,8 @@
     };
 
     exports.updateInstance = function (params, callback, errorCallback) {
-        var query = 'UPDATE `viewer`.`widgets` SET `OriginData`= ?, `CompiledData` = ? ' +
-            'WHERE `viewer`.`widgets`.`WidgetId` = ? ';
+        var query = 'UPDATE `' + databaseName + '`.`widgets` SET `OriginData`= ?, `CompiledData` = ? ' +
+            'WHERE `' + databaseName + '`.`widgets`.`WidgetId` = ? ';
         var paramsArray = [
             params.originData,
             params.compiledData,
@@ -74,7 +76,8 @@
     };
 
     exports.deleteInstance = function (params, callback, errorCallback) {
-        var query = 'DELETE FROM `viewer`.`widgets` WHERE `viewer`.`widgets`.`WidgetId` = ? ';
+        var query = 'DELETE FROM `' + databaseName +
+            '`.`widgets` WHERE `' + databaseName + '`.`widgets`.`WidgetId` = ? ';
         var paramsArray = [
             params.widgetId
         ];
@@ -83,13 +86,14 @@
     };
 
     exports.readAllInstances = function (callback, errorCallback) {
-        var query = 'SELECT * FROM `viewer`.`widgets`';
+        var query = 'SELECT * FROM `' + databaseName + '`.`widgets`';
         var paramsArray = [];
         this.execute(paramsArray, query, callback, errorCallback);
     };
 
     exports.readAllInstancesIdx = function (callback, errorCallback) {
-        var query = 'SELECT `viewer`.`widgets`.`WidgetId` FROM `viewer`.`widgets`';
+        var query = 'SELECT `' + databaseName +
+            '`.`widgets`.`WidgetId` FROM `' + databaseName + '`.`widgets`';
         var paramsArray = [];
         this.execute(paramsArray, query, callback, errorCallback);
     };

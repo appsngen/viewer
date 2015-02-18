@@ -5,8 +5,9 @@
     'use strict';
     //require('newrelic');
     /**
-     * node js warning: possible EventEmitter memory leak detected. 11 listeners added
-     * more then 11 modules used logger module.
+     * node js warning: possible EventEmitter memory leak detected if 11 listeners added
+     * more then 11 modules used logger module, so we must set max listeners more then 11.
+     * given the number of modules in project 25 listeners the best number for working all modules together
      * @type {number}
      * @private
      */

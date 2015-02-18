@@ -6,7 +6,7 @@
     'use strict';
     var repository = require('./dataproviders/repositories/widgetsfilesystemrepository'),
         portscanner = require('portscanner');
-
+    var JSONC = require('comment-json');
     var storage = require('./globalstorage');
     var fullStorage = storage.getStorage();
 
@@ -21,11 +21,11 @@
         var that = this;
         repository.readFile(filename, function (data) {
             try {
-                var parsedData = JSON.parse(data);
+                var parsedData = JSONC.parse(data);
                 storage.setStorage(parsedData);
-                that.initializeRabbitMQ(function(channel, grayLogChannel){
+                that.initializeRabbitMQ(function(channel, graylogChannel){
                     fullStorage.rabbitMqConfiguration.amqpChannel = channel;
-                    fullStorage.rabbitMqConfiguration.grayLogChannel = grayLogChannel;
+                    fullStorage.rabbitMqConfiguration.graylogChannel = graylogChannel;
                     var liquibase = require('./liquibase/liquibaserun');
                     liquibase.runCommand(function(){
                         portscanner.checkPortStatus(fullStorage.portHttp, fullStorage.host,

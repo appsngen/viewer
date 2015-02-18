@@ -93,14 +93,6 @@
         return result;
     };
 
-    exports.generateSignature = function(data, algorithm){
-        var sign = crypto.createSign(algorithm);
-        sign.update(data);
-        var result = sign.sign('token_private_key', 'base64');
-
-        return result;
-    };
-
     exports.generateCookie = function(clientId, userId){
         var nonce = Math.random();
         var data = clientId + '|' + nonce + '|' + userId;

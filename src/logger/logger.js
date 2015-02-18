@@ -4,10 +4,11 @@
 (function () {
     'use strict';
     var winston = require('winston');
-    var grayLog = require('./grayLog');
+    var graylog = require('./graylog');
     var fs = require('fs');
     var date = new Date();
-    var loggerConfiguration = JSON.parse(fs.readFileSync(__dirname + '/../serverconfig.json')).logger;
+    var JSONC = require('comment-json');
+    var loggerConfiguration = JSONC.parse(fs.readFileSync(__dirname + '/../serverconfig.json')).logger;
     var dateFormat = function (date) {
         var yyyy = date.getFullYear().toString();
         var m = (date.getMonth() + 1).toString();
@@ -53,17 +54,17 @@
         return result;
     };
     var util = require('util');
-    var GrayLog = function (options) {
-        this.name = 'grayLog';
+    var Graylog = function (options) {
+        this.name = 'graylog';
         this.level = options.level || 'info';
     };
-    util.inherits(GrayLog, winston.Transport);
-    GrayLog.prototype.log = function (level, msg, meta, callback) {
-        grayLog.log(level, msg, meta, this);
+    util.inherits(Graylog, winston.Transport);
+    Graylog.prototype.log = function (level, msg, meta, callback) {
+        graylog.log(level, msg, meta, this);
         callback(null, true);
     };
 
-    winston.transports.GrayLog = GrayLog;
+    winston.transports.graylog = Graylog;
 
     /**
      * Setup transports to be shared across all loggers
@@ -84,7 +85,7 @@
             prettyPrint: true,
             json: true
         }),
-        new (winston.transports.GrayLog)({})
+        new (winston.transports.graylog)({})
     ];
     var getLogger = function (module) {
         var logger, oldErrorFunction;
@@ -101,10 +102,13 @@
          */
         logger.transports.console.label = module.filename;
         logger.transports.console.level = loggerConfiguration.levels.console;
+
         logger.transports.file.label = module.filename;
         logger.transports.file.level = loggerConfiguration.levels.file;
-        logger.transports.grayLog.label = module.filename;
-        logger.transports.grayLog.level = loggerConfiguration.levels.grayLog;
+
+        logger.transports.graylog.label = module.filename;
+        logger.transports.graylog.level = loggerConfiguration.levels.graylog;
+
         oldErrorFunction = logger.error;
         logger.error = function () {
             var args = Array.prototype.slice.call(arguments);
@@ -112,6 +116,13 @@
 
             oldErrorFunction.apply(logger, args);
         };
+        /**
+         * gray log publisher can failed but we should log error message without using invalid module
+         * if rabbitMq is not available.
+         */
+        if(module.id === 'graylogpublisher'){
+            logger.remove(logger.transports.graylog);
+        }
 
         return logger;
     };

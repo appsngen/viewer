@@ -5,22 +5,33 @@
     'use strict';
 
     var storage = require('./../globalstorage').getStorage();
-    var configuration = storage.rabbitMqConfiguration;
-    var logger = require('./../logger/logger')(module);
     var cache = require('./../cache/cache');
-    var ampq = require('./../../node_modules/amqplib/callback_api');
     var name = 'viewer_' + storage.version + '_' + storage.host;
     var Guid = require('guid');
+    var BaseRabbitMq = require('./rabbitmqbase'), logger;
+    var message = 'Viewer rabbitmq subscriber is not enabled. Not all parameters specified';
 
-    exports.consumerCallback = function(message){
+
+    var util = require('util');
+
+    var ViewerSubscriber = function(){
+        var mainArguments = Array.prototype.slice.call(arguments);
+        mainArguments.push(message);
+        BaseRabbitMq.apply(this, mainArguments);
+    };
+
+    util.inherits(ViewerSubscriber, BaseRabbitMq);
+
+
+    ViewerSubscriber.prototype.consumerCallback = function(message){
         var params = JSON.parse(message.content.toString());
         if(storage.id !== params.id){
             cache.updateCache(params);
         }
     };
 
-    exports.openChannel = function(callback, errorCallback, error, channel){
-        var psconfig = configuration.publisherSubscriber;
+    ViewerSubscriber.prototype.openChannel = function(callback, errorCallback, error, channel){
+        var psconfig = this.configuration.publisherSubscriber;
         if(error !== null){
             var guid = Guid.create();
             logger.error(error, {id: guid.value});
@@ -33,28 +44,14 @@
         callback();
     };
 
-    exports.consumer = function(connection, callback, errorCallback){
+    ViewerSubscriber.prototype.createConsumer = function(connection, callback, errorCallback){
         connection.createChannel(this.openChannel.bind(this, callback, errorCallback));
     };
 
-    exports.initialize = function (callback, errorCallback) {
-        var that = this, connectionUrl;
-        if(!configuration.protocol || !configuration.login ||
-            !configuration.password || !configuration.host || !configuration.port){
-            logger.warn('viewer rabbitmq subscriber is not enabled. Not all parameters specified', configuration);
-            callback();
-        }
-        else{
-            connectionUrl = configuration.protocol + '://' + configuration.login +':' + configuration.password + '@' +
-                configuration.host + ':' + configuration.port;
-            ampq.connect(connectionUrl, function (error, connection) {
-                if (error !== null) {
-                    var guid = Guid.create();
-                    logger.error(error, {id: guid.value});
-                    errorCallback(error, guid.value);
-                }
-                that.consumer(connection, callback, errorCallback);
-            });
-        }
+    ViewerSubscriber.prototype.initialize = function (callback, errorCallback) {
+        logger = require('./../logger/logger')(module);
+        this.connectToRabbitMq(callback, errorCallback, logger, this.createConsumer.bind(this));
     };
+
+    module.exports = new ViewerSubscriber();
 }());

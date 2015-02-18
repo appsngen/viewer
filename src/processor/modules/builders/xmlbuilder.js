@@ -4,15 +4,12 @@
 
 (function () {
     'use strict';
-    var repository = require('./../../dataproviders/databaseprovider');
+    var repository = require('./../../../dataproviders/iprovider');
     var xml2js = require('xml2js');
-    var logger = require('./../../logger/logger')(module);
+    var logger = require('./../../../logger/logger')(module);
     var parser = new xml2js.Parser();
     var Guid = require('guid');
-    var storage = require('./../../globalstorage').getStorage();
-    if(storage.dataProvider === 'filesystem'){
-        repository = require('./../../dataproviders/filesystemprovider');
-    }
+    
     exports.parsePrefs = function (prefs, isExtended) {
 
         var result = {}, parsedPref, that = this;
@@ -185,14 +182,7 @@
                 callback();
             }
             else {
-                var data = {
-                    context: {
-                        name: parsedResult.title
-                    },
-                    message: 'The widget already exists.'
-                };
-
-                successCallback(parsedResult.widgetId, 409, 'application/json', JSON.stringify(data));
+                successCallback(parsedResult.widgetId);
             }
         }, errorCallback);
     };
@@ -280,70 +270,86 @@
         return screenshots;
     };
 
+    exports.tryGetXmlFromArchive = function(zip, callback, errorCallback){
+        var xmlFile, xmlData, message, guid;
+        xmlFile = zip.files['application.xml'];
+        if(xmlFile){
+            xmlData = zip.files['application.xml']._data;
+            xmlData = xmlData.replace('ï»¿', '');
+            callback(xmlData);
+        }
+        else{
+            message = 'Can\'t find xml file in zip archive';
+            guid = Guid.create();
+            logger.error(message, {id: guid.value});
+            errorCallback(message, guid.value, 400);
+        }
+    };
+
     exports.xmlParse = function (callback, errorCallback, successCallback, config) {
         var parsedResult, that = this, guid, xmlModule;
-        var data = config.zip.files['application.xml']._data;
-        data = data.replace('ï»¿', '');
-        parser.parseString(data, function (error, result) {
-            if (error) {
-                var message = 'Can not process Application.xml';
-                guid = Guid.create();
-                logger.error(message, error, {id: guid.value});
-                errorCallback(message, guid.value);
-            }
-            else {
-                try {
-                    xmlModule = result.Module;
-                    parsedResult = {
-                        id: that.processId(xmlModule.ModulePrefs[0]['$']),
-                        widgetId: that.processWidgetId(xmlModule.ModulePrefs[0]['$'], config.query.organizationId),
-                        title: that.processWidgetTitle(xmlModule.ModulePrefs[0]['$']),
-                        visibility: xmlModule.ModulePrefs[0].$.visibility,
-                        platform: xmlModule.ModulePrefs[0].$.platform || '',
-                        description: that.processWidgetDescription(xmlModule.ModulePrefs[0]['$']),
-                        thumbnail: xmlModule.ModulePrefs[0].$.thumbnail,
-                        width: parseInt(xmlModule.ModulePrefs[0].$.width) || 600,
-                        height: parseInt(xmlModule.ModulePrefs[0].$.height) || 600,
-                        minWidth: parseInt(xmlModule.ModulePrefs[0].$.minWidth) || 600,
-                        minHeight: parseInt(xmlModule.ModulePrefs[0].$.minHeight) || 600,
-                        information: that.processInformation(result),
-                        versionInfo: that.processVersionInfo(result),
-                        categories: that.processSplitArray(xmlModule.Metadata[0].Categories),
-                        tags: that.processSplitArray(xmlModule.Metadata[0].Tags),
-                        supportedBrowsers: that.parseBrowsers(result),
-                        screenshots: that.processScreenshots(result),
-                        dataSources: that.processDataSourcesOrStreams(xmlModule.Metadata[0].DataSources),
-                        streams: that.processDataSourcesOrStreams(xmlModule.Metadata[0].Streams),
-                        supportedDimensions: that.processSplitArray(xmlModule.Metadata[0].SupportedDimensions),
-                        events: that.processEvents(result),
-                        extendedEvents: that.processExtendedEvents(result),
-                        preferences: that.parsePrefs(xmlModule.UserPref, false),
-                        extendedPreferences: that.parsePrefs(xmlModule.UserPref, true),
-                        applicationHtml: that.processHtml(xmlModule.Content[0].$.href),
-                        query: config.query
-                    };
-
-                    if (config.additional.isCheck) {
-                        /**
-                         * upload
-                         */
-                        that.checkExistence(parsedResult, function () {
-                            callback(parsedResult);
-                        }, successCallback, errorCallback);
-                    }
-                    else {
-                        /**
-                         * update
-                         */
-                        callback(parsedResult);
-                    }
-                }
-                catch (exception) {
+        that.tryGetXmlFromArchive(config.zip, function(data){
+            parser.parseString(data, function (error, result) {
+                if (error) {
+                    var message = 'Can not process Application.xml';
                     guid = Guid.create();
-                    logger.error(exception, {id: guid.value});
-                    errorCallback(guid.value, exception.message);
+                    logger.error(message, error, {id: guid.value});
+                    errorCallback(message, guid.value, 400);
                 }
-            }
-        });
+                else {
+                    try {
+                        xmlModule = result.Module;
+                        parsedResult = {
+                            id: that.processId(xmlModule.ModulePrefs[0]['$']),
+                            widgetId: that.processWidgetId(xmlModule.ModulePrefs[0]['$'], config.query.organizationId),
+                            title: that.processWidgetTitle(xmlModule.ModulePrefs[0]['$']),
+                            visibility: xmlModule.ModulePrefs[0].$.visibility,
+                            platform: xmlModule.ModulePrefs[0].$.platform || '',
+                            description: that.processWidgetDescription(xmlModule.ModulePrefs[0]['$']),
+                            thumbnail: xmlModule.ModulePrefs[0].$.thumbnail,
+                            width: parseInt(xmlModule.ModulePrefs[0].$.width) || 600,
+                            height: parseInt(xmlModule.ModulePrefs[0].$.height) || 600,
+                            minWidth: parseInt(xmlModule.ModulePrefs[0].$.minWidth) || 600,
+                            minHeight: parseInt(xmlModule.ModulePrefs[0].$.minHeight) || 600,
+                            information: that.processInformation(result),
+                            versionInfo: that.processVersionInfo(result),
+                            categories: that.processSplitArray(xmlModule.Metadata[0].Categories),
+                            tags: that.processSplitArray(xmlModule.Metadata[0].Tags),
+                            supportedBrowsers: that.parseBrowsers(result),
+                            screenshots: that.processScreenshots(result),
+                            dataSources: that.processDataSourcesOrStreams(xmlModule.Metadata[0].DataSources),
+                            streams: that.processDataSourcesOrStreams(xmlModule.Metadata[0].Streams),
+                            supportedDimensions: that.processSplitArray(xmlModule.Metadata[0].SupportedDimensions),
+                            events: that.processEvents(result),
+                            extendedEvents: that.processExtendedEvents(result),
+                            preferences: that.parsePrefs(xmlModule.UserPref, false),
+                            extendedPreferences: that.parsePrefs(xmlModule.UserPref, true),
+                            applicationHtml: that.processHtml(xmlModule.Content[0].$.href),
+                            query: config.query
+                        };
+
+                        if (config.additional.isCheck) {
+                            /**
+                             * upload
+                             */
+                            that.checkExistence(parsedResult, function () {
+                                callback(parsedResult);
+                            }, successCallback, errorCallback);
+                        }
+                        else {
+                            /**
+                             * update
+                             */
+                            callback(parsedResult);
+                        }
+                    }
+                    catch (exception) {
+                        guid = Guid.create();
+                        logger.error(exception, {id: guid.value});
+                        errorCallback(guid.value, exception.message, 400);
+                    }
+                }
+            });
+        }, errorCallback);
     };
 }());

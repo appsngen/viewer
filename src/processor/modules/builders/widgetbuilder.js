@@ -4,14 +4,12 @@
 
 (function () {
     'use strict';
-    var storage = require('./../../globalstorage').getStorage();
-    var repository = require('./../../dataproviders/databaseprovider');
-    var cache = require('./../../cache/cache');
-    var publisher = require('./../../rabbitmq/viewerpublisher');
-    var logger = require('./../../logger/logger')(module);
-    if(storage.dataProvider === 'filesystem'){
-        repository = require('./../../dataproviders/filesystemprovider');
-    }
+    var storage = require('./../../../globalstorage').getStorage();
+    var repository = require('./../../../dataproviders/iprovider');
+    var cache = require('./../../../cache/cache');
+    var publisher = require('./../../../rabbitmq/viewerpublisher');
+    var logger = require('./../../../logger/logger')(module);
+
     exports.getAdditionalResource = function (filename, callback, notFoundCallback) {
         var file = cache.getFileByName(filename);
         if(file){
@@ -32,7 +30,7 @@
         repository.deleteWidget(params, function () {
             cache.updateCache(params);
             if(storage.rabbitMqConfiguration.amqpChannel){
-                publisher.publish(params, storage.rabbitMqConfiguration.amqpChannel);
+                publisher.publish(JSON.stringify(params), storage.rabbitMqConfiguration.amqpChannel);
             }
             else{
                 logger.warn('Can\'t inform all instances of viewer about widget deletion');

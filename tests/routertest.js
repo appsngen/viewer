@@ -9,7 +9,8 @@
     var should = require('should');
 
     var router = mockrequire.noCallThru().load('./../src/routers/router', {
-        './routerhelpers': stubs.routerhelpers
+        './routerhelpers': stubs.routerhelpers,
+        './../globalstorage': stubs.globalStorage
     });
 
     describe('Router', function () {

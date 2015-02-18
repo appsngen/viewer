@@ -11,23 +11,34 @@
     var SYSTEM_INTEGRATION_INFO_UPDATED_TEMPLATE = 'system integration info';
     var MOBILE_CONFIGURATION_UPDATED_TEMPLATE = 'mobile configuration';
     var storage = require('./../globalstorage').getStorage();
-    var configuration = storage.rabbitMqConfiguration;
-    var logger = require('./../logger/logger')(module);
-    var ampq = require('./../../node_modules/amqplib/callback_api');
     var publisher = require('./viewerpublisher');
     var cache = require('./../cache/cache');
     var Guid = require('guid');
+    var BaseRabbitMq = require('./rabbitmqbase'), logger;
+    var message = 'Viewer rabbitmq RPC is not enabled. Not all parameters specified';
 
-    exports.answerToService = function (channel, message) {
+
+    var util = require('util');
+
+    var ViewerRPC = function(){
+        var mainArguments = Array.prototype.slice.call(arguments);
+        mainArguments.push(message);
+        BaseRabbitMq.apply(this, mainArguments);
+    };
+
+    util.inherits(ViewerRPC, BaseRabbitMq);
+
+
+    ViewerRPC.prototype.answerToService = function (channel, message) {
         var correlationId = message.properties.correlationId;
         var replyTo = message.properties.replyTo;
-        channel.publish(configuration.rpc.exchange, replyTo, new Buffer('ok'), {
+        channel.publish(storage.rabbitMqConfiguration.rpc.exchange, replyTo, new Buffer('ok'), {
             replyTo: replyTo,
             correlationId: correlationId
         });
     };
 
-    exports.consumerCallback = function (channel, message) {
+    ViewerRPC.prototype.consumerCallback = function (channel, message) {
         var arrayMessage = message.content.toString().split('|'), that = this;
         var organizationId = arrayMessage[2], params = {}, userId = storage.serviceUser;
         switch (arrayMessage[0]) {
@@ -45,15 +56,15 @@
                 };
                 cache.deletePreferenceCache(organizationId);
                 cache.deleteWidgetPreferenceCache(organizationId);
-                publisher.publish(params, storage.rabbitMqConfiguration.amqpChannel);
+                publisher.publish(JSON.stringify(params), storage.rabbitMqConfiguration.amqpChannel);
                 params.type = 'widgetPreferencesDeleted';
-                publisher.publish(params, storage.rabbitMqConfiguration.amqpChannel);
+                publisher.publish(JSON.stringify(params), storage.rabbitMqConfiguration.amqpChannel);
                 that.answerToService(channel, message);
                 setTimeout(function(){
                     cache.uploadPreferenceCache(organizationId, userId, function(globalPreferences){
                         params.globalPreferences = globalPreferences;
                         params.type = 'globalPreferencesUpdated';
-                        publisher.publish(params, storage.rabbitMqConfiguration.amqpChannel);
+                        publisher.publish(JSON.stringify(params), storage.rabbitMqConfiguration.amqpChannel);
                     }, function(){});
                 }, 0);
                 break;
@@ -66,7 +77,7 @@
                     type: 'widgetPreferencesDeleted'
                 };
                 cache.deleteWidgetPreferenceCache(organizationId, widgetId);
-                publisher.publish(params, storage.rabbitMqConfiguration.amqpChannel);
+                publisher.publish(JSON.stringify(params), storage.rabbitMqConfiguration.amqpChannel);
                 that.answerToService(channel, message);
                 /**
                  * uploadWidgetPreferenceCache should be called after publish message about updating viewer state.
@@ -78,7 +89,7 @@
                         params.widgetId = widgetId;
                         params.widgetPreferences = widgetPreferences;
                         params.type = 'widgetPreferencesUpdated';
-                        publisher.publish(params, storage.rabbitMqConfiguration.amqpChannel);
+                        publisher.publish(JSON.stringify(params), storage.rabbitMqConfiguration.amqpChannel);
                     }, function(){
                         var guid = Guid.create();
                         var errorMessage = 'Can\'t upload widget preference cache. Organization id: ' +
@@ -96,41 +107,29 @@
         }
     };
 
-    exports.openChannel = function (callback, errorCallback, error, channel) {
+    ViewerRPC.prototype.openChannel = function (callback, errorCallback, error, channel) {
         if (error !== null) {
             var guid = Guid.create();
             logger.error(error, {id: guid.value});
             errorCallback(error, guid.value);
         }
-        channel.assertQueue(configuration.rpc.name, {durable: true});
-        channel.deleteQueue(configuration.rpc.name);
-        channel.assertQueue(configuration.rpc.name, {durable: true});
-        channel.consume(configuration.rpc.name, this.consumerCallback.bind(this, channel), {noAck: true});
+        channel.assertQueue(storage.rabbitMqConfiguration.rpc.name, {durable: true});
+        channel.deleteQueue(storage.rabbitMqConfiguration.rpc.name);
+        channel.assertQueue(storage.rabbitMqConfiguration.rpc.name, {durable: true});
+        channel.consume(storage.rabbitMqConfiguration.rpc.name, this.consumerCallback.bind(this, channel), {
+            noAck: true
+        });
         callback();
     };
 
-    exports.consumer = function (connection, callback, errorCallback) {
+    ViewerRPC.prototype.createConsumer = function (connection, callback, errorCallback) {
         connection.createChannel(this.openChannel.bind(this, callback, errorCallback));
     };
 
-    exports.initialize = function (callback, errorCallback) {
-        var that = this, url;
-        if(!configuration.protocol || !configuration.login ||
-            !configuration.password || !configuration.host || !configuration.port){
-            logger.warn('viewer rabbitmq RPC is not enabled. Not all parameters specified', configuration);
-            callback();
-        }
-        else{
-            url = configuration.protocol + '://' + configuration.login + ':' + configuration.password + '@' +
-                configuration.host + ':' + configuration.port;
-            ampq.connect(url, function (error, connection) {
-                if (error !== null) {
-                    var guid = Guid.create();
-                    logger.error(error, {id: guid.value});
-                    errorCallback(error, guid.value);
-                }
-                that.consumer(connection, callback, errorCallback);
-            });
-        }
+    ViewerRPC.prototype.initialize = function (callback, errorCallback) {
+        logger = require('./../logger/logger')(module);
+        this.connectToRabbitMq(callback, errorCallback, logger, this.createConsumer.bind(this));
     };
+
+    module.exports = new ViewerRPC();
 }());

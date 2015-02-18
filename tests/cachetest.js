@@ -11,7 +11,8 @@
     var storage = stubs.globalStorage;
 
     var tokensCache = mockrequire.noCallThru().load('./../src/cache/tokenscache', {
-        './../processor/modules/restservicesrequester': stubs.restServicesRequesterStub,
+        './../processor/modules/services/restservicesrequester': stubs.restServicesRequesterStub,
+        './../processor/modules/services/iservicerequester': stubs.restServicesRequesterStub,
         './../globalstorage': storage,
         './widgetcache' : stubs.widgetCache,
         './../logger/logger': stubs.loggerStub

@@ -4,7 +4,7 @@
 
 (function () {
     'use strict';
-    var servicesRequester = require('./../processor/modules/restservicesrequester');
+    var servicesRequester = require('./../processor/modules/services/iservicerequester');
     var storage = require('./../globalstorage').getStorage();
 
     exports.generateKey = function (organizationId, widgetId) {

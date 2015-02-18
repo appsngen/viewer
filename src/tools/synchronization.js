@@ -4,7 +4,7 @@
 
 (function () {
     'use strict';
-    var servicesRequester = require('./../processor/modules/restservicesrequester');
+    var servicesRequester = require('./../processor/modules/services/iservicerequester');
     var storage = require('./../globalstorage').getStorage();
     var logger = require('./../logger/logger')(module);
     exports.getWidgetList = function(callback, errorCallback){

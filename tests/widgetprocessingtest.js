@@ -9,13 +9,14 @@
     var mockrequire = require('proxyquire');
     var should = require('should');
 
-    var widgetProcessor = mockrequire.noCallThru().load('./../src/processor/modules/widgetprocessing', {
-        './../../logger/logger' : stubs.loggerStub,
-        './../../globalstorage' : stubs.globalStorage,
-        './../../dataproviders/filesystemprovider':stubs.stubRepository,
-        './../../dataproviders/databaseprovider':stubs.stubRepository,
-        './../../cache/cache':stubs.cache,
-        './../../rabbitmq/viewerpublisher': stubs.stubViewerPublisher
+    var widgetProcessor = mockrequire.noCallThru().load('./../src/processor/modules/builders/widgetbuilder', {
+        './../../../logger/logger' : stubs.loggerStub,
+        './../../../globalstorage' : stubs.globalStorage,
+        './../../../dataproviders/filesystemprovider':stubs.stubRepository,
+        './../../../dataproviders/databaseprovider':stubs.stubRepository,
+        './../../../dataproviders/iprovider':stubs.stubRepository,
+        './../../../cache/cache':stubs.cache,
+        './../../../rabbitmq/viewerpublisher': stubs.stubViewerPublisher
     });
 
     describe('WidgetProcessor', function () {
@@ -69,7 +70,7 @@
         });
 
         describe('#compileResource()', function () {
-            var lessProcessor = require('./../src/processor/modules/lessprocessing');
+            var lessProcessor = require('./../src/processor/modules/builders/lessbuilder');
             var params = {
                 globalPreferences : {
                     organizationPreferences: {

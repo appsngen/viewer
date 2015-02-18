@@ -7,10 +7,10 @@
 
     var fs = require('fs');
     var NodeZip = require('node-zip');
+    var JSONC = require('comment-json');
     var widgethtmltemlate = fs.readFileSync(__dirname + '/../src/templates/widgethtmltemlate.html').toString();
     var widgetheadconfiguration = fs.readFileSync(__dirname + '/../src/serverconfig.json');
     var cert = fs.readFileSync(__dirname + '/../configuration/appsngen_token_public.crt');
-//    var privateKey = fs.readFileSync(__dirname + '/../configuration/appsngen_token_private.pem');
     module.exports.tokenHeader = new Buffer(JSON.stringify({
         'alg':'SHA1withRSA',
         'cty':'json',
@@ -137,6 +137,7 @@
         }
     };
     var storageObject = {
+        baseUrl: 'http://google.com/viewer',
         expirationTokenTime: 123,
         databaseConfiguration: {
             host     : '',
@@ -157,6 +158,28 @@
             },
             compiledWidgetCache: {
                 'widgetId.filePath.organizationId': 'compiledData'
+            }
+        },
+        'staticFiles':{
+            'applicationWeb':{
+                'authToken': '',
+                'appstore.api': {
+                    'timestamp': '',
+                    'unsupportedBrowserUrl': '/content/index.html',
+                    'datasourceProxyUrl': 'https://local.appsngen.com/datasource-proxy',
+                    'activProxyWebSocketUrl': 'wss://local.appsngen.com/activ-data-proxy',
+                    'ieDataProxy': 'https://local.appsngen.com/datasource-proxy/ie-data-proxy'
+                },
+                'core.util': {
+                    'appstore.events': {
+                        'events': {
+                            'publish': [],
+                            'subscribe': []
+                        }
+                    },
+                    'core': {},
+                    'appstore.api': {}
+                }
             }
         }
     };
@@ -182,7 +205,7 @@
         },
         getWidgetJsonTemplate: function () {
             var result = widgetheadconfiguration;
-            return JSON.parse(result).widgetConfig;
+            return JSONC.parse(result).widgetConfig;
         },
         getCache: function () {
             return {
@@ -212,6 +235,7 @@
     module.exports.widgetHtml = fs.readFileSync(__dirname + '/content/widgettest.html');
     module.exports.widgetRenderedHtml = fs.readFileSync(__dirname + '/content/renderedtemplate.html');
     module.exports.resultHtml = fs.readFileSync(__dirname + '/content/compiledwidget.html').toString();
+    module.exports.requestedHtml = fs.readFileSync(__dirname + '/content/requestedwidget.html').toString();
     module.exports.less = fs.readFileSync(__dirname + '/content/testless.less').toString();
     module.exports.cssResult = fs.readFileSync(__dirname + '/content/testcss.css').toString();
     module.exports.uri = 'organizations/top_investing/widgets/global_preferences_demo' +

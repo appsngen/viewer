@@ -9,12 +9,13 @@
     var should = require('should');
     var xml2js = require('xml2js'), parser = new xml2js.Parser();
 
-    var xmlProcessor = mockrequire.noCallThru().load('./../src/processor/modules/xmlprocessing', {
-        './../../globalstorage' : stubs.globalStorage,
-        './../../logger/logger': stubs.loggerStub,
+    var xmlProcessor = mockrequire.noCallThru().load('./../src/processor/modules/builders/xmlbuilder', {
+        './../../../globalstorage' : stubs.globalStorage,
+        './../../../logger/logger': stubs.loggerStub,
         'xml2js': require('xml2js'),
-        './../../dataproviders/filesystemprovider' : stubs.stubRepository,
-        './../../dataproviders/databaseprovider':stubs.stubRepository
+        './../../../dataproviders/filesystemprovider' : stubs.stubRepository,
+        './../../../dataproviders/databaseprovider':stubs.stubRepository,
+        './../../../dataproviders/iprovider':stubs.stubRepository
     });
 
     var initialize = function(error, data){

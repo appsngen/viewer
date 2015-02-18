@@ -5,7 +5,7 @@
 (function () {
     'use strict';
     var storage = require('./../globalstorage').getStorage();
-    var repository = require('./../dataproviders/databaseprovider');
+    var repository = require('./../dataproviders/iprovider');
     var compiledWidgetCache = require('./compiledwidgetcache');
     var organizationPreferencesCache = require('./organizationpreferencescache');
     var widgetPreferencesCache = require('./widgetpreferencescache');
@@ -15,9 +15,6 @@
     var staticCache = require('./staticfilescache');
     var each = require('async-each-series');
     var logger = require('./../logger/logger')(module);
-    if(storage.dataProvider === 'filesystem'){
-        repository = require('./../dataproviders/filesystemprovider');
-    }
     exports.updateOriginCacheFromDatabase = function (widgetId) {
         var that = this;
         repository.getWidget(widgetId, function(data){

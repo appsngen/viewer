@@ -1,9 +1,12 @@
 .idea
 /node_modules
+/content/views/.out
 /coverage
 /.out
+/content/views/node_modules
 /npm-debug.log
 /src/liquibase/comand.cmd
+src/appsngen-api/node_modules
 /src/liquibase/comand.sh
 /logs
 /widgets

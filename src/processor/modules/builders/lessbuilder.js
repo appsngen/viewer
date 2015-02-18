@@ -5,7 +5,7 @@
 (function () {
     'use strict';
     var less = require('less');
-    var logger= require('./../../logger/logger')(module);
+    var logger= require('./../../../logger/logger')(module);
     var parser = new (less.Parser)({});
     var Guid = require('guid');
 

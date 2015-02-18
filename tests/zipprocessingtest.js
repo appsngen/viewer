@@ -10,15 +10,16 @@
     var storage = stubs.globalStorage;
     var NodeZip = require('node-zip');
 
-    var zipProcessor = mockrequire.noCallThru().load('./../src/processor/modules/zipprocessing', {
-        './../../globalstorage' : storage,
-        './../../logger/logger' : stubs.loggerStub,
+    var zipProcessor = mockrequire.noCallThru().load('./../src/processor/modules/builders/zipbuilder', {
+        './../../../globalstorage' : storage,
+        './../../../logger/logger' : stubs.loggerStub,
         'node-zip': require('node-zip'),
         'guid' : require('guid'),
-        './../../cache/cache': stubs.cache,
-        './../../rabbitmq/viewerpublisher': stubs.stubViewerPublisher,
-        './../../dataproviders/filesystemprovider': stubs.stubDatabaseProvider,
-        './../../dataproviders/databaseprovider':stubs.stubRepository
+        './../../../cache/cache': stubs.cache,
+        './../../../rabbitmq/viewerpublisher': stubs.stubViewerPublisher,
+        './../../../dataproviders/filesystemprovider': stubs.stubDatabaseProvider,
+        './../../../dataproviders/databaseprovider':stubs.stubRepository,
+        './../../../dataproviders/iprovider':stubs.stubRepository
     });
 
     describe('ZipProcessor', function () {

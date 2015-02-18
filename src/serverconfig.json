@@ -10,8 +10,12 @@
         "host": "",
         "port": "",
         "login": "",
-        "password": ""
+        "password": "",
+        "name" : ""    
     },
+    /**
+     * Location of viewer static resources.
+     */
     "staticFiles": {
         "htmlTemplatePath": "templates/widgethtmltemlate.html",
         "applicationAnaliticPath": "/../content/js/applications.analytics.js",
@@ -43,17 +47,21 @@
             "exchange": "",
             "name": ""
         },
-        "grayLogPublisher": {
+        "graylogPublisher": {
             "exchange": "",
             "routingKey": ""
         }
     },
-    "restServicesUrls": {
+    "restServicesConfiguration": {
+        /**
+         * Type of using services. Can be stub or realy.
+         */
+        "type": "stub",
         "protocol": "https",
         "tokenService": {
             "host": "www.appsngen.com",
-            "path": "/auth-service/tokens/using-master-token?user=",
-            "additionalPath": "/auth-service/tokens",
+            "bearerTokenPath": "/auth-service/tokens/using-master-token?user=",
+            "basicTokenPath": "/auth-service/tokens",
             "port": ""
         },
         "preferencesService": {
@@ -91,8 +99,12 @@
         "levels": {
             "file": "silly",
             "console": "silly",
-            "grayLog": "silly"
+            "graylog": "silly"
         },
+        /**
+         * Priority levels
+         * Only for infomation.
+         */
         "priority": {
             "silly": 0,
             "debug": 1,
@@ -102,10 +114,13 @@
             "error": 5
         }
     },
-    "grayLog": {
+    "graylog": {
         "gelfVersion": "",
         "messageFormat": ""
     },
+    /**
+     * Widget configuration section.
+     */
     "widgetConfig": {
         "authToken": "",
         "appstore.api": {
@@ -126,20 +141,44 @@
             "appstore.api": {}
         }
     },
+    /**
+     * User for basic authorization if master token is not specified.
+     */
     "user": {
         "name": "",
         "password": ""
     },
+    /**
+     * Different levels of token checks (true to enable) (false for disable)
+     */
     "securitySettings": {
         "checkSignature": false,
         "checkExpiration": false,
         "checkParent": false,
         "checkSubject": false
     },
+    /**
+     * Type of data provider. Can be file system or mysql provider.
+     */
     "dataProvider": "filesystem",
+    /**
+     * Scope of available external services.
+     */
     "services": ["preferences", "widgets", "gadget-management"],
+    /**
+     * Additional interval from expiration token time.
+     */
     "expirationTokenTime": 30000,
+    /**
+     * User for synchronization operation
+     */
     "serviceUser": "service@appstore.com",
+    /**
+     * Key for generation cookie signature.
+     */
     "appsngenCookieKey": "wAem5fGxuSMBBSnDJRHADRase9FmXsyF1MHlPLQ4IbZFrqXJ75nbCjoMizTQ",
+    /**
+     * Token for getting another tokens
+     */
     "masterToken": ""
 }

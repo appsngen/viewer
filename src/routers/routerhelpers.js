@@ -4,7 +4,7 @@
 (function () {
     'use strict';
     var processController = require('./../processor/processor'),
-        configurationModule = require('./../processor/processorconfiguration'),
+        configurationModule = require('./../processor/modules/processorconfiguration/iprocessorconfiguration'),
         url = require('url'),
         logger = require('./../logger/logger')(module),
         securitySettings = require('./../globalstorage').getStorage().securitySettings,
@@ -137,6 +137,11 @@
     exports.checkBearerToken = function(request, response, params, callback){
         var isJson, parsedToken, message, userId, organizationId;
         parsedToken = security.parseToken(params.token);
+        /**
+         * if token type is identity we should return unauthorized answer in json format
+         * if token type is not identity we should return unauthorized answer in html format
+         * @type {boolean}
+         */
         isJson = 'identity' === parsedToken.tokenBodyObj.sub;
         if (parsedToken) {
             userId = parsedToken.tokenBodyObj.aud.user;

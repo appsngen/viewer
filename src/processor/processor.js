@@ -4,13 +4,13 @@
 
 (function () {
     'use strict';
-    var lessProcessor = require('./modules/lessprocessing'),
-        zipProcessor = require('./modules/zipprocessing'),
-        xmlProcessor = require('./modules/xmlprocessing'),
-        servicesRequester = require('./modules/restservicesrequester'),
-        htmlProcessor = require('./modules/htmlprocessing'),
+    var lessProcessor = require('./modules/builders/lessbuilder'),
+        zipProcessor = require('./modules/builders/zipbuilder'),
+        xmlProcessor = require('./modules/builders/xmlbuilder'),
+        servicesRequester = require('./modules/services/iservicerequester'),
+        htmlProcessor = require('./modules/builders/htmlbuilder'),
         deepCopy = require('deepcopy'),
-        widgetProcessor = require('./modules/widgetprocessing'),
+        widgetProcessor = require('./modules/builders/widgetbuilder'),
         synctool = require('./../tools/synchronization'),
         each = require('async-each-series');
     var logger = require('./../logger/logger')(module);

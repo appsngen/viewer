@@ -4,7 +4,7 @@
 
 (function () {
     'use strict';
-    var widgetsRepository = require('./repositories/widgetsrepository');
+    var widgetsRepository = require('./repositories/widgetdatabaserepository');
     var each = require('async-each-series');
     var logger = require('./../logger/logger')(module);
     exports.getWidget = function (params, callback, errorCallback){

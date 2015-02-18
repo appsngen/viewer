@@ -4,16 +4,14 @@
 
 (function () {
     'use strict';
-    var storage = require('./../../globalstorage').getStorage();
-    var logger = require('./../../logger/logger')(module);
-    var cache = require('./../../cache/cache');
-    var publisher = require('./../../rabbitmq/viewerpublisher');
-    var repository = require('./../../dataproviders/databaseprovider');
+    var storage = require('./../../../globalstorage').getStorage();
+    var logger = require('./../../../logger/logger')(module);
+    var cache = require('./../../../cache/cache');
+    var publisher = require('./../../../rabbitmq/viewerpublisher');
+    var repository = require('./../../../dataproviders/iprovider');
     var NodeZip = require('node-zip');
     var Guid = require('guid');
-    if(storage.dataProvider === 'filesystem'){
-        repository = require('./../../dataproviders/filesystemprovider');
-    }
+
     exports.createObjFromZipFile = function (data, callback, errorCallback) {
         var zip;
         try{
@@ -93,7 +91,7 @@
                 organizationId: params.config.query.organizationId
             };
             if(storage.rabbitMqConfiguration.amqpChannel){
-                publisher.publish(publishParams, storage.rabbitMqConfiguration.amqpChannel);
+                publisher.publish(JSON.stringify(publishParams), storage.rabbitMqConfiguration.amqpChannel);
             }
             else{
                 logger.warn('Can\'t inform all instances of viewer about widget saving');

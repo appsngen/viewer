@@ -4,8 +4,9 @@
 (function () {
     'use strict';
     var fs = require('fs');
-    var loggerConfiguration = JSON.parse(fs.readFileSync(__dirname + '/../serverconfig.json')).grayLog;
+    var JSONC = require('comment-json');
     var storage = require('./../globalstorage').getStorage();
+    var loggerConfiguration = JSONC.parse(fs.readFileSync(__dirname + '/../serverconfig.json')).graylog;
     var publisher = require('./../rabbitmq/graylogpublisher');
     var msgpack;
     if(loggerConfiguration.messageFormat && loggerConfiguration.messageFormat === 'Radio'){
@@ -38,7 +39,7 @@
             short_message: msg.substring(0, 120),
             /* jshint camelcase: true */
             timestamp: new Date().getTime(),
-            version: storage.grayLog.gelfVersion,
+            version: storage.graylog.gelfVersion,
             _id: meta.id
         };
 
@@ -48,7 +49,7 @@
     };
 
     exports.sendMessage = function(message){
-        var channel = storage.rabbitMqConfiguration.grayLogChannel;
+        var channel = storage.rabbitMqConfiguration.graylogChannel;
         publisher.publish(message, channel);
     };
 
@@ -77,7 +78,7 @@
     exports.log = function (level, msg, meta, transport) {
         var message, numberLevel;
         numberLevel = this.getLevel(level);
-        switch (storage.grayLog.messageFormat) {
+        switch (storage.graylog.messageFormat) {
             case 'GELF':
                 message = this.constructGelfMessage(numberLevel, msg, meta, transport);
                 this.sendMessage(message);

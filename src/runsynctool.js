@@ -4,7 +4,7 @@
 
 (function () {
     'use strict';
-    require('events').EventEmitter.prototype._maxListeners = 20;
+    require('events').EventEmitter.prototype._maxListeners = 25;
     var serverConfig = require('./serverconfiguration');
     var  initServer = function() {
         var routers = require('./routers/router'),

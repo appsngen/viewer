@@ -8,8 +8,8 @@
     var mockrequire = require('proxyquire');
     var should = require('should');
 
-    var lessProcessor = mockrequire.noCallThru().load('./../src/processor/modules/lessprocessing', {
-        './../../logger/logger': stubs.loggerStub,
+    var lessProcessor = mockrequire.noCallThru().load('./../src/processor/modules/builders/lessbuilder', {
+        './../../../logger/logger': stubs.loggerStub,
         'less': require('less')
     });
 

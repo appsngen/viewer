@@ -4,13 +4,13 @@
 
 (function () {
     'use strict';
-    var logger = require('./../../logger/logger')(module);
+    var logger = require('./../../../logger/logger')(module);
     var htmlParser = require('htmlparser');
-    var htmlConstructor = require('htmlparser-to-html');
+    var storage= require('./../../../globalstorage').getStorage();
     var _ = require('underscore');
-    var select = require('soupselect').select;
-    var cache = require('./../../cache/cache');
+    var cache = require('./../../../cache/cache');
     var Guid = require('guid');
+    var deepCopy = require('deepcopy');
     _.templateSettings = {
         evaluate: /<%%([\s\S]+?)%%>/g,
         interpolate: /<%%=([\s\S]+?)%%>/g,
@@ -18,22 +18,25 @@
     };
 
     exports.createTemplateHtml = function (xml) {
-        var config, dom, dataTemplate;
+        var config, dataTemplate;
         dataTemplate = cache.getTemplateHtml();
-        config = cache.getWidgetJsonTemplate();
-        config.authToken = '<%%= token %%>';
+        config = deepCopy(storage.staticFiles.applicationWeb);
+        config.authToken = '<%%=token%%>';
+        config['appstore.api'].unsupportedBrowserUrl = '<%%=unsupportedBrowserUrl%%>';
+        config['appstore.api'].datasourceProxyUrl = '<%%=datasourceProxyUrl%%>';
+        config['appstore.api'].activProxyWebSocketUrl = '<%%=activProxyWebSocketUrl%%>';
+        config['appstore.api'].ieDataProxy = '<%%=ieDataProxy%%>';
+
         config['core.util']['appstore.events'].events.publish = xml.events.publish;
         config['core.util']['appstore.events'].events.subscribe = xml.events.subscribe;
         var result = _.template(dataTemplate.toString())({
             config: config,
-            supportedBrowsers: xml.supportedBrowsers,
-            preferences: '<%%= JSON.stringify(preferences) %%>',
-            baseUrl: cache.getCache().baseUrl
+            supportedBrowsers: JSON.stringify(xml.supportedBrowsers),
+            preferences: '<%%=JSON.stringify(preferences)%%>',
+            baseUrl: '<%%=baseUrl%%>'
         });
 
-        dom = this.createDom(result);
-
-        return dom;
+        return result;
     };
 
     exports.createDom = function (rawHtml) {
@@ -70,13 +73,11 @@
         var positionStartHead;
         result.isValid = false;
         try {
-            select(templateDom, 'script').forEach(function (element) {
-                templateScripts.push(element);
-            });
+            templateScripts = templateDom.split('\r\n');
             /**
              * Insert runOnLoadHandlers script in the end of the section body.
              */
-            var newLine = '\r\n' + htmlConstructor(templateScripts[templateScripts.length - 1]);
+            var newLine = '\r\n' + templateScripts[templateScripts.length - 1];
             positionEndBody = rawHtml.indexOf('</body>');
             rawHtml = this.insertLine(rawHtml, newLine, positionEndBody);
 
@@ -85,7 +86,7 @@
              */
             newLine = '';
             for (i = 0; i < templateScripts.length - 2; i++) {
-                newLine = newLine + '\r\n' + htmlConstructor(templateScripts[i]);
+                newLine = newLine + '\r\n' + templateScripts[i];
             }
 
             positionStartHead = rawHtml.indexOf('<head>') + '<head>'.length;
@@ -96,7 +97,7 @@
              * http://stackoverflow.com/
              * questions/3173571/should-i-put-the-google-analytics-js-in-the-head-or-at-the-end-of-body
              */
-            newLine = '\r\n' + htmlConstructor(templateScripts[templateScripts.length - 2]);
+            newLine = '\r\n' + templateScripts[templateScripts.length - 2];
             positionEndHead = rawHtml.indexOf('</head>');
             rawHtml = this.insertLine(rawHtml, newLine, positionEndHead);
 
@@ -126,11 +127,17 @@
     };
 
     exports.createRequestedHtml = function (xml, html, preferences, token) {
+        var config = storage.staticFiles.applicationWeb;
         this.updateWidgetPreferences(preferences, xml);
 
         var result = _.template(html)({
             token: token,
-            preferences: xml.preferences
+            preferences: xml.preferences,
+            baseUrl: storage.baseUrl,
+            unsupportedBrowserUrl: config['appstore.api'].unsupportedBrowserUrl,
+            datasourceProxyUrl: config['appstore.api'].datasourceProxyUrl,
+            activProxyWebSocketUrl: config['appstore.api'].activProxyWebSocketUrl,
+            ieDataProxy: config['appstore.api'].ieDataProxy
         });
 
         return result;

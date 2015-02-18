@@ -68,6 +68,7 @@
             password: storage.databaseConfiguration.password,
             databaseHost: storage.databaseConfiguration.host,
             databasePort: storage.databaseConfiguration.port,
+            databaseName: storage.databaseConfiguration.name,
             dbUser: storage.databaseConfiguration.login,
             dbPassword: storage.databaseConfiguration.password,
             connectorPath: connectorPath,

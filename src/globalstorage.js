@@ -77,12 +77,12 @@
         storage.VIEWER.secretsPath = parsedData.secretsPath;
         storage.VIEWER.expirationTokenTime = parsedData.expirationTokenTime;
         storage.VIEWER.appsngenCookieKey = parsedData.appsngenCookieKey;
-        storage.VIEWER.restserviceConfig = parsedData.restServicesUrls;
+        storage.VIEWER.restserviceConfig = parsedData.restServicesConfiguration;
         storage.VIEWER.databaseConfiguration = parsedData.databaseConfiguration;
         storage.VIEWER.rabbitMqConfiguration = parsedData.rabbitMqConfiguration;
 
         storage.VIEWER.securitySettings = parsedData.securitySettings;
-        storage.VIEWER.grayLog = parsedData.grayLog;
+        storage.VIEWER.graylog = parsedData.graylog;
         storage.VIEWER.masterToken = parsedData.masterToken;
         storage.VIEWER.services = parsedData.services;
         storage.VIEWER.serviceUser = parsedData.serviceUser;

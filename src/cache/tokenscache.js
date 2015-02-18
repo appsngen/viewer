@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    var restServicesRequester = require('./../processor/modules/restservicesrequester');
+    var restServicesRequester = require('./../processor/modules/services/iservicerequester');
     var storage = require('./../globalstorage').getStorage();
     var widgetCache = require('./widgetcache');
     var logger = require('./../logger/logger')(module);

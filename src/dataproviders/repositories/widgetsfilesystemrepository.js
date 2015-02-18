@@ -24,7 +24,7 @@
     };
 
     exports.readDir = function(dir, callback, errorCallback) {
-        var message, that = this, widgets = [], widgetsCount = 0;
+        var message, that = this, widgets = [];
         fs.readdir(root + dir, function(error, list){
             if(error){
                 message = 'Can not read dir ' + root + dir;
@@ -40,8 +40,7 @@
                     list.forEach(function(file){
                         that.readFile(dir + file, function(data){
                             widgets.push(data);
-                            widgetsCount++;
-                            if(widgetsCount === list.length){
+                            if(widgets.length === list.length){
                                 callback(widgets);
                             }
                         }, errorCallback);

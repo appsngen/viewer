@@ -5,6 +5,7 @@
 (function () {
     'use strict';
     var url = require('url'), path = require('path'),
+        storage = require('./../globalstorage').getStorage(),
         util = require('util'),
         helper = require('./routerhelpers'),
         mime = require('mime');
@@ -12,7 +13,7 @@
 
     exports.ping = function (request, response) {
         response.status(200);
-        response.render('routersStructure.html');
+        response.render('routersStructure.html', { baseUrl: storage.baseUrl});
     };
 
     exports.heartbeat = function (request, response) {
