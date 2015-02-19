@@ -26,7 +26,7 @@
                 }, errorCallback);
             }
             else{
-                callback();
+                errorCallback('cannot load widget ' + params.widgetId + '. appropriate file does not exist');
             }
         });
     };

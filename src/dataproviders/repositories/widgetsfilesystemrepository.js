@@ -165,7 +165,7 @@
     };
 
     exports.exist = function (path, callback) {
-        fs.exists(this.root + path, function (exists) {
+        fs.exists(root + path, function (exists) {
             callback(exists);
         });
     };
