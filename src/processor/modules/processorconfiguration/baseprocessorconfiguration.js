@@ -10,7 +10,7 @@
     var storage = require('./../../../globalstorage').getStorage();
 
     var BaseProcessorConfiguration = function(){
-        this.errorMessage = 'Internal server error';
+        this.errorMessage = 'Internal server error.';
         this.errorUnauthorized = 'Bad token.';
         this.validationErrorMessage = 'There have been validation errors.';
         this.statusCodes = {

@@ -148,7 +148,7 @@
             organizationId = parsedToken.tokenBodyObj.aud.organization;
 
             if (securitySettings.checkSignature && !security.isTokenSignatureValid(parsedToken)) {
-                message = 'Invalid signature';
+                message = 'Invalid signature.';
                 logger.debug(message, parsedToken.tokenBodyObj.aud);
                 configurationModule.sendUnauthorized(request, response, message, isJson);
                 return;
@@ -182,7 +182,7 @@
             callback(userId, organizationId);
         }
         else {
-            message = 'Can\'t parse token. Invalid structure or token is empty' ;
+            message = 'Can\'t parse token. Invalid structure or token is empty.' ;
             logger.debug(message, parsedToken.tokenBodyObj.aud);
             configurationModule.sendUnauthorized(request, response, message, isJson);
         }

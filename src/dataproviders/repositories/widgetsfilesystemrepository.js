@@ -184,7 +184,7 @@
     };
 
     exports.removeFolderSync = function (source) {
-        this.rmdir.sync(this.root + source);
+        this.rmdir.sync(root + source);
     };
 
     exports.removeFile = function (filename, callback, errorCallback) {

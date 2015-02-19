@@ -4,30 +4,19 @@ module.exports = function (grunt) {
     grunt.initConfig({
         meta: {
             src: 'src',
-            tests: 'tests',
-            out: '.out',
-            appName: grunt.file.readJSON('package.json').name
+            out: './'
         },
 
         clean: {
             out: {
-                src: ['<%= meta.out %>']
-            }
-        },
-
-        copy: {
-            src: {
-                files: [
-                    {
-                        expand: true,
-                        src : 'images/*.png',
-                        cwd: '<%= meta.src %>/',
-                        dest: '<%= meta.out %>'
-                    }
+                src: [
+                    '<%= meta.out %>/500.html',
+                    '<%= meta.out %>/legacy.html',
+                    '<%= meta.out %>/notFound.html',
+                    '<%= meta.out %>/underConstr.html'
                 ]
             }
         },
-
         inline: {
             500: {
                 src: '<%= meta.src %>/500.html',
@@ -68,7 +57,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-inline');
-    grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('default', ['clean', 'copy', 'inline', 'htmlmin']);
+    grunt.registerTask('default', ['clean', 'inline', 'htmlmin']);
 };
