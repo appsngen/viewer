@@ -1,0 +1,7 @@
+[
+    "<script>window['__isgadget']=true;</script>",
+    "<script src=\"<%%=baseUrl%%>/content/js/appsngen.widget.api.js\" type=\"text/javascript\"></script>",
+    "<script>appstore.config.init(<%%=JSON.stringify(config)%%>, <%%=preferences%%>, <%%=supportedBrowsers%%>);</script>",
+    "<script src=\"<%%=baseUrl%%>/content/js/applications.analytics.js\" type=\"text/javascript\"></script>",
+    "<script>appstore.util.runOnLoadHandlers();</script>"
+]

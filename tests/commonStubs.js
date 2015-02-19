@@ -8,7 +8,7 @@
     var fs = require('fs');
     var NodeZip = require('node-zip');
     var JSONC = require('comment-json');
-    var widgethtmltemlate = fs.readFileSync(__dirname + '/../src/templates/widgethtmltemlate.html').toString();
+    var widgethtmltemlate = JSON.parse(fs.readFileSync(__dirname + '/../src/templates/widgethtmltemlate.json'));
     var widgetheadconfiguration = fs.readFileSync(__dirname + '/../src/serverconfig.json');
     var cert = fs.readFileSync(__dirname + '/../configuration/appsngen_token_public.crt');
     module.exports.tokenHeader = new Buffer(JSON.stringify({
@@ -230,10 +230,9 @@
             return 'xml';
         }
     };
-    module.exports.renderedtemplate = fs.readFileSync(__dirname + '/content/renderedtemplate.html');
+    module.exports.renderedtemplate = JSON.parse(fs.readFileSync(__dirname + '/content/renderedtemplate.json'));
     module.exports.xmlString = fs.readFileSync(__dirname + '/content/widgetxmltest.xml').toString();
     module.exports.widgetHtml = fs.readFileSync(__dirname + '/content/widgettest.html');
-    module.exports.widgetRenderedHtml = fs.readFileSync(__dirname + '/content/renderedtemplate.html');
     module.exports.resultHtml = fs.readFileSync(__dirname + '/content/compiledwidget.html').toString();
     module.exports.requestedHtml = fs.readFileSync(__dirname + '/content/requestedwidget.html').toString();
     module.exports.less = fs.readFileSync(__dirname + '/content/testless.less').toString();

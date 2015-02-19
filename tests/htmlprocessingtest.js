@@ -42,7 +42,7 @@
                     supportedBrowsers : ['Safari, Chrome']
                 };
 
-                var expectedResult = stubs.renderedtemplate.toString();
+                var expectedResult = stubs.renderedtemplate;
                 var result = htmlProcessor.createTemplateHtml(xml);
                 should(result).eql(expectedResult);
             });
@@ -95,11 +95,11 @@
             });
 
             it('should create dom from widget template html file', function(){
-                domTemplate = htmlProcessor.createDom(stubs.widgetRenderedHtml);
+                domTemplate = htmlProcessor.createDom(stubs.renderedtemplate);
             });
 
             it('should return rendered widget html from widget dom and template dom', function () {
-                result = htmlProcessor.insertData(stubs.widgetHtml.toString(), stubs.widgetRenderedHtml.toString());
+                result = htmlProcessor.insertData(stubs.widgetHtml.toString(), stubs.renderedtemplate);
                 result.newHtml.should.equal(stubs.resultHtml);
             });
 

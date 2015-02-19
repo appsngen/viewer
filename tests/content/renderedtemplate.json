@@ -1,0 +1,7 @@
+[
+"<script>window['__isgadget']=true;</script>",
+"<script src=\"<%%=baseUrl%%>/content/js/appsngen.widget.api.js\" type=\"text/javascript\"></script>",
+"<script>appstore.config.init({\"authToken\":\"<%%=token%%>\",\"appstore.api\":{\"timestamp\":\"\",\"unsupportedBrowserUrl\":\"<%%=unsupportedBrowserUrl%%>\",\"datasourceProxyUrl\":\"<%%=datasourceProxyUrl%%>\",\"activProxyWebSocketUrl\":\"<%%=activProxyWebSocketUrl%%>\",\"ieDataProxy\":\"<%%=ieDataProxy%%>\"},\"core.util\":{\"appstore.events\":{\"events\":{\"publish\":[\"SINGLE_INSTRUMENT\"],\"subscribe\":[\"INTERVAL_CHANGED\"]}},\"core\":{},\"appstore.api\":{}}}, <%%=JSON.stringify(preferences)%%>, [\"Safari, Chrome\"]);</script>",
+"<script src=\"<%%=baseUrl%%>/content/js/applications.analytics.js\" type=\"text/javascript\"></script>",
+"<script>appstore.util.runOnLoadHandlers();</script>"
+]

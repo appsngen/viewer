@@ -9,6 +9,7 @@
     var storage= require('./../../../globalstorage').getStorage();
     var _ = require('underscore');
     var cache = require('./../../../cache/cache');
+    var endOfLine = require('os').EOL;
     var Guid = require('guid');
     var deepCopy = require('deepcopy');
     _.templateSettings = {
@@ -18,7 +19,7 @@
     };
 
     exports.createTemplateHtml = function (xml) {
-        var config, dataTemplate;
+        var config, dataTemplate, i, result = [];
         dataTemplate = cache.getTemplateHtml();
         config = deepCopy(storage.staticFiles.applicationWeb);
         config.authToken = '<%%=token%%>';
@@ -29,12 +30,14 @@
 
         config['core.util']['appstore.events'].events.publish = xml.events.publish;
         config['core.util']['appstore.events'].events.subscribe = xml.events.subscribe;
-        var result = _.template(dataTemplate.toString())({
-            config: config,
-            supportedBrowsers: JSON.stringify(xml.supportedBrowsers),
-            preferences: '<%%=JSON.stringify(preferences)%%>',
-            baseUrl: '<%%=baseUrl%%>'
-        });
+        for(i = 0; i < dataTemplate.length; i++) {
+            result.push(_.template(dataTemplate[i].toString())({
+                config: config,
+                supportedBrowsers: JSON.stringify(xml.supportedBrowsers),
+                preferences: '<%%=JSON.stringify(preferences)%%>',
+                baseUrl: '<%%=baseUrl%%>'
+            }));
+        }
 
         return result;
     };
@@ -67,17 +70,16 @@
     };
 
     exports.insertData = function (rawHtml, templateDom) {
-        var i, result = {}, templateScripts = [];
+        var i, result = {};
         var positionEndBody;
         var positionEndHead;
         var positionStartHead;
         result.isValid = false;
         try {
-            templateScripts = templateDom.split('\r\n');
             /**
              * Insert runOnLoadHandlers script in the end of the section body.
              */
-            var newLine = '\r\n' + templateScripts[templateScripts.length - 1];
+            var newLine = endOfLine + templateDom[templateDom.length - 1];
             positionEndBody = rawHtml.indexOf('</body>');
             rawHtml = this.insertLine(rawHtml, newLine, positionEndBody);
 
@@ -85,8 +87,8 @@
              * Insert all other scripts (except ready and google analytics) from template into widget head section
              */
             newLine = '';
-            for (i = 0; i < templateScripts.length - 2; i++) {
-                newLine = newLine + '\r\n' + templateScripts[i];
+            for (i = 0; i < templateDom.length - 2; i++) {
+                newLine = newLine + endOfLine + templateDom[i];
             }
 
             positionStartHead = rawHtml.indexOf('<head>') + '<head>'.length;
@@ -97,7 +99,7 @@
              * http://stackoverflow.com/
              * questions/3173571/should-i-put-the-google-analytics-js-in-the-head-or-at-the-end-of-body
              */
-            newLine = '\r\n' + templateScripts[templateScripts.length - 2];
+            newLine = endOfLine + templateDom[templateDom.length - 2];
             positionEndHead = rawHtml.indexOf('</head>');
             rawHtml = this.insertLine(rawHtml, newLine, positionEndHead);
 

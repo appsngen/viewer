@@ -11,174 +11,174 @@
         "port": "",
         "login": "",
         "password": "",
-        "name" : ""    
+        "name" : ""
     },
-    /**
-     * Location of viewer static resources.
-     */
-    "staticFiles": {
-        "htmlTemplatePath": "templates/widgethtmltemlate.html",
-        "applicationAnaliticPath": "/../content/js/applications.analytics.js",
-        "appsngenWidgetApiPath": "/../content/js/appsngen.widget.api.js",
-        "appsngenContainerApiPath": "/../content/js/appsngen.container.api.js",
-        "liquibaseTemplatePath": "templates/liquibasecalltemplate.txt",
-        "appsngenCertificate": "../configuration/appsngen_token_public.crt",
-        "mysqlConnectorJavaPath": "/mysql-connector-java-5.0.8-bin.jar",
-        "changeLogFilePath": "/../../databasedump/Main_Viewer.xml",
-        "imagesViewsPath": "../content/views/src/images/",
-        "viewsPath": "../content/views/"
-    },
-    "httpsConfiguration": {
-        "crt": "",
-        "pem": ""
-    },
-    "rabbitMqConfiguration": {
-        "protocol": "",
-        "port": "",
-        "host": "",
-        "password": "",
-        "login": "",
-        "vhost": "",
-        "rpc": {
-            "exchange": "",
-            "name": ""
-        },
-        "publisherSubscriber": {
-            "exchange": "",
-            "name": ""
-        },
-        "graylogPublisher": {
-            "exchange": "",
-            "routingKey": ""
-        }
-    },
-    "restServicesConfiguration": {
-        /**
-         * Type of using services. Can be stub or realy.
-         */
-        "type": "stub",
-        "protocol": "https",
-        "tokenService": {
-            "host": "www.appsngen.com",
-            "bearerTokenPath": "/auth-service/tokens/using-master-token?user=",
-            "basicTokenPath": "/auth-service/tokens",
-            "port": ""
-        },
-        "preferencesService": {
-            "host": "www.appsngen.com",
-            "path": "/rest-services/preferences/global?view=general&organizationId=",
-            "port": ""
-        },
-        "gadgetManagementService": {
-            "host": "www.appsngen.com",
-            "path": "/rest-services/gadget-management/apps",
-            "port": ""
-        },
-        "widgetsDownloadService": {
-            "host": "www.appsngen.com",
-            "path": "/rest-services/widgets/",
-            "port": ""
-        },
-        "widgetPreferencesService": {
-            "host": "www.appsngen.com",
-            "path": "/rest-services/preferences?organizationId=",
-            "port": ""
-        },
-        "uploadService": {
-            "host": "www.appsngen.com",
-            "path": "/rest-services/widgets?organizationId=",
-            "port": ""
-        },
-        "deleteService": {
-            "host": "www.appsngen.com",
-            "path": "/rest-services/widgets/",
-            "port": ""
-        }
-    },
-    "logger": {
-        "levels": {
-            "file": "silly",
-            "console": "silly",
-            "graylog": "silly"
-        },
-        /**
-         * Priority levels
-         * Only for infomation.
-         */
-        "priority": {
-            "silly": 0,
-            "debug": 1,
-            "verbose": 2,
-            "info": 3,
-            "warn": 4,
-            "error": 5
-        }
-    },
-    "graylog": {
-        "gelfVersion": "",
-        "messageFormat": ""
-    },
-    /**
-     * Widget configuration section.
-     */
-    "widgetConfig": {
-        "authToken": "",
-        "appstore.api": {
-            "timestamp": "",
-            "unsupportedBrowserUrl": "/content/index.html",
-            "datasourceProxyUrl": "https://www.appsngen.com/datasource-proxy",
-            "activProxyWebSocketUrl": "wss://www.appsngen.com/activ-data-proxy",
-            "ieDataProxy": "https://www.appsngen.com/datasource-proxy/ie-data-proxy"
-        },
-        "core.util": {
-            "appstore.events": {
-                "events": {
-                    "publish": [],
-                    "subscribe": []
-                }
-            },
-            "core": {},
-            "appstore.api": {}
-        }
-    },
-    /**
-     * User for basic authorization if master token is not specified.
-     */
-    "user": {
-        "name": "",
-        "password": ""
-    },
-    /**
-     * Different levels of token checks (true to enable) (false for disable)
-     */
-    "securitySettings": {
-        "checkSignature": false,
-        "checkExpiration": false,
-        "checkParent": false,
-        "checkSubject": false
-    },
-    /**
-     * Type of data provider. Can be file system or mysql provider.
-     */
-    "dataProvider": "filesystem",
-    /**
-     * Scope of available external services.
-     */
-    "services": ["preferences", "widgets", "gadget-management"],
-    /**
-     * Additional interval from expiration token time.
-     */
-    "expirationTokenTime": 30000,
-    /**
-     * User for synchronization operation
-     */
-    "serviceUser": "service@appstore.com",
-    /**
-     * Key for generation cookie signature.
-     */
-    "appsngenCookieKey": "wAem5fGxuSMBBSnDJRHADRase9FmXsyF1MHlPLQ4IbZFrqXJ75nbCjoMizTQ",
-    /**
-     * Token for getting another tokens
-     */
-    "masterToken": ""
+/**
+ * Location of viewer static resources.
+ */
+"staticFiles": {
+"htmlTemplatePath": "templates/widgethtmltemlate.json",
+"applicationAnaliticPath": "/../content/js/applications.analytics.js",
+"appsngenWidgetApiPath": "/../content/js/appsngen.widget.api.js",
+"appsngenContainerApiPath": "/../content/js/appsngen.container.api.js",
+"liquibaseTemplatePath": "templates/liquibasecalltemplate.txt",
+"appsngenCertificate": "../configuration/appsngen_token_public.crt",
+"mysqlConnectorJavaPath": "/mysql-connector-java-5.0.8-bin.jar",
+"changeLogFilePath": "/../../databasedump/Main_Viewer.xml",
+"imagesViewsPath": "../content/views/src/images/",
+"viewsPath": "../content/views/"
+},
+"httpsConfiguration": {
+"crt": "",
+"pem": ""
+},
+"rabbitMqConfiguration": {
+"protocol": "",
+"port": "",
+"host": "",
+"password": "",
+"login": "",
+"vhost": "",
+"rpc": {
+"exchange": "",
+"name": ""
+},
+"publisherSubscriber": {
+"exchange": "",
+"name": ""
+},
+"graylogPublisher": {
+"exchange": "",
+"routingKey": ""
+}
+},
+"restServicesConfiguration": {
+/**
+ * Type of using services. Can be stub or realy.
+ */
+"type": "stub",
+"protocol": "https",
+"tokenService": {
+"host": "www.appsngen.com",
+"bearerTokenPath": "/auth-service/tokens/using-master-token?user=",
+"basicTokenPath": "/auth-service/tokens",
+"port": ""
+},
+"preferencesService": {
+"host": "www.appsngen.com",
+"path": "/rest-services/preferences/global?view=general&organizationId=",
+"port": ""
+},
+"gadgetManagementService": {
+"host": "www.appsngen.com",
+"path": "/rest-services/gadget-management/apps",
+"port": ""
+},
+"widgetsDownloadService": {
+"host": "www.appsngen.com",
+"path": "/rest-services/widgets/",
+"port": ""
+},
+"widgetPreferencesService": {
+"host": "www.appsngen.com",
+"path": "/rest-services/preferences?organizationId=",
+"port": ""
+},
+"uploadService": {
+"host": "www.appsngen.com",
+"path": "/rest-services/widgets?organizationId=",
+"port": ""
+},
+"deleteService": {
+"host": "www.appsngen.com",
+"path": "/rest-services/widgets/",
+"port": ""
+}
+},
+"logger": {
+"levels": {
+"file": "silly",
+"console": "silly",
+"graylog": "silly"
+},
+/**
+ * Priority levels
+ * Only for infomation.
+ */
+"priority": {
+"silly": 0,
+"debug": 1,
+"verbose": 2,
+"info": 3,
+"warn": 4,
+"error": 5
+}
+},
+"graylog": {
+"gelfVersion": "",
+"messageFormat": ""
+},
+/**
+ * Widget configuration section.
+ */
+"widgetConfig": {
+"authToken": "",
+"appstore.api": {
+"timestamp": "",
+"unsupportedBrowserUrl": "/content/index.html",
+"datasourceProxyUrl": "https://www.appsngen.com/datasource-proxy",
+"activProxyWebSocketUrl": "wss://www.appsngen.com/activ-data-proxy",
+"ieDataProxy": "https://www.appsngen.com/datasource-proxy/ie-data-proxy"
+},
+"core.util": {
+"appstore.events": {
+"events": {
+"publish": [],
+"subscribe": []
+}
+},
+"core": {},
+"appstore.api": {}
+}
+},
+/**
+ * User for basic authorization if master token is not specified.
+ */
+"user": {
+"name": "dev1@epamsystems.com",
+"password": "dev1"
+},
+/**
+ * Different levels of token checks (true to enable) (false for disable)
+ */
+"securitySettings": {
+"checkSignature": false,
+"checkExpiration": false,
+"checkParent": false,
+"checkSubject": false
+},
+/**
+ * Type of data provider. Can be file system or mysql provider.
+ */
+"dataProvider": "filesystem",
+/**
+ * Scope of available external services.
+ */
+"services": ["preferences", "widgets", "gadget-management"],
+/**
+ * Additional interval from expiration token time.
+ */
+"expirationTokenTime": 30000,
+/**
+ * User for synchronization operation
+ */
+"serviceUser": "service@appstore.com",
+/**
+ * Key for generation cookie signature.
+ */
+"appsngenCookieKey": "wAem5fGxuSMBBSnDJRHADRase9FmXsyF1MHlPLQ4IbZFrqXJ75nbCjoMizTQ",
+/**
+ * Token for getting another tokens
+ */
+"masterToken": ""
 }

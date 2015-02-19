@@ -36,7 +36,7 @@
         storage.VIEWER.baseUrl = parsedData.viewerInstanceConfiguration.baseUrl;
 
         tempData = repository.readFileSync(parsedData.staticFiles.htmlTemplatePath);
-        storage.VIEWER.staticFiles.htmlTemplate = tempData;
+        storage.VIEWER.staticFiles.htmlTemplate = JSON.parse(tempData);
         tempData = repository.readFileSync(parsedData.staticFiles.applicationAnaliticPath);
         storage.VIEWER.staticFiles['applications.analytics.js'] = tempData;
 
