@@ -1,4 +1,4 @@
-AppsNgen viewer component.
+AppsNgen viewer component
 ======
 
-Module for rendering widget content
+Module for rendering widget content.
