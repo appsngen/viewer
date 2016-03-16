@@ -6,7 +6,7 @@
     'use strict';
 
     var storage = require('./../globalstorage').getStorage();
-    var ampq = require('./../../node_modules/amqplib/callback_api');
+    var ampq = require('amqplib/callback_api');
     var Guid = require('guid');
 
     var BaseRabbitmq = function(message){
