@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - "5.6"
+git:
+  depth: 3
+install: 
+- npm install
+- cd src\appsngen-api
+- npm install
+script:  
+- grunt build
+- cd src\appsngen-api
+- grunt build
+after_success:
+- grunt lint
+- grunt test
+- grunt deploy
+- cd src\appsngen-api
+- grunt lint
+- grunt test
+- grunt
