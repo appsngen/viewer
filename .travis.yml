@@ -4,18 +4,6 @@ node_js:
 git:
   depth: 3
 install: 
-- npm install
-- cd src\appsngen-api
-- npm install
+- npm install -g jshint
 script:  
-- grunt build
-- cd src\appsngen-api
-- grunt build
-after_success:
-- grunt lint
-- grunt test
-- grunt deploy
-- cd src\appsngen-api
-- grunt lint
-- grunt test
-- grunt
+- jshint ./
