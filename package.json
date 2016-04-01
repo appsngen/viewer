@@ -1,7 +1,8 @@
 { 
-  "name": "appsngen-viewer",
+    "name": "appsngen-viewer",
     "description": "Module for rendering widget content",
     "version": "2.0.6",
+    "main": "src/server.js",
     "private": false,
     "dependencies": {
         "comment-json": "0.1.11",
